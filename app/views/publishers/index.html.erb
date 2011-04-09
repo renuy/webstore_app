@@ -1,0 +1,9 @@
+<h1> All Publishers </h1>
+
+<ol class="publishers">
+	<% @publishers.each do |i| %>
+		<li>
+			<%= link_to i.name, i %>
+		</li>
+	<% end %>
+</ol>

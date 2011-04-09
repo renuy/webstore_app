@@ -1,0 +1,45 @@
+<div id="editauthor" class="span-13">
+	<%= form_for(@author, :remote => true) do |f| -%>
+		<div class="span-13">
+			<% if @author.errors.any? %>
+			  <div id="error_explanation" class="error">
+			    <h4><%= pluralize(@author.errors.count, "error") %> prohibited this item from being saved:</h4>
+			    <ul>
+			    <% @author.errors.full_messages.each do |msg| %>
+			      <li><%= msg %></li>
+			    <% end %>
+			    </ul>
+			  </div>
+			<% end %>
+		</div>
+		<div class="span-13">
+			<div class="span-13 push-3">
+				<b><%= @author.name %></b>
+			</div>
+			<div class="span-3">
+				<%= f.label 'First Name', :style => 'float:right' %>
+				<%= f.label 'Middle Name', :style => 'float:right' %>
+				<%= f.label 'Last Name', :style => 'float:right' %>
+			</div>
+			<div class="span-5">
+				<%= f.text_field :firstname, :size => 50, :style => 'margin:0;padding:0' %>
+				<%= f.text_field :middlename, :size => 50, :style => 'margin:0;padding:0'%>
+				<%= f.text_field :lastname, :size => 50, :style => 'margin:0;padding:0'%>
+			</div>
+			<div class="span-13">
+				<br/>
+				It is recommended that you capture the full name of the author in the <b>first name</b>,
+				and avoid splitting the name across first name, middle name and last name. Middle name and Last name
+				will be removed soon.
+			</div>			
+			<div class="span-13">
+				<br/>
+				<%= f.submit %>
+			</div>
+		</div>
+	<% end -%>
+	<div class="span-13 push-11">
+		<%= link_to 'Show', {:controller => 'authors', :action=> 'show', :id => @author.id, :sortdir => params[:sortdir], :sort => params[:sort], :page => params[:page] }, :remote => true %> |
+		<%= link_to 'Back', {:controller => 'authors', :action=> 'index', :sortdir => params[:sortdir], :sort => params[:sort], :page => params[:page] }, :remote => true %>
+	</div>
+</div>

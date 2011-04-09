@@ -1,0 +1,112 @@
+
+<%= javascript_tag :defer => 'defer' do -%>
+	$(document).ready(function () {
+    //single book
+    $('#mybook').booklet({
+      width:    550,
+      height:   300,
+      manual: true,
+      speed:    500});
+    //multiple books with ID's
+    //$('#mybook1, #mybook2').booklet();
+    //multiple books with a class
+    //$('.mycustombooks').booklet();
+	});
+<% end -%>
+<div class='span-15'>
+  <div class='span-15'>
+  <%= image_tag "/images/shelf-box.png", :size => "670x408", :alt => "justbooks shelf ", :id=>"img_shelf" %>
+  </div>
+  <div class='span-15' style="z-index:2" id="bookdetails">
+    <div class='span-5' style="position:absolute; bottom:110px; left:350px;z-index:2 ">
+      <%= image_tag image_url(@title.id), :size => "133x200", :alt => "#{@title.id} ", :id=>"img_#{@title.id}", 
+      :onmouseover => "Collectionapp.stretchImage( this)",  :onmouseout => "Collectionapp.shrinkImage( this)",
+      :title => "#{@title.id}", :onerror => "this.src='#{default_image_url}';"  %>
+    </div>
+    <div class='span-10' style="position:absolute; bottom:110px; left:580px;z-index:2" ">
+      <span><%= @title.title %></span>
+      <br/>
+      <span><%= @title.author.name %></span>
+      <br/>
+      <span><%= @title.publisher.name %> (<span><%= @title.yearofpublication %></span>)</span>
+      <br/>
+      <span><%= @title.category.division %> - <%= @title.category.name %></span>
+      <br/>
+      <span>ISBN 13: <%= @title.isbn13 %></span>
+      <br/>
+      <span>ISBN 10: <%= @title.isbn10 %></span>
+      <br/>
+      <span>Price: <%= @title.isbn10 %></span>
+      <br/>
+      <span>No of Copies: <%= @title.stock.collect{|x| x.total_cnt}.sum.to_i %> (total), <%= @title.stock.collect{|x| x.in_circulation_cnt}.sum.to_i %> 
+            (in circulation), <%= @title.stock.collect{|x| x.in_store_cnt}.sum.to_i %> (<%= link_to_function 'available', '#'%>)</span>
+      <br/>
+      <br/>
+      
+    </div>
+  </div>
+  <div class='span-15' id="mybook" style=" height:350px;display:none;position:absolute; bottom:110px; left:350px;z-index:2">
+    <% @title.reviews.each do |review| %>
+    <div class="b-load">
+      <div><br/><br/><br/><h3><%= review.heading %></h3><hr/></div>
+      <div><br/><br/><br/>By: <%= review.reviewer %><hr/></div>
+      <div><br/><br/><br/><b><%= raw(review.summary) %> </b></div>
+      <div>
+      <% if review.review.include?("profile\\reviews") %>
+        <div class="span-15">  
+          <iframe src ="<%= "http://justbooksclc.com/images/#{review.review}" %>" 
+          id="<%= "div_#{review.profile_id}_#{review.title_id}" %>"
+          width="40%" height="198" > </iframe>
+        </div>
+      <% else %>
+        <div class="span-14">
+          <div class="span-9 style="z-index:0 ">
+          <div class="span-9 bookpage" id="<%= "div_#{review.profile_id}_#{review.title_id}_right" %>" style="position:absolute; z-index:2 ">
+            <%= raw(review.review) %> 
+          </div>
+          <div class="span-9 bookpage" id="<%= "div_#{review.profile_id}_#{review.title_id}_right_bck" %>" style="z-index:1">
+            <%= raw(review.review) %> 
+          </div>
+          </div>
+        </div>
+      <%= link_to_function "prev" , "Collectionapp.showPrevPage('#{review.profile_id}','#{review.title_id}')" %>  
+      <%= link_to_function "next" , "Collectionapp.showNextPage('#{review.profile_id}','#{review.title_id}')" %>  
+      <%= hidden_field_tag  "field_#{review.profile_id}_#{review.title_id}", '_bck' %> 
+      <%end%>
+      </div>
+    
+    </div>  
+    <% end %>	
+  </div>
+
+</div>
+
+<div class='span-6 last' style="display:none" id="title_show_brn_avl">
+  <table>
+    <tr>
+      <th colspan="3">Branch</th>
+      <th>In store</th>
+      <th>Out of store</th>
+    </tr>
+    
+	<% @title.stock.each do |stock| %>
+    <tr>
+      <td colspan="3"><%=stock.branch.name %></td>
+      <td><%=stock.in_store_cnt.to_i %></td>
+      <td><%=stock.in_circulation_cnt.to_i %></td>
+    </tr>
+  <% end %>
+  </table>
+</div>
+<div class='span-15'>
+	<%= link_to_function '=>'  , "Collectionapp.toggle_title_div()" %>
+</div>
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+<br/>
+<br/>
+<br/>

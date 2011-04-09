@@ -1,0 +1,7 @@
+
+<h1> <%= @publisher.name %> </h1>
+<h2> <%= @publisher.country %> </h2>
+<h2> <%= @publisher.titles.count %> </h2>
+<table class="titles" summary="Titles">
+	<%= render @titles %>
+</table>

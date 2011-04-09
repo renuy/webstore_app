@@ -1,0 +1,17 @@
+production:
+  solr:
+    hostname: 74.86.131.195
+    port: 7585
+    log_level: INFO
+
+development:
+  solr:
+    hostname: 74.86.131.195
+    port: 7585
+    log_level: INFO
+
+test:
+  solr:
+    hostname: 74.86.131.195
+    port: 7585
+    log_level: INFO

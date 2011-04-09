@@ -1,0 +1,165 @@
+<%= javascript_tag :defer => 'defer' do -%>
+	$(document).ready(function () {
+		Collectionapp.initShelf('div_book_shelf');
+	});
+<% end -%>
+
+<div class='span-24 prepend-top'>
+  <div class='span-24 shelf_7_89' id="div_book_shelf" style="background: url(../images/find-a-book-splice_62.png) no-repeat;display:none">
+    <div class='span-24'>
+      <div class='span-10 shelf-3'">
+        <div style="background:url(../images/series.png) no-repeat;background-position:5px 5px;">
+          <p class="shelfname">
+          <%= link_to "READ", show_myshelf_path(:shelf => 'rs', :per_page=> 9, :page => get_random_page(@shelf0))  %></p>
+          <p></p>
+          <p><br/></p>
+          
+          <p>
+            <!--div class='span-1'><br/> </div-->
+            <% @shelf0.each do |shelf| %>
+              <div class='span-2 prepend-1'><%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
+                  :size => "50x70", :alt => "#{shelf.title.title} ", 
+                  :title => "#{shelf.title.title}", :onerror => "this.src='#{default_image_url}';"  %>
+              </div> 
+            <% end %>
+               
+          </p>      
+        </div>
+      </div>
+      <div class='span-7 shelf-2'>
+        <div style="background:url(../images/comic.png) no-repeat;background-position:5px 5px;">
+          <p class="shelfname"><%= link_to "READING", show_myshelf_path(:shelf => 'rnsd', :per_page=> 9, :page => get_random_page(@shelf1))  %></p>
+          <p></p>
+          <p><br/></p>
+          <p>
+            <!--div class='span-1'><br/> </div-->
+            <% @shelf1.each do |shelf| %>
+              <div class='span-2  prepend-1'><%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
+                  :size => "50x70", :alt => "#{shelf.title.title} ", 
+                  :title => "#{shelf.title.title}", :onerror => "this.src='#{default_image_url}';"  %>
+              </div> 
+            <% end %>
+               
+          </p>
+         </div>
+      </div>
+      <div class='span-7 shelf-2'>
+        <div style="background:url(../images/sci-nature.png) no-repeat;background-position:5px 5px;">
+          <p class="shelfname"><%= link_to "BOOKMARKED", show_myshelf_path(:shelf => 'rns', :per_page=> 9, :page => get_random_page(@shelf2))  %></p>
+          <p></p>
+          <p><br/></p>
+          <p>
+            <!--div class='span-1'><br/> </div-->
+            <% @shelf2.each do |shelf| %>
+              <div class='span-2  prepend-1'><%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
+                  :size => "50x70", :alt => "#{shelf.title.title} ", 
+                  :title => "#{shelf.title.title}", :onerror => "this.src='#{default_image_url}';"  %>
+              </div> 
+            <% end %>
+               
+          </p>
+        </div>    
+      </div>
+    </div>
+    <div class='span-24'>
+      <div class='span-7 shelf-2'>
+        <div style="background:url(../images/s-stories.png) no-repeat;background-position:5px 5px;">
+          <p class="shelfname"><%= link_to "WISH LIST", show_myshelf_path(:shelf=> 'rec', :per_page=> 9, :page => get_random_page(@shelf1))  %></p>
+          <p></p>
+          <p><br/></p>
+          <p>
+            <!--div class='span-1'><br/> </div-->
+            <% @shelf1.each do |shelf| %>
+              <div class='span-2  prepend-1'><%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
+                  :size => "50x70", :alt => "#{shelf.title.title} ", 
+                  :title => "#{shelf.title.title}", :onerror => "this.src='#{default_image_url}';"  %>
+              </div> 
+            <% end %>
+               
+          </p>
+        </div>  
+      </div>
+      <div class='span-7 shelf-2'>
+        <div style="background:url(../images/novel.png) no-repeat;background-position:5px 5px;">
+          <p class="shelfname"><%= link_to "Events", show_myshelf_path(:shelf=>"event", :per_page=> 9, :page => get_random_page(@shelf3)) %> </p>
+          <p></p>
+          <p><br/></p>
+          <p>
+            <!-- div class='span-1'><br/> </div-->
+            <% @shelf3.each do |shelf| %>
+              <div class='span-2  prepend-1'><%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
+                  :size => "50x70", :alt => "#{shelf.title.title} ", 
+                  :title => "#{shelf.title.title}", :onerror => "this.src='#{default_image_url}';"  %>
+              </div> 
+            <% end %>
+               
+          </p>
+        </div>    
+      </div>
+      <div class='span-10 shelf-3'>
+        <div style="background:url(../images/school-z.png) no-repeat;background-position:5px 5px;">
+          <p class="shelfname"><%= link_to "groups", show_myshelf_path(:shelf=>"group", :per_page=> 9, :page => get_random_page(@shelf8))  %></p>
+          <p></p>
+          <p><br/></p>
+          <p>
+            <!--div class='span-1'><br/> </div-->
+            <% @shelf8.each do |shelf| %>
+              <div class='span-2  prepend-1'><%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
+                  :size => "50x70", :alt => "#{shelf.title.title} ", 
+                  :title => "#{shelf.title.title}", :onerror => "this.src='#{default_image_url}';"  %>
+              </div> 
+            <% end %>
+               
+          </p>
+        </div>
+      </div>
+    </div>  
+    <div class='span-24'>  
+      <div class='span-10 shelf-3'>
+        <div style="background:url(../images/act-adventure.png) no-repeat;background-position:5px 5px;">
+          <p class="shelfname"><%= link_to "Book talk", show_myshelf_path(:shelf=>"review", :per_page=> 9, :page => get_random_page(@shelf4))  %></p>
+          <p>
+            <!--div class='span-1'><br/> </div-->
+            <% @shelf4.each do |shelf| %>
+              <div class='span-2  prepend-1'><%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
+                  :size => "50x70", :alt => "#{shelf.title.title} ", 
+                  :title => "#{shelf.title.title}", :onerror => "this.src='#{default_image_url}';"  %>
+              </div> 
+            <% end %>
+               
+          </p>
+        </div>    
+      </div>
+      <div class='span-7 shelf-2'>
+        <div style="background:url(../images/poetry.png) no-repeat;background-position:5px 5px;">
+          <p class="shelfname"><%= link_to "remove", show_myshelf_path(:shelf=>"", :per_page=> 9, :page => get_random_page(@shelf5))  %></p>
+          <p>
+            <!--div class='span-1'><br/> </div-->
+            <% @shelf5.each do |shelf| %>
+              <div class='span-2  prepend-1'><%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
+                  :size => "50x70", :alt => "#{shelf.title.title} ", 
+                  :title => "#{shelf.title.title}", :onerror => "this.src='#{default_image_url}';"  %>
+              </div> 
+            <% end %>
+               
+          </p>
+        </div>    
+      </div>
+      <div class='span-7 shelf-2'>
+        <div style="background:url(../images/activity.png) no-repeat;background-position:5px 5px;">
+          <p class="shelfname"><%= link_to "remove", show_myshelf_path(:shelf=>"", :per_page=> 9, :page => get_random_page(@shelf6))  %></p>
+          <p>
+            <!--div class='span-1'><br/> </div-->
+            <% @shelf6.each do |shelf| %>
+              <div class='span-2  prepend-1'><%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
+                  :size => "50x70", :alt => "#{shelf.title.title} ", 
+                  :title => "#{shelf.title.title}", :onerror => "this.src='#{default_image_url}';"  %>
+              </div> 
+            <% end %>
+               
+          </p>
+        </div>    
+      </div>
+    </div>  
+  </div>
+</div>

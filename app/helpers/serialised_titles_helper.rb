@@ -1,0 +1,2 @@
+module SerialisedTitlesHelper
+end

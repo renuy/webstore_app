@@ -1,0 +1,2 @@
+module PendingTitlesForCollectionsHelper
+end

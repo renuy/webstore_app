@@ -1,0 +1,21 @@
+<h1>Listing collection_names</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @collection_names.each do |collection_name| %>
+  <tr>
+    <td><%= link_to 'Show', collection_name %></td>
+    <td><%= link_to 'Edit', edit_collection_name_path(collection_name) %></td>
+    <td><%= link_to 'Destroy', collection_name, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Collection name', new_collection_name_path %>

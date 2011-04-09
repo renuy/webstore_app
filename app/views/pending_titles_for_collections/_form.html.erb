@@ -1,0 +1,17 @@
+<%= form_for(@pending_titles_for_collection) do |f| %>
+  <% if @pending_titles_for_collection.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@pending_titles_for_collection.errors.count, "error") %> prohibited this pending_titles_for_collection from being saved:</h2>
+
+      <ul>
+      <% @pending_titles_for_collection.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

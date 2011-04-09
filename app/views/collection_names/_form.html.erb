@@ -1,0 +1,33 @@
+<div class="span-14">
+<%= form_for(@collection_name) do |f| %>
+  <% if @collection_name.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@collection_name.errors.count, "error") %> prohibited this collection_name from being saved:</h2>
+
+      <ul>
+      <% @collection_name.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+
+
+  <% end %>
+  
+  <table>
+    <tr> 
+      <th><%= f.label :name %></th>
+      <td><%= f.text_field :name, :maxlength => 30 %></td>
+      
+    </tr>
+    <tr>
+      <th ><%= f.label 'Series' %></th>
+      <td ><%= f.check_box :serialized, {:checked => 'unchecked'}, 'Y', 'N' %></td>
+    <tr>
+        
+  </table>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+</div>
