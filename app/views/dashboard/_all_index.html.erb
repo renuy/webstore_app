@@ -1,0 +1,194 @@
+
+<div class='span-24 prepend-top'>
+  
+  <div class='span-24 shelf_7_89' id="div_book_shelf" style="background: url(../images/7_89.png) no-repeat;display:none; padding:10px 0px 0px 10px;">
+    <div class='span-24'>
+      <div class='span-10 shelf-3'">
+        
+        <div id="title">
+          <div class="span-3 title">
+              <p><a>NEW BOOK</a></p>
+          </div>
+        </div>
+        
+        <p></p>
+        <p><br/></p>
+        <p>
+          <% @shelf0.each do |shelf| %>
+            <div class='span-2 prepend-1'><%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
+                :size => "50x70", :alt => "#{shelf.title.title} ", 
+                :title => "#{shelf.title.title}", :onerror => "this.src='#{default_image_url}';"  %>
+            </div> 
+          <% end %>
+             
+        </p>      
+      </div>
+      <div class='span-3 shelf-1'>
+
+        <div>
+        
+          <!--div class='span-1'><br/> </div-->
+            <div class='span-6'> <br/></div>
+            <div class='span-3 small'  style="margin:0px 0px 0px 20px;"><b> </b></div>
+            <div class='span-6'> <br/></div>
+            <div class='span-6'> <br/></div>
+            <div class='span-6'> </div>
+            
+        </div>  
+          
+      </div>
+      <div class='span-7 shelf-2'>
+        <div id="title">
+          <div class="span-3 title">
+              <p><a>MOST READ</a></p>
+          </div>
+        </div>
+        
+        <p></p>
+        <p><br/></p>
+        <p>
+          <!--div class='span-1'><br/> </div-->
+          <% @shelf1.each do |shelf| %>
+            <div class='span-2  prepend-1'><%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
+                :size => "50x70", :alt => "#{shelf.title.title} ", 
+                :title => "#{shelf.title.title}", :onerror => "this.src='#{default_image_url}';"  %>
+            </div> 
+          <% end %>
+             
+        </p>
+      </div>
+
+      <div class='span-3 shelf-1'>
+        <div id="title">
+          <div class="span-3 title">
+              <p><%= link_to "KIDS SHELF", myshelf_path %></p>
+          </div>
+        </div>
+          <p></p>
+          <p><br/></p>
+          <p>
+          <!--div class='span-1'><br/> </div-->
+          
+          <% @myshelf.each do |shelf| %>
+            <div class='span-2  prepend-1'><%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
+                :size => "50x70", :alt => "#{shelf.title.title} ", 
+                :title => "#{shelf.title.title}", :onerror => "this.src='#{default_image_url}';"  %>
+            </div> 
+          <% end %>
+             
+        </p>
+      </div>
+    </div>
+    <div class='span-24'>  
+      <div class='span-3 shelf-0'>
+        <p></p>
+        <p></p>
+        <p><br/></p>
+        <p>
+          <!--div class='span-1'><br/> </div-->
+          
+            <div class='span-2  prepend-1' style="height:125">
+            <br/>
+            </div> 
+          
+             
+        </p>
+      </div>
+      <div class='span-7 shelf-2'>
+
+        <div class='span-6 right' style="height:125;background:url(../images/book-talk.png) no-repeat; background-position:right bottom">
+        
+        <div id="title">
+          <div class="title span-3 ">
+              <p><a>BOOK TALK</a></p>
+          </div>
+        </div>
+        
+          <!--div class='span-1'><br/> </div-->
+            <div class='span-6'> <br/><br/><br/></div>
+            <div class='span-6'> <br/></div>
+            <div class='span-6'> <br/></div>
+            <div class='span-6'> </div>
+            
+        </div>  
+  
+      </div>
+      
+      <div class='span-3 shelf-0'>
+        <p></p>
+        <p><br/></p>
+        <p>
+          <!--div class='span-1'><br/> </div-->
+          
+            <div class='span-2  prepend-1' style="height:125">
+            <br/>
+            </div> 
+          
+             
+        </p>
+      </div>
+      
+      <div class='span-7 shelf-2'>
+
+        <div class='span-7' style="width:255px;background:url(../images/reading-events.png) no-repeat; background-position:right bottom">
+        <div id="title">
+          <div class="title span-4 ">
+              <p><a>READING EVENTS</a></p>
+          </div>
+        </div>
+        
+          <!--div class='span-1'><br/> </div-->
+            <div class='span-6'> <br/></div>
+            <div class='span-3 small'  style="margin:0px 0px 0px 20px;"><b>  Book reading event at Indra Nagar Store.</b></div>
+            <div class='span-6'> <br/></div>
+            <div class='span-6'> <br/></div>
+            <div class='span-6'> </div>
+            
+        </div>  
+
+
+          
+      </div>
+    </div>  
+    <div class='span-24'>
+      <div class='span-10 shelf-3'>
+        <div class='span-10' style="background:url(../images/quzzies.png) no-repeat; background-position:right bottom">
+        <div id="title">
+          <div class="title span-4">
+              <p><a>MY RESTRICTIONS</a></p>
+          </div>
+        </div>
+        
+          <!--div class='span-1'><br/> </div-->
+          
+            <div class='span-3 prepend-1 small'  style="margin:0px 0px 0px 20px;"><b>  Join the quiz contest and win the Jungle Book series.</b></div>
+            <div class='span-9'> <br/></div>
+            <div class='span-9'> <br/></div>
+            
+            
+        </div>  
+      </div>
+      
+      <div class='span-10 shelf-3'>
+        <div class='span-10' style="background:url(../images/story-teller.png) no-repeat; background-position:right bottom">
+        <div id="title">
+          <div class="title span-4 ">
+              <p><a>MY SUGGESTIONS</a></p>
+          </div>
+        </div>
+        
+          <!--div class='span-1'><br/> </div-->
+          
+            <div class='span-3 prepend-1 small'  style="margin:0px 0px 0px 20px;"></div>
+            <div class='span-9'> <br/><br/><br/><br/></div>
+            <div class='span-9'> <br/></div>
+            
+            
+        </div>  
+
+          
+      </div>
+    </div>
+    
+  </div>
+</div>

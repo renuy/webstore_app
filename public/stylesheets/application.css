@@ -68,11 +68,70 @@
   color:#ffffff;
   font-weight:bold;
   text-decoration:none;
-  padding:10px 0px 0px 5px;
+  padding:0px 0px 0px 0px;
   font-family:Arial Narrow;
+  background-image:url(../images/grey-butn-mid.png); 
+  background-position:left top; background-repeat:repeat-x;
+}
+
+.title p{
+  height:32px;
+  color:#ffffff;
+  font-weight:bold;
+  text-decoration:none;
+  padding:4px 0px 0px 0px;
+  font-family:Arial Narrow;
+  background-image:url(../images/grey-butn-rght.png); 
+  background-position:right top; background-repeat:no-repeat;
+  text-align:bottom;  
+  width: 105%;
 }
 
 .title a{
+  height:32px;
+  color:#ffffff;
+  font-weight:bold;
+  text-decoration:none;
+  padding: 5px 30px 5px 0px;
+  background-image:url(../images/arrow-grey.png); 
+  background-position:right top; background-repeat:no-repeat;
+  font-family:Arial Narrow;
+  
+}
+
+.title a:hover{
+  height:32px;
+  color:#ffffff;
+  font-weight:bold;
+  text-decoration:none;
+  padding:5px 30px 5px 0px;
+  background-image:url(../images/arrow-white-right.png); 
+  background-position:right top; background-repeat:no-repeat;
+  font-family:Arial Narrow;
+  
+}
+#title{
+  height:32px;
+  color:#ffffff;
+  font-weight:bold;
+  text-decoration:none;
+  padding:0px 0px 0px 15px;
+  background-image:url(../images/grey-butn-left.png); 
+  background-position:left top; background-repeat:no-repeat;
+  font-family:Arial Narrow;
+  
+}
+
+.bar{
+  height:32px;
+  color:#ffffff;
+  font-weight:bold;
+  text-decoration:none;
+  padding:5px 0px 0px 10px;
+  font-family:Arial Narrow;
+}
+
+.bar a{
   height:32px;
   margin:0px 0px 0px 0px;
   color:#ffffff;
@@ -84,7 +143,7 @@
   font-family:Arial Narrow;
 }
 
-.title a:hover{
+.bar a:hover{
   height:32px;
   margin:0px 0px 0px 0px;
   color:#ffffff;
@@ -95,18 +154,20 @@
   background-position:right top; background-repeat:no-repeat;
   font-family:Arial Narrow;
 }
-#title{
+#bar{
   height:32px;
   color:#ffffff;
   font-weight:bold;
   text-decoration:none;
   padding:0px 0px 0px 5px;
-  background-image:url(../images/titile-bar-1.png); 
+  background-image:url(../images/myshelf.png); 
   background-position:left center; background-repeat:no-repeat;
   font-family:Arial Narrow;
 }
 
-
+.page{
+background:url(../images/spiral-1.png) no-repeat;
+}
 .shelfname{
   height:32px;
   margin:0px 0px 0px 0px;
@@ -164,9 +225,18 @@ height:32px;
 width:113px; 
 color:#ffffff;
 text-align:center;  
-font-size:16px;
+font-size:15px;
 font-family:Arial Narrow;
 font-weight:bold;
+}
+
+.btn_link a{
+color:#ffffff;
+text-align:center;  
+font-size:15px;
+font-family:Arial Narrow;
+font-weight:bold;
+text-decoration:none; 
 }
 .round {
   -moz-border-radius:    10px;
@@ -371,20 +441,6 @@ th .desc {
 	font-size:120%;
 }
 
-div.heading {
-	padding:0.4em;
-	margin-bottom:0.4em;
-	border:2px solid black;
-	border-top-style:none;
-	border-right-style:none;
-	border-left-style:solid;
-	border-bottom-style:solid;
-	font-size:110%;
-  color: #fff;
-  background: #B51E24;
-	
-}
-
 input.simple {
 	border-top-style:none;
 	border-right-style:none;
@@ -513,5 +569,94 @@ input.search_button{height:25px;width:35px;}
 .searchListBox
 {margin:0px 2px 0px 5px; padding:0px; height:20px; border:0px; font-family:Arial; font-size:11px; color:#666666; line-height:15px; border:1px solid #CCCCCC;}
 
+
 /*navigation ends */
 
+.toplinkText
+{
+  margin:8px 0px 0px 0px; 
+  background: url(../images/text.png) no-repeat;
+  padding: 4px 0px 0px 0px;
+  height: 32px;
+  width: 104px;
+  text-align:center;
+  color: #ffffff;
+  line-height:18px; 
+  font-size: 14px;
+}
+
+.toplink{
+margin:8px 0px 0px 0px; 
+padding:5pxpx; 
+float:left; 
+font-size:14px; 
+font-weight:bold;  
+color:#ffffff;
+line-height:18px; 
+text-align:center; 
+text-decoration:none; 
+list-style:none;
+background: url(../images/parents.png) repeat;
+width:104px;
+
+}
+
+.toplink a
+{
+margin:0px; 
+padding:5px 0px 0px 0px; 
+float:left; 
+height:32px; 
+font-size:14px; 
+font-weight:bold; 
+color:#ffffff;
+line-height:18px; 
+text-align:center;
+text-decoration:none; 
+list-style:none;
+width:104px;
+background: url(../images/parents.png) no-repeat;
+}
+
+.toplink a:hover{
+margin:0px; 
+padding:5px 0px 0px 0px; 
+float:left; 
+height:32px; 
+font-size:14px; 
+font-weight:bold; 
+color:#ffffff; 
+line-height:18px; 
+text-align:center; 
+text-decoration:none; 
+list-style:none;
+background: url(../images/toplink-s.png) no-repeat;
+
+}
+.setting{
+	background-color:#ffffff;
+  border-style:none;
+  border-width: 1px;
+  border-color:#8B8B8B;
+  padding: 0em 0em 0em 2em;
+}
+p.settingtext{
+color:white;
+font-weight:bold; 
+text-align : center;
+height:32px;
+width:136px;
+padding: 6px 0px 10px 0px;
+background: url(../images/settings.png) no-repeat;
+}
+.heading{
+color:#666666;
+font-weight:bold; 
+text-align : center;
+height:32px;
+width:175px;
+padding: 13px 0px 0px 0px;
+background: url(../images/heading.png) no-repeat;
+}
+
+.rite {float:right !important;}

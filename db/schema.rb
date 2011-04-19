@@ -10,9 +10,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110407083321) do
+ActiveRecord::Schema.define(:version => 20110418060958) do
 
   create_table "batches", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "book_lists", :force => true do |t|
+    t.integer  "user_id",    :precision => 38, :scale => 0
+    t.string   "category"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -32,7 +39,65 @@ ActiveRecord::Schema.define(:version => 20110407083321) do
     t.datetime "updated_at"
   end
 
+  create_table "devise_users", :force => true do |t|
+    t.string   "email",                                                              :default => "", :null => false
+    t.string   "encrypted_password",   :limit => 128,                                :default => "", :null => false
+    t.string   "password_salt",                                                      :default => "", :null => false
+    t.string   "reset_password_token"
+    t.string   "remember_token"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",                       :precision => 38, :scale => 0, :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "username"
+  end
+
+  add_index "devise_users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "devise_users", ["reset_password_token"], :name => "i_users_reset_password_token", :unique => true
+
+  create_table "items", :force => true do |t|
+    t.integer  "order_id",   :precision => 38, :scale => 0
+    t.integer  "title_id",   :precision => 38, :scale => 0
+    t.string   "state"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "list_items", :force => true do |t|
+    t.integer  "book_list_id", :precision => 38, :scale => 0
+    t.integer  "title_id",     :precision => 38, :scale => 0
+    t.integer  "member_id",    :precision => 38, :scale => 0
+    t.integer  "shelf_id",     :precision => 38, :scale => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "orders", :force => true do |t|
+    t.integer  "member_id",  :precision => 38, :scale => 0
+    t.integer  "payment_id", :precision => 38, :scale => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "pending_titles_for_collections", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "ratings", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "reviews", :force => true do |t|
+    t.integer  "user_id",                     :precision => 38, :scale => 0
+    t.integer  "title_id",                    :precision => 38, :scale => 0
+    t.string   "heading"
+    t.string   "description", :limit => 1024
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -51,24 +116,6 @@ ActiveRecord::Schema.define(:version => 20110407083321) do
     t.datetime "updated_at"
   end
 
-  create_table "users", :force => true do |t|
-    t.string   "email",                                                              :default => "", :null => false
-    t.string   "encrypted_password",   :limit => 128,                                :default => "", :null => false
-    t.string   "password_salt",                                                      :default => "", :null => false
-    t.string   "reset_password_token"
-    t.string   "remember_token"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                       :precision => 38, :scale => 0, :default => 0
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "username"
-  end
-
-  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
-  add_index "users", ["reset_password_token"], :name => "i_users_reset_password_token", :unique => true
+  add_synonym "users_seq", "jbprod.profile_id_seq", :force => true
 
 end

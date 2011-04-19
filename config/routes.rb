@@ -1,7 +1,30 @@
 JbkidsApp::Application.routes.draw do
 
-  devise_for :users
+  resources :list_items do
+    collection do
+      get 'upsert'
+    end
+  end
+  resources :book_lists
 
+  resources :items
+
+  resources :orders
+
+  resources :reviews do
+    collection do
+      get 'search'
+      get 'upsert'
+    end
+  end
+
+  devise_for :users, :controllers => {:registrations => 'registrations'} 
+  devise_scope :user do 
+    get '/users/current' => "registrations#show", :as => 'current_user'
+    get '/users/add' => "registrations#add", :as => 'add_kid_profile'
+    resources :users, :only => [:add, :show] 
+  end 
+    
   resources :pending_titles_for_collections
 
   resources :batches
@@ -24,6 +47,10 @@ JbkidsApp::Application.routes.draw do
   match "myshelf" => "myshelf#index"
   match "show_collection_name" => "collection_names#show"
   match "show_myshelf" => "myshelf#show"
+  match "myshelves/:shelf" => "myshelf#show"
+  
+  
+  match "list_items/upsert/:title_id" => "list_items#upsert"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

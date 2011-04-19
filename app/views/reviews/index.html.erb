@@ -1,0 +1,23 @@
+<div class="span-16">
+<h1>Listing reviews</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    
+    <th>by</th>
+  </tr>
+
+<% @reviews.each do |review| %>
+  <tr>
+    <td><%= review.heading %> </td>
+    <td><%= review.user.username %> </td>
+    <td><%= link_to 'Show', review %></td>
+    <td><%= link_to 'Edit', edit_review_path(review, :title_id => review.title_id) if review.user_id == current_user.id  %></td>
+    <td><%= link_to 'Remove', review, :confirm => 'Are you sure?', :method => :delete if review.user_id == current_user.id%></td>
+  </tr>
+<% end %>
+</table>
+
+
+</div>

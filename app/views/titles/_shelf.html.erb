@@ -20,14 +20,19 @@
             <br/>
             </p>
             <div class="btn_link" >
-               <%= get_btn_name(caller) %>
+               <%= link_to get_btn_name(caller), get_link(caller, shelf.title.id) %>
+            </div>
+            <div clan="span-6" >
+               <%= link_to 'read',  upsert_list_items_path(:title_id=> shelf.title.id, :list=>'rs') %>
+               <%= link_to '| reading', upsert_list_items_path(:title_id => shelf.title.id, :list=>'rnsd') %>
+               <%= link_to '| bookmark', upsert_list_items_path(:title_id => shelf.title.id, :list =>'rns') %>
             </div>
           </div>
           <div class='span-7' >
             <div class='span-7'  style="margin:10px 5px 0px 0px;padding:0px 0px 20px 40px;background:url(../images/reviews.png) no-repeat;background-position:right bottom; border-bottom: 1px #000000 dotted;border-right: 1px #000000 dotted;">
               <div id="title">
-                <div class="title">
-                    <a>REVIEW</a>
+                <div class="title span-3">
+                    <p><%= link_to 'REVIEW', search_reviews_path( :title_id=>shelf.title.id, :user_id=>0) %></p>
                 </div>
               </div>
               <div class='span-7' >
@@ -41,8 +46,8 @@
             <div class='span-7' style="margin:0px 5px 0px 0px;padding:10px 0px 0px 40px;background:url(../images/contest.png) no-repeat;background-position:right bottom; border-right: 1px #000000 dotted;">
               <div style="margin:10px 0px 0px 0px;"></div>
               <div id="title">
-                <div class="title">
-                    <a>QUIZ</a>
+                <div class="title  span-3">
+                    <p><a>QUIZ</a></p>
                 </div>
               </div>
               <div class='span-7' >

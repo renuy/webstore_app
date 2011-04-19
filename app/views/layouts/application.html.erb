@@ -36,52 +36,11 @@
 <body>
 
 <div class="container  background">	
-	<div class="span-25">
-		<div class="span-5 right">
-    <% if user_signed_in? %>
-      Signed in as <%= current_user.email %>. Not you?
-      <%= link_to "Sign out", destroy_user_session_path %>
-    <% else %>
-      <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
-    <% end %>
-    </div>
-    <p class="masthead"><%= image_tag('JBK.jpg', :id => 'logo')%></p>
-    	
-
-  </div>
-  <div class="span-24 prepend-2" style="position:absolute; top:58px">
-      <div id="mainNav" >
-            <ul>
-            	<li class="mainNav"><%= link_to "HOME", root_path %></li>
-            	<li class="mainNavSeperator01"><spacer type="block" width="3"></spacer></li>
-            	<li class="mainNav"><%= link_to "FIND A BOOK", catalogue_path %></li>
-            	<li class="mainNavSeperator01"><spacer type="block" width="3"></spacer></li>
-            	<li class="mainNav"><a>FUN CORNER</a></li>
-            	<li class="mainNavSeperator01"><spacer type="block" width="3"></spacer></li>
-            	<li class="mainNav"><a>READER'S CLUB</a></li>
-            	<li class="mainNavSeperator01"><spacer type="block" width="3"></spacer></li>
-            </ul>
-            <!-- nav ends -->
-            <!-- search section -->
-            <div class="searchSection">
-              <%= form_tag titles_path, :id => 'searchForm', :method => 'get' do -%>
-                <%= text_field_tag :query, params[:query], :size => 17, :class=>'searchTextbox' %>
-                <%= image_submit_tag("search-normal.png", :id=>'submit_btn', :class=>'search_button', :onmouseout=>"Collectionapp.rollout(this);", :onmouseover=>"Collectionapp.rollin(this);" )%>
-                <%= hidden_field_tag :queryTitleId, '' %>
-
-                <%= hidden_field_tag :facetCategory, params[:facetCategory] %>
-                <%= hidden_field_tag :facetPublisher, params[:facetPublisher] %>
-                <%= hidden_field_tag :facetAuthor, params[:facetAuthor] %>
-              <% end -%>
-            </div>
-            <!-- search section ends -->
-      	</div>
-        <!-- main navigation ends -->
-      <div class="right">
-        
-      </div>
-    
-	</div>
+	<% if user_signed_in? and current_user.isKid? %>
+    <%= render :partial => "layouts/kids_nav" %>
+  <% else %>
+      <%= render :partial => "layouts/main_nav" %>
+  <% end %>
 	<div class="span-25 prepend-2" style="height:506px;">
 		<%= yield %>
 	</div>

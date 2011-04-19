@@ -27,6 +27,7 @@ before_filter :authenticate_user!
   end
   
   def show
+    logger.info("Renu showing params" + params[:page]+" "+params[:per_page]+" "+params[:shelf])
     params1 = {:page=> params[:page], :per_page=>params[:per_page]}
     @shelf = []
     @shelf_name = ""
