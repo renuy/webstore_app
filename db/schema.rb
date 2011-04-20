@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110418060958) do
+ActiveRecord::Schema.define(:version => 20110420064601) do
 
   create_table "batches", :force => true do |t|
     t.datetime "created_at"
@@ -112,6 +112,14 @@ ActiveRecord::Schema.define(:version => 20110418060958) do
   create_table "series", :force => true do |t|
     t.string   "name"
     t.integer  "count_of_titles", :precision => 38, :scale => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "suggestions", :force => true do |t|
+    t.integer  "title_id",   :precision => 38, :scale => 0
+    t.integer  "by_id",      :precision => 38, :scale => 0
+    t.integer  "to_id",      :precision => 38, :scale => 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end

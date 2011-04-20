@@ -310,7 +310,14 @@ a.signup_button {
 input.readonly {
 	border:none;
 }
-
+input.link{
+	border:none;
+  background-color:white;
+}
+input.link:hover{
+	border:none;
+  text-decoration:underline;
+}
 .spacer {
 	background-color:#B51F24;
 	height:2px;
@@ -660,3 +667,12 @@ background: url(../images/heading.png) no-repeat;
 }
 
 .rite {float:right !important;}
+
+div.dialog{
+      display:none;
+      border: solid #CCCCCC 2px;
+      background-color: white;
+      padding: 10px 10px 10px 10px;
+      margin: 10px 10px 10px 10px;
+      
+    }

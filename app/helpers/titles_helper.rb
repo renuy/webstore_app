@@ -30,4 +30,8 @@ module TitlesHelper
       when caller.blank?  then upsert_list_items_path(:title_id=> title_id, :list=>'ORDER')
     end
   end
+  
+  def isParentLogin?()
+    (user_signed_in? and current_user.isParent?) ? true : false
+  end
 end

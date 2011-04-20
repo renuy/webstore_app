@@ -1,5 +1,7 @@
 JbkidsApp::Application.routes.draw do
 
+  resources :suggestions
+
   resources :list_items do
     collection do
       get 'upsert'

@@ -1,25 +1,20 @@
-<%= javascript_tag :defer => 'defer' do -%>
-	$(document).ready(function () {
-		Collectionapp.initShelf('div_book_shelf');
-	});
-<% end -%>
 
 <div class='span-24 prepend-top'>
-  <div class='span-24 shelf_7_89' id="div_book_shelf" style="background: url(../images/find-a-book-splice_62.png) no-repeat;display:none">
+  <div class='span-24 shelf_7_89' id="div_book_shelf" style="background: url(../images/find-a-book-splice_62.png) no-repeat;">
     <div class='span-24'>
       <div class='span-10 shelf-3'">
-        <% unless @shelves[0].nil? %>
-        <div style="background:url(../images/series.png) no-repeat;background-position:5px 5px;">
+        <% unless shelves[0].nil? %>
           
+        <div style="background:url(../images/series.png) no-repeat;background-position:5px 5px;">
           <p class="shelfname">
-          <%= link_to @shelves[0].category, book_list_path(@shelves[0], :per_page=> 9, :page => get_random_page(@shelf0))  %></p>
+          <%= link_to shelves[0].category, book_list_path(shelves[0], :per_page=> 9, :page => get_random_page(shelf0))  %></p>
           
           <p></p>
           <p><br/></p>
           
           <p>
             <!--div class='span-1'><br/> </div-->
-            <% @shelf0.each do |shelf| %>
+            <% shelf0.each do |shelf| %>
               <div class='span-2 prepend-1'><%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
                   :size => "50x70", :alt => "#{shelf.title.title} ", 
                   :title => "#{shelf.title.title}", :onerror => "this.src='#{default_image_url}';"  %>
@@ -31,16 +26,16 @@
         <% end %>
       </div>
       <div class='span-7 shelf-2'>
-        <% unless @shelves[1].nil? %>
+        <% unless shelves[1].nil? %>
         <div style="background:url(../images/comic.png) no-repeat;background-position:5px 5px;">
           
-          <p class="shelfname"><%= link_to @shelves[1].category,  book_list_path(@shelves[1] , :per_page=> 9, :page => get_random_page(@shelf1))  %></p>
+          <p class="shelfname"><%= link_to shelves[1].category,  book_list_path(shelves[1] , :per_page=> 9, :page => get_random_page(shelf1))  %></p>
           
           <p></p>
           <p><br/></p>
           <p>
             <!--div class='span-1'><br/> </div-->
-            <% @shelf1.each do |shelf| %>
+            <% shelf1.each do |shelf| %>
               <div class='span-2  prepend-1'><%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
                   :size => "50x70", :alt => "#{shelf.title.title} ", 
                   :title => "#{shelf.title.title}", :onerror => "this.src='#{default_image_url}';"  %>
@@ -52,16 +47,16 @@
         <% end %>
       </div>
       <div class='span-7 shelf-2'>
-        <% unless @shelves[2].nil? %>
+        <% unless shelves[2].nil? %>
         <div style="background:url(../images/novel.png) no-repeat;background-position:5px 5px;">
           
-          <p class="shelfname"><%= link_to @shelves[2].category, book_list_path(@shelves[2], :per_page=> 9, :page => get_random_page(@shelf2))  %></p>
+          <p class="shelfname"><%= link_to shelves[2].category, book_list_path(shelves[2], :per_page=> 9, :page => get_random_page(shelf2))  %></p>
           
           <p></p>
           <p><br/></p>
           <p>
             <!--div class='span-1'><br/> </div-->
-            <% @shelf2.each do |shelf| %>
+            <% shelf2.each do |shelf| %>
               <div class='span-2  prepend-1'><%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
                   :size => "50x70", :alt => "#{shelf.title.title} ", 
                   :title => "#{shelf.title.title}", :onerror => "this.src='#{default_image_url}';"  %>
@@ -75,16 +70,16 @@
     </div>
     <div class='span-24'>
       <div class='span-7 shelf-2'>
-        <% unless @shelves[3].nil? %>
+        <% unless shelves[3].nil? %>
         <div style="background:url(../images/s-stories.png) no-repeat;background-position:5px 5px;">
           
-          <p class="shelfname"><%= link_to @shelves[3].category, book_list_path(@shelves[3], :per_page=> 9, :page => get_random_page(@shelf3)) %></p>
+          <p class="shelfname"><%= link_to shelves[3].category, book_list_path(shelves[3], :per_page=> 9, :page => get_random_page(shelf3)) %></p>
           
           <p></p>
           <p><br/></p>
           <p>
             <!--div class='span-1'><br/> </div-->
-            <% @shelf3.each do |shelf| %>
+            <% shelf3.each do |shelf| %>
               <div class='span-2  prepend-1'><%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
                   :size => "50x70", :alt => "#{shelf.title.title} ", 
                   :title => "#{shelf.title.title}", :onerror => "this.src='#{default_image_url}';"  %>
@@ -96,14 +91,16 @@
         <% end %>
       </div>
       <div class='span-7 shelf-2'>
-        <% unless @shelves[4].nil? %>
+        <% unless shelves[4].nil? %>
         <div style="background:url(../images/sci-nature.png) no-repeat;background-position:5px 5px;">
-          <p class="shelfname"><%= link_to @shelves[4].category, book_list_path(@shelves[4], :per_page=> 9, :page => get_random_page(@shelf4)) %> </p>
+          
+          <p class="shelfname"><%= link_to shelves[4].category, book_list_path(shelves[4], :per_page=> 9, :page => get_random_page(shelf4)) %> </p>
+          
           <p></p>
           <p><br/></p>
           <p>
             <!-- div class='span-1'><br/> </div-->
-            <% @shelf4.each do |shelf| %>
+            <% shelf4.each do |shelf| %>
               <div class='span-2  prepend-1'><%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
                   :size => "50x70", :alt => "#{shelf.title.title} ", 
                   :title => "#{shelf.title.title}", :onerror => "this.src='#{default_image_url}';"  %>
@@ -115,16 +112,15 @@
         <% end %>
       </div>
       <div class='span-10 shelf-3'>
-        <% unless @shelves[5].nil? %>
+        <% unless shelves[5].nil? %>
         <div style="background:url(../images/school-z.png) no-repeat;background-position:5px 5px;">
           
-          <p class="shelfname"><%= link_to @shelves[5].category,  book_list_path(@shelves[5], :per_page=> 9, :page => get_random_page(@shelf5))  %></p>
-          
+          <p class="shelfname"><%= link_to shelves[5].category,  book_list_path(shelves[5], :per_page=> 9, :page => get_random_page(shelf5))  %></p>
           <p></p>
           <p><br/></p>
           <p>
             <!--div class='span-1'><br/> </div-->
-            <% @shelf5.each do |shelf| %>
+            <% shelf5.each do |shelf| %>
               <div class='span-2  prepend-1'><%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
                   :size => "50x70", :alt => "#{shelf.title.title} ", 
                   :title => "#{shelf.title.title}", :onerror => "this.src='#{default_image_url}';"  %>
@@ -138,14 +134,14 @@
     </div>  
     <div class='span-24'>  
       <div class='span-10 shelf-3'>
-        <% unless @shelves[6].nil? %>
+        <% unless shelves[6].nil? %>
         <div style="background:url(../images/act-adventure.png) no-repeat;background-position:5px 5px;">
           
-          <p class="shelfname"><%= link_to @shelves[6].category,  book_list_path(@shelves[6] , :per_page=> 9, :page => get_random_page(@shelf6))  %></p>
+          <p class="shelfname"><%= link_to shelves[6].category,  book_list_path(shelves[6] , :per_page=> 9, :page => get_random_page(shelf6))  %></p>
           
           <p>
             <!--div class='span-1'><br/> </div-->
-            <% @shelf6.each do |shelf| %>
+            <% shelf6.each do |shelf| %>
               <div class='span-2  prepend-1'><%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
                   :size => "50x70", :alt => "#{shelf.title.title} ", 
                   :title => "#{shelf.title.title}", :onerror => "this.src='#{default_image_url}';"  %>
@@ -157,14 +153,14 @@
         <% end %>
       </div>
       <div class='span-7 shelf-2'>
-        <% unless @shelves[7].nil? %>
+        <% unless shelves[7].nil? %>
         <div style="background:url(../images/poetry.png) no-repeat;background-position:5px 5px;">
           
-          <p class="shelfname"><%= link_to @shelves[7].category, book_list_path(@shelves[7], :per_page=> 9, :page => get_random_page(@shelf7))  %></p>
+          <p class="shelfname"><%= link_to shelves[7].category, book_list_path(shelves[7], :per_page=> 9, :page => get_random_page(shelf7))  %></p>
           
           <p>
             <!--div class='span-1'><br/> </div-->
-            <% @shelf7.each do |shelf| %>
+            <% shelf7.each do |shelf| %>
               <div class='span-2  prepend-1'><%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
                   :size => "50x70", :alt => "#{shelf.title.title} ", 
                   :title => "#{shelf.title.title}", :onerror => "this.src='#{default_image_url}';"  %>
@@ -176,13 +172,14 @@
         <% end %>
       </div>
       <div class='span-7 shelf-2'>
-        <% unless @shelves[8].nil? %>
+        <% unless shelves[8].nil? %>
         <div style="background:url(../images/activity.png) no-repeat;background-position:5px 5px;">
           
-          <p class="shelfname"><%= link_to @shelves[8].category, book_list_path(@shelves[8] , :per_page=> 9, :page => get_random_page(@shelf8))  %></p>
+          <p class="shelfname"><%= link_to shelves[8].category, book_list_path(shelves[8] , :per_page=> 9, :page => get_random_page(shelf8))  %></p>
+          
           <p>
             <!--div class='span-1'><br/> </div-->
-            <% @shelf8.each do |shelf| %>
+            <% shelf8.each do |shelf| %>
               <div class='span-2  prepend-1'><%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
                   :size => "50x70", :alt => "#{shelf.title.title} ", 
                   :title => "#{shelf.title.title}", :onerror => "this.src='#{default_image_url}';"  %>
@@ -191,7 +188,7 @@
                
           </p>
         </div>    
-      <% end %>
+        <% end %>
       </div>
     </div>  
   </div>

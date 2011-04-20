@@ -181,3 +181,24 @@ $('#sel'+div_id).show('slide',{},600,function(){});
 $('#div_ttl_pg'+div_id_hide).hide('fast');
 $('#div_ttl_pg'+div_id).show('fast');
 };
+
+new_sug = function(div_id){
+$('#n_s'+div_id).submit();
+}
+$('.suggest').live('click', function() {
+        $("#dialog_"+$(this).attr('id')).dialog({
+          autoOpen: false,
+          modal: true,
+          position: 'center',
+          overlay: { 
+              opacity: 0.7, 
+              background: "black" 
+          }, 
+          buttons: {
+            Close: function() {
+              $(this).dialog('close');
+            }
+          }
+        });
+        $("#dialog_"+$(this).attr('id')).dialog("open");
+    });

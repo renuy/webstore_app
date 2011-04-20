@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   validate :kids_profile #should this be before create
   has_many :member
   has_many :kids, :foreign_key => "parent_id", :class_name => "User"
-  
+  has_many :book_lists
   def valid_password?(pass)
   
     pwd = Base64.encode64  Digest::SHA1.digest(pass)
