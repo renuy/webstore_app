@@ -12,11 +12,11 @@ class ListItem < ActiveRecord::Base
     book_list = 0
     case 
       when self.d_category.eql?("rs")
-        category = 'Read'
+        category = 'READ'
       when self.d_category.eql?("rns")
-        category = 'Bookmarked'
+        category = 'BOOKMARKED'
       when self.d_category.eql?("rnsd")
-        category = 'Reading'
+        category = 'READING'
       else
         category = self.d_category
     end

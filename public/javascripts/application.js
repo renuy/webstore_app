@@ -36,6 +36,7 @@ $('.toggle_stock').live('click', function() {
 var Collectionapp = {};
 Collectionapp.TitleData = {};
 Collectionapp.shelves = ['div_coll_'];
+Collectionapp.kidsData = {};
 
 Collectionapp.showNextPage = function(profile_id, title_id){
 //$('#'+div).scrollTo({ top: '+=1000px', left: '+=0px' }, 800);
@@ -156,13 +157,21 @@ obj.src=img;
 }
 
 Collectionapp.initShelf = function(div_id){
-$('#'+div_id).show('explode', {},1000, function(){});
+  $('#'+div_id).show('explode', {},1000, function(){});
 };
 
 Collectionapp.initSShelf = function(div_id){
 $('#'+div_id).show('scale', {},1000, function(){});
 };
 
+Collectionapp.changeShelf = function(div_id){
+  
+  $.each(Collectionapp.kidsData["profile"], function(index, value) {
+      var id = '#div_bs_'+ value ;
+      $(id).hide("fast");
+    });
+  $('#div_bs_'+div_id.value).show('fast');
+}
 Collectionapp.slidepage = function(div_id) {
 
 div_id_hide = $('#curr_div').val();

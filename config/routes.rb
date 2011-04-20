@@ -5,7 +5,11 @@ JbkidsApp::Application.routes.draw do
       get 'upsert'
     end
   end
-  resources :book_lists
+  resources :book_lists do
+    collection do
+      get 'index_k'
+    end
+  end
 
   resources :items
 
@@ -17,14 +21,15 @@ JbkidsApp::Application.routes.draw do
       get 'upsert'
     end
   end
-
+  
   devise_for :users, :controllers => {:registrations => 'registrations'} 
   devise_scope :user do 
     get '/users/current' => "registrations#show", :as => 'current_user'
     get '/users/add' => "registrations#add", :as => 'add_kid_profile'
-    resources :users, :only => [:add, :show] 
+    post '/users/kid' => "registrations#kid", :as => 'kid_profile' 
+    resources :users, :only => [:add, :show, :kid] 
   end 
-    
+  
   resources :pending_titles_for_collections
 
   resources :batches

@@ -42,7 +42,12 @@
       <%= render :partial => "layouts/main_nav" %>
   <% end %>
 	<div class="span-25 prepend-2" style="height:506px;">
-		<%= yield %>
+  			<section class="span-22 round">
+				<% flash.each do |key, value| %>
+					<div class="flash <%= key %>"><%= value %></div>
+				<% end %>
+        </section>
+    <%= yield %>
 	</div>
 
 	<div class="span-25">

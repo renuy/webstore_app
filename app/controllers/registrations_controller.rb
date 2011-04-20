@@ -20,7 +20,20 @@ class RegistrationsController < Devise::RegistrationsController
     @user = User.new
     @parent = current_user
     @user.parent_id =  @parent.id
-    sign_out_all_scopes
+    #sign_out_all_scopes
+    #redirect_to new_user_registration_path(:pk => params[:pk])
+  end
+  
+  def kid
+    
+    @user = User.new(params[:user])
+    
+      if @user.save
+        redirect_to(current_user_path(@user), :notice => 'kids profile was successfully created.')
+      else
+        @parent = current_user
+        render 'add'
+      end
     
   end
 end 
