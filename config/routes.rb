@@ -1,6 +1,10 @@
 JbkidsApp::Application.routes.draw do
 
-  resources :suggestions
+  resources :suggestions do 
+    collection do
+      get 'pattern'
+    end
+  end
 
   resources :list_items do
     collection do
@@ -23,6 +27,12 @@ JbkidsApp::Application.routes.draw do
       get 'upsert'
     end
   end
+  resources :titles do
+    collection do
+      get 'refine'
+    end
+    
+  end
   
   devise_for :users, :controllers => {:registrations => 'registrations'} 
   devise_scope :user do 
@@ -44,7 +54,7 @@ JbkidsApp::Application.routes.draw do
 
   resources :collection_names
 
-  resources :titles, :authors, :branches, :stock
+  resources :authors, :branches, :stock
   get "titles/index"
   get "catalogue/index"
   get "dashboard/index"

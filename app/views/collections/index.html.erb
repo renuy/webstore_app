@@ -1,21 +1,52 @@
-<h1>Listing collections</h1>
+<%= javascript_tag :defer => 'defer' do -%>
+	$(document).ready(function () {
+		Collectionapp.initSShelf('div_book_shelf');
+	});
+<% end -%>
 
-<table>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<div class='span-24 prepend-top'>
+  <div class='span-24 shelf_single' style="display:none" id="div_book_shelf">
+    <div class='span-24'>
+      <div class='span-24' style="background:url(../images/myshelf.png) no-repeat;background-position:5px 5px;">
+        <p style="color:white;font-weight:bold; margin:10px 0px 0px 10px"><%=@collection_name.name=%></p>
+        
+        
+        <div class="span-22" style="padding:9px 0px 0px 60px;">
+          <p>
+            <!--div class='span-2'><br/></div-->
+            <% @shelf0.each do |shelf| %>
+              <div class='span-2' style="padding:0px 0px 0px 0px; height:96px;">
+                <div class='span-2' style="padding:0px 3px 0px 12px; height:76px;">
+                  <%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
+                    :size => "59x76", :alt => "#{shelf.title.title} ", 
+                    :onerror => "this.src='#{default_image_url}';",  
+                    :onclick =>"Collectionapp.slidepage('#{shelf.id}_#{shelf.title.id}')"
+                    %>
+                </div> 
+                <div class='span-2' style="padding:0px 0px 0px 0px;display:none;" id="<%="sel#{shelf.id}_#{shelf.title.id}" %>">
+                  <%= image_tag "select.png", :size => "84x20"  %>
+                </div> 
+              </div> 
+              
+            <% end %>
+            <div class='span-3' style="padding:0px 0px 0px 0px; height:96px;">
+              <%= will_paginate(@shelf0,:inner_window => 0,:outer_window => 0,  :prev_label => image_tag('prev.png'), :next_label => image_tag('next.png')) %>
+            </div>
+       
+          </p>      
+        </div>
+        
+        <div class="span-24" style="padding:0px 0px 0px 0px;">  
+          <%= hidden_field_tag 'curr_div', "#{@shelf0[0].id}_#{@shelf0[0].title.id}" unless @shelf0.blank?%>
+        </div>    
 
-<% @collections.each do |collection| %>
-  <tr>
-    <td><%= link_to 'Show', collection %></td>
-    <td><%= link_to 'Edit', edit_collection_path(collection) %></td>
-    <td><%= link_to 'Destroy', collection, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Collection', new_collection_path %>
+            
+      </div>
+      
+    </div>
+  </div>
+  <div class="span-24" ><br/></div>
+  <div class="span-24" style=" background:url(../images/spiral-1.png) no-repeat;">
+      <%= render :partial => "titles/shelf", :collection => @shelf0 ,:locals => {:caller => ''} %>
+  </div>
+</div>

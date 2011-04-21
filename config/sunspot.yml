@@ -6,8 +6,8 @@ production:
 
 development:
   solr:
-    hostname: 74.86.131.195
-    port: 7585
+    hostname: localhost
+    port: 8982
     log_level: INFO
 
 test:

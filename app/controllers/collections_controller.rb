@@ -2,11 +2,11 @@ class CollectionsController < ApplicationController
   # GET /collections
   # GET /collections.xml
   def index
-    @collections = Collection.all
-
+    @shelf0 = Collection.find_all_by_collection_name_id(params[:id]).paginate(:page=>params[:page],:per_page=>params[:per_page])
+    @collection_name = CollectionName.find(params[:id])
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @collections }
+      format.xml  { render :xml => @shelf0 }
     end
   end
 

@@ -3,6 +3,7 @@ before_filter :authenticate_user!
   # GET /suggestions
   # GET /suggestions.xml
   def index
+   
     @mysugges = Suggestion.find_all_by_by_id(current_user.id).paginate(:page=> params[:page],:per_page => params[:per_page])
 
     respond_to do |format|
@@ -10,7 +11,10 @@ before_filter :authenticate_user!
       format.xml  { render :xml => @mysugges }
     end
   end
-
+  
+  def pattern
+  
+  end
   # GET /suggestions/1
   # GET /suggestions/1.xml
   def show
@@ -70,8 +74,11 @@ before_filter :authenticate_user!
   # DELETE /suggestions/1.xml
   def destroy
     @suggestion = Suggestion.find(params[:id])
-    @suggestion.destroy
-
+    if (current_user.id == @suggestion.by_id)
+      @suggestion.destroy
+    else
+        flash[:notice] = "Not authorised to remove!"
+    end
     respond_to do |format|
       format.html { redirect_to(suggestions_url) }
       format.xml  { head :ok }

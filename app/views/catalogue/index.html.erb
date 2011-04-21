@@ -10,7 +10,7 @@
       <div class='span-10 shelf-3'">
         <div style="background:url(../images/series.png) no-repeat;background-position:5px 5px;">
           <p class="shelfname">
-          <%= link_to @shelves[0].name, show_collection_name_path(:id=> @shelves[0].id, :per_page=> 9, :page => get_random_page(@shelf0))  %></p>
+          <%= link_to @shelves[0].name, collections_path(:id=> @shelves[0].id, :per_page=> 9, :page => 1)  %></p>
           <p></p>
           <p><br/></p>
           
@@ -28,7 +28,7 @@
       </div>
       <div class='span-7 shelf-2'>
         <div style="background:url(../images/comic.png) no-repeat;background-position:5px 5px;">
-          <p class="shelfname"><%= link_to @shelves[7].name, show_collection_name_path(:id=> @shelves[7].id, :per_page=> 9, :page => get_random_page(@shelf7))  %></p>
+          <p class="shelfname"><%= link_to @shelves[7].name, collections_path(:id=> @shelves[7].id, :per_page=> 9, :page => 1)  %></p>
           <p></p>
           <p><br/></p>
           <p>
@@ -45,7 +45,7 @@
       </div>
       <div class='span-7 shelf-2'>
         <div style="background:url(../images/novel.png) no-repeat;background-position:5px 5px;">
-          <p class="shelfname"><%= link_to @shelves[2].name, show_collection_name_path(:id=> @shelves[2].id, :per_page=> 9, :page => get_random_page(@shelf2))  %></p>
+          <p class="shelfname"><%= link_to @shelves[2].name, collections_path(:id=> @shelves[2].id, :per_page=> 9, :page => 1)  %></p>
           <p></p>
           <p><br/></p>
           <p>
@@ -64,7 +64,7 @@
     <div class='span-24'>
       <div class='span-7 shelf-2'>
         <div style="background:url(../images/s-stories.png) no-repeat;background-position:5px 5px;">
-          <p class="shelfname"><%= link_to @shelves[1].name, show_collection_name_path(:id=> @shelves[1].id, :per_page=> 9, :page => get_random_page(@shelf1))  %></p>
+          <p class="shelfname"><%= link_to @shelves[1].name, collections_path(:id=> @shelves[1].id, :per_page=> 9, :page => 1)  %></p>
           <p></p>
           <p><br/></p>
           <p>
@@ -81,7 +81,7 @@
       </div>
       <div class='span-7 shelf-2'>
         <div style="background:url(../images/sci-nature.png) no-repeat;background-position:5px 5px;">
-          <p class="shelfname"><%= link_to @shelves[3].name, show_collection_name_path(:id=> @shelves[3].id, :per_page=> 9, :page => get_random_page(@shelf3)) %> </p>
+          <p class="shelfname"><%= link_to @shelves[3].name, collections_path(:id=> @shelves[3].id, :per_page=> 9, :page => 1) %> </p>
           <p></p>
           <p><br/></p>
           <p>
@@ -98,7 +98,7 @@
       </div>
       <div class='span-10 shelf-3'>
         <div style="background:url(../images/school-z.png) no-repeat;background-position:5px 5px;">
-          <p class="shelfname"><%= link_to @shelves[8].name, show_collection_name_path(:id=> @shelves[8].id, :per_page=> 9, :page => get_random_page(@shelf8))  %></p>
+          <p class="shelfname"><%= link_to @shelves[8].name, collections_path(:id=> @shelves[8].id, :per_page=> 9, :page => 1)  %></p>
           <p></p>
           <p><br/></p>
           <p>
@@ -117,7 +117,7 @@
     <div class='span-24'>  
       <div class='span-10 shelf-3'>
         <div style="background:url(../images/act-adventure.png) no-repeat;background-position:5px 5px;">
-          <p class="shelfname"><%= link_to @shelves[4].name, show_collection_name_path(:id=> @shelves[4].id, :per_page=> 9, :page => get_random_page(@shelf4))  %></p>
+          <p class="shelfname"><%= link_to @shelves[4].name, collections_path(:id=> @shelves[4].id, :per_page=> 9, :page => 1)  %></p>
           <p>
             <!--div class='span-1'><br/> </div-->
             <% @shelf4.each do |shelf| %>
@@ -132,7 +132,7 @@
       </div>
       <div class='span-7 shelf-2'>
         <div style="background:url(../images/poetry.png) no-repeat;background-position:5px 5px;">
-          <p class="shelfname"><%= link_to @shelves[5].name, show_collection_name_path(:id=> @shelves[5].id, :per_page=> 9, :page => get_random_page(@shelf5))  %></p>
+          <p class="shelfname"><%= link_to @shelves[5].name, collections_path(:id=> @shelves[5].id, :per_page=> 9, :page => 1)  %></p>
           <p>
             <!--div class='span-1'><br/> </div-->
             <% @shelf5.each do |shelf| %>
@@ -147,7 +147,7 @@
       </div>
       <div class='span-7 shelf-2'>
         <div style="background:url(../images/activity.png) no-repeat;background-position:5px 5px;">
-          <p class="shelfname"><%= link_to @shelves[6].name, show_collection_name_path(:id=> @shelves[6].id, :per_page=> 9, :page => get_random_page(@shelf6))  %></p>
+          <p class="shelfname"><%= link_to @shelves[6].name, collections_path(:id=> @shelves[6].id, :per_page=> 9, :page => 1)  %></p>
           <p>
             <!--div class='span-1'><br/> </div-->
             <% @shelf6.each do |shelf| %>
