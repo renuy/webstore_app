@@ -39,7 +39,7 @@ module TitlesHelper
    @x = 200
    @y = 200
    @curr_color = 0
-   @side_length = 30
+   @side_length = 40
    @color_to_use = 7 #@arr.size  - 1
    @arr = []
    @arr << 'black'

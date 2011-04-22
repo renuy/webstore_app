@@ -1,0 +1,29 @@
+<div class='span-24 prepend-top'>
+<% colorArr() %>
+<%     i = @side_length %>
+
+<% while i> 0 %>
+  
+  <%  i.times do %>
+    <div style="<%=show_box_forward()%>"></br></div>
+  <% end %>
+  <% i-=1 %>
+  <%  i.times do %>
+      <div style="<%=show_box_down()%>"></br></div>
+  <%  end %>
+  
+  <%  i.times do %>
+      <div style="<%=show_box_back()%>"></br></div>
+      
+  <%  end %>
+  <%  i-=1 %>
+  <%  i.times do %>
+      
+      <div style="<%=show_box_up()%>"></br></div>
+      
+  <%  end %>
+  
+
+<% end %>
+ 
+</div>
