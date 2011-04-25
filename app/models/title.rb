@@ -4,7 +4,7 @@ class Title < ActiveRecord::Base
   belongs_to :category
   has_many   :stock, :class_name =>"Stock"
   has_many   :reviews, :class_name => "Reviews" , :order =>"review_type"
-  attr_accessible :title, :yearofpublication, :edition, :isbn10, :isbn13, :noofpages, :language ,:no_of_rented
+  attr_accessible :title, :yearofpublication, :edition, :isbn10, :isbn13, :noofpages, :language ,:no_of_rented, :title_type
   
   validates :title, :presence => true
   
@@ -36,5 +36,45 @@ class Title < ActiveRecord::Base
     integer :publisher_id, :references => Publisher, :stored => true
     integer :author_id, :references => Author, :stored => true
     integer :no_of_rented, :stored => true
+    string :title_type, :stored => true
   end   
+  
+  
+  def self.most_read(query, page, per_page)
+    search = Sunspot.new_search(Title) do
+      paginate(:page =>  page, :per_page =>  per_page)
+    end
+    search.build do
+      keywords( query  )
+    end
+    
+    search.build do
+      order_by(:no_of_rented, :desc)
+    end
+    shelfMR = search.execute
+    
+    return shelfMR.results
+    
+  end
+  
+  def self.new_arrivals(query, page, per_page)
+    search = Sunspot.new_search(Title) do
+      paginate(:page =>  page, :per_page =>  per_page)
+      without(:title_type).equal_to('M')
+    end
+    search.build do
+      keywords( query  )
+    end
+    search.build do
+      without(:title_type).equal_to('M')
+    end
+    search.build do
+      order_by(:id, :desc)
+    end
+    shelfNR = search.execute
+    
+    return shelfNR.results
+    
+  end
+
 end

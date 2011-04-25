@@ -7,7 +7,7 @@
         
         <div id="title">
           <div class="span-3 title">
-              <p><a>NEW BOOK</a></p>
+              <p><%= link_to "NEW BOOK", show_dashboard_path(:shelf=>"NR",:per_page=>9, :page=>1) %></p>
           </div>
         </div>
         
@@ -40,7 +40,7 @@
       <div class='span-7 shelf-2'>
         <div id="title">
           <div class="span-3 title">
-              <p><a>MOST READ</a></p>
+              <p><%= link_to "MOST READ", show_dashboard_path(:shelf=>"MR",:per_page=>9, :page=>1) %></p>
           </div>
         </div>
         
@@ -49,9 +49,9 @@
         <p>
           <!--div class='span-1'><br/> </div-->
           <% @shelf1.each do |shelf| %>
-            <div class='span-2  prepend-1'><%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
-                :size => "50x70", :alt => "#{shelf.title.title} ", 
-                :title => "#{shelf.title.title}", :onerror => "this.src='#{default_image_url}';"  %>
+            <div class='span-2  prepend-1'><%= image_tag image_url(shelf.id), :id=>"img_#{shelf.id}_#{shelf.id}", 
+                :size => "50x70", :alt => "#{shelf.title} ", 
+                :title => "#{shelf.title}", :onerror => "this.src='#{default_image_url}';"  %>
             </div> 
           <% end %>
              
@@ -101,23 +101,24 @@
         </p>
       </div>
       <div class='span-7 shelf-2'>
-
-        <div class='span-6 right' style="height:125;background:url(../images/book-talk.png) no-repeat; background-position:right bottom">
-        
         <div id="title">
-          <div class="title span-3 ">
-              <p><a>BOOK TALK</a></p>
+          <div class="span-3 title">
+              <p><%= link_to "BOOK TALK", reviews_path(:page=>1, :per_page=>9) %></p>
           </div>
         </div>
-        
+          <p></p>
+          <p><br/></p>
+          <p>
           <!--div class='span-1'><br/> </div-->
-            <div class='span-6'> <br/><br/><br/></div>
-            <div class='span-6'> <br/></div>
-            <div class='span-6'> <br/></div>
-            <div class='span-6'> </div>
-            
-        </div>  
-  
+          
+          <% @shelf2.each do |shelf| %>
+            <div class='span-2  prepend-1'><%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
+                :size => "50x70", :alt => "#{shelf.title.title} ", 
+                :title => "#{shelf.title.title}", :onerror => "this.src='#{default_image_url}';"  %>
+            </div> 
+          <% end %>
+             
+        </p>
       </div>
       
       <div class='span-3 shelf-0'>
@@ -188,7 +189,7 @@
           <p>
           <!--div class='span-1'><br/> </div-->
           
-          <% @myshelf.each do |shelf| %>
+          <% @mysugges.each do |shelf| %>
             <div class='span-2  prepend-1'><%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
                 :size => "50x70", :alt => "#{shelf.title.title} ", 
                 :title => "#{shelf.title.title}", :onerror => "this.src='#{default_image_url}';"  %>

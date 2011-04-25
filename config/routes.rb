@@ -65,6 +65,7 @@ JbkidsApp::Application.routes.draw do
 
   match "catalogue" => "catalogue#index"
   match "dashboard" => "dashboard#index"
+  match "dashboard/:shelf" => "dashboard#show" ,:as => 'show_dashboard'
   match "myshelf" => "myshelf#index"
   match "show_collection_name" => "collection_names#show"
   match "show_myshelf" => "myshelf#show"

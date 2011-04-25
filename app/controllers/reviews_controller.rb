@@ -14,14 +14,14 @@ before_filter :authenticate_user!
   
   def search
     
-    @reviews = Review.search(params)
+    @shelf0 = Review.search(params).paginate(:page =>params[:page],:per_page=>params[:per_page])
     render 'index'
   end  
   
   # GET /reviews
   # GET /reviews.xml
   def index
-    @reviews = Review.all
+    @shelf0 = Review.all(:order => "id desc").paginate(:page =>params[:page],:per_page=>params[:per_page])
 
     respond_to do |format|
       format.html # index.html.erb
