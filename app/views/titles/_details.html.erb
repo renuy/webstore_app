@@ -1,0 +1,94 @@
+  
+        <div class='span-24' style="display:none;" id="<%="div_ttl_pg#{details.id}_#{details.id}" %>" >
+          <div class='span-4' style="padding:25px 20px 25px 30px;">
+            <%= image_tag image_url(details.id), :id=>"img_#{details.id}_#{details.id}", 
+            :size => "145x207", :alt => "#{details.title} ", 
+            :title => "#{details.title}", :onerror => "this.src='#{default_image_url}';"  %>
+          </div>
+          <div class='span-6 prepend-1' style="padding:30px 30px 30px 0px">
+            <h3><%= details.title  %><h3>
+            <h6><%= details.author.name  %><h6>
+            <p>
+            <br/>
+            <% 5.times do |i|%>
+              <% if i <  (details.rating.nil? ? 0 : details.rating)   %>
+                <%= image_tag "star-select.png" %>
+              <% else %>
+                <%= image_tag "star-grey.png" %>
+              <% end %>
+            <% end %>
+            <br/>
+            </p>
+            <div class="btn_link" >
+               <%= link_to get_btn_name(caller), get_link(caller, details.id) %>
+            </div>
+            <div class="span-6" >
+               <%= link_to 'read',  upsert_list_items_path(:title_id=> details.id, :list=>'rs') %>
+               <!--%= link_to '| reading', upsert_list_items_path(:title_id => details.id, :list=>'rnsd') %-->
+               <%= link_to '| bookmark', upsert_list_items_path(:title_id => details.id, :list =>'rns') %>
+               <%= link_to '| suggest', "#", :id=>"#{details.id}" ,:class=>'suggest'%>
+            </div>
+            <div class = "dialog" id="<%="dialog_#{details.id}" %>">
+              <div id = "<%= "flash_#{details.id}" %>" class="span-6">
+              Suggest to:
+              </div>
+              <br/>
+            <% if isParentLogin?() %>
+              <% current_user.kids.each do |kid| %>
+                <%= form_for(Suggestion.new, :remote=>:true, :html=>{:id=>"n_s#{details.id}_#{kid.id}"}) do |f| %>
+                  <%= f.hidden_field 'by_id' ,:value=>current_user.id %>
+                  <%= f.hidden_field 'to_id', :value => kid.id %>
+                  <%= f.hidden_field 'title_id', :value => details.id %>
+                  <%= f.submit kid.username, :class=>'link' %>
+                  <!--%= link_to kid.username, "#", :onclick=>"$('#n_s#{details.id}_#{kid.id}').submit()" ,:remote=>:true %-->
+                <% end %>  
+              <% end %>
+            <% end %>
+            </div>
+          </div>
+          <div class='span-7' >
+            <div class='span-7'  style="margin:10px 5px 0px 0px;padding:0px 0px 20px 40px;background:url(../images/reviews.png) no-repeat;background-position:right bottom; border-bottom: 1px #000000 dotted;border-right: 1px #000000 dotted;">
+              <div id="title">
+                <div class="title span-3">
+                    <p><%= link_to 'REVIEW', search_reviews_path( :title_id=>details.id, :user_id=>0) %></p>
+                </div>
+              </div>
+              <div class='span-7' >
+                
+                <div class='span-3 small'>  
+                  <p>Checkout the reviews on this book,or pen your own..</p>
+                  
+                </div>
+              </div>
+            </div>
+            <div class='span-7' style="margin:0px 5px 0px 0px;padding:10px 0px 0px 40px;background:url(../images/contest.png) no-repeat;background-position:right bottom; border-right: 1px #000000 dotted;">
+              <div style="margin:10px 0px 0px 0px;"></div>
+              <div id="title">
+                <div class="title  span-3">
+                    <p><a>QUIZ</a></p>
+                </div>
+              </div>
+              <div class='span-7' >
+                
+                <div class='span-3 small' >  
+                  <p>Join the quiz contest</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--div class='span-3 prepend-1' >
+            <div class='span-3' style="height:225px;margin:10px 0px 0px 0px;padding:0px 0px 0px 0px;background:url(../images/videos.png) no-repeat;background-position:right center;">
+              <div id="title">
+                <div class="title">
+                    <a>VIDEOS</a>
+                </div>
+              </div>
+              <div class='span-3' >
+                
+                <div class='span-3 small' >  
+                  <p></p>
+                </div>
+              </div>
+            </div>
+          </div-->
+        </div> 

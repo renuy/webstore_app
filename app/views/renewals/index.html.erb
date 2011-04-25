@@ -1,0 +1,21 @@
+<h1>Listing renewals</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @renewals.each do |renewal| %>
+  <tr>
+    <td><%= link_to 'Show', renewal %></td>
+    <td><%= link_to 'Edit', edit_renewal_path(renewal) %></td>
+    <td><%= link_to 'Destroy', renewal, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Renewal', new_renewal_path %>

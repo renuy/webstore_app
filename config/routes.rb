@@ -1,5 +1,9 @@
 JbkidsApp::Application.routes.draw do
 
+  resources :renewals
+
+  resources :payments
+
   resources :suggestions do 
     collection do
       get 'pattern'

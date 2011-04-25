@@ -39,17 +39,24 @@ module TitlesHelper
    @x = 200
    @y = 200
    @curr_color = 0
-   @side_length = 30
-   @color_to_use = 7 #@arr.size  - 1
+   @side_length = 60
+   @color_to_use = 7 # arr.size  - 1
    @arr = []
-   @arr << 'black'
-   @arr << 'brown'
-   @arr << 'red'
-   @arr << 'orange'
-   @arr << 'yellow'
-   @arr << 'green'
-   @arr << 'blue'
-   @arr << 'white'
+   @arr << '#111111'
+   @arr << '#222222'
+   @arr << '#333333'
+   @arr << '#444444'
+   @arr << '#555555'
+   @arr << '#666666'
+   @arr << '#777777'
+   @arr << '#888888'
+   @arr << '#999999'
+   @arr << '#aaaaaa'
+   @arr << '#bbbbbb'
+   @arr << '#cccccc'
+   @arr << '#dddddd'
+   @arr << '#eeeeee'
+   @arr << '#ffffff'
    return @arr
   end
   def show_box_forward()

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110420064601) do
+ActiveRecord::Schema.define(:version => 20110422084149) do
 
   create_table "batches", :force => true do |t|
     t.datetime "created_at"
@@ -77,8 +77,27 @@ ActiveRecord::Schema.define(:version => 20110420064601) do
   end
 
   create_table "orders", :force => true do |t|
-    t.integer  "member_id",  :precision => 38, :scale => 0
-    t.integer  "payment_id", :precision => 38, :scale => 0
+    t.integer  "member_id",   :precision => 38, :scale => 0
+    t.integer  "payment_id",  :precision => 38, :scale => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "branch_id",   :precision => 38, :scale => 0
+    t.string   "state"
+    t.string   "order_for"
+    t.string   "description"
+    t.integer  "user_id",     :precision => 38, :scale => 0
+    t.string   "channel"
+    t.integer  "card_id",     :precision => 38, :scale => 0
+    t.string   "charge"
+  end
+
+  create_table "payments", :force => true do |t|
+    t.integer  "order_id",   :precision => 38, :scale => 0
+    t.string   "state"
+    t.integer  "orig_id",    :precision => 38, :scale => 0
+    t.decimal  "amount"
+    t.string   "mode"
+    t.string   "details"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -89,6 +108,16 @@ ActiveRecord::Schema.define(:version => 20110420064601) do
   end
 
   create_table "ratings", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "renewals", :force => true do |t|
+    t.integer  "order_id",   :precision => 38, :scale => 0
+    t.integer  "months",     :precision => 38, :scale => 0
+    t.datetime "from_date"
+    t.datetime "to_date"
+    t.integer  "card_id",    :precision => 38, :scale => 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
