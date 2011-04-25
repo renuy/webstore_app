@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   attr_accessor :ksu
   before_save :encrypt_password #should this be before create
   validate :kids_profile #should this be before create
-  has_many :member
+  has_many :member, :conditions => ["status in (?)", [1,2]]
   has_many :kids, :foreign_key => "parent_id", :class_name => "User"
   has_many :book_lists
   def valid_password?(pass)

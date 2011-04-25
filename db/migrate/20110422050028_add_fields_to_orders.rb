@@ -1,11 +1,12 @@
 class AddFieldsToOrders < ActiveRecord::Migration
   def self.up
-      t.references :branch
-      t.string :state
-      t.string :order_for
-      t.string :coment
-      t.reference :user
-      t.string :channel
+
+    add_column :orders ,:branch_id , :integer 
+    add_column :orders ,:state , :string 
+    add_column :orders ,:order_for , :string 
+    add_column :orders ,:description , :string
+    add_column :orders ,:user_id , :integer
+    add_column :orders ,:channel , :string
   end
 
   def self.down
