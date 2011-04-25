@@ -188,7 +188,7 @@
           <p>
           <!--div class='span-1'><br/> </div-->
           
-          <% @myshelf.each do |shelf| %>
+          <% @mysugges.each do |shelf| %>
             <div class='span-2  prepend-1'><%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
                 :size => "50x70", :alt => "#{shelf.title.title} ", 
                 :title => "#{shelf.title.title}", :onerror => "this.src='#{default_image_url}';"  %>
