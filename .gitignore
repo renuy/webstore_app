@@ -9,3 +9,5 @@ doc/app
 *.swp
 *~
 .DS_Store
+Gemfile
+Gemfile.lock
