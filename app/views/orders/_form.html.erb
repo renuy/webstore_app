@@ -12,6 +12,20 @@
   <% end %>
 
   <div class="actions">
-    <%= f.submit %>
+      Renew Membership: <%= @order.card_id %><br/>
+      Amount : <%= @order.amount %><br/>
+      
+      <%= f.hidden_field :card_id , :value=> @order.card_id %>
+      <%= f.hidden_field :member_id , :value=> @order.member_id %>
+      <%= f.hidden_field :channel , :value=> @order.channel %>
+      <%= f.hidden_field :user_id , :value=> @order.user_id %>
+      <%= f.hidden_field :branch_id , :value=> @order.branch_id %>
+      <%= f.hidden_field :state , :value=> @order.state %>
+      <%= f.hidden_field :amount , :value=> @order.amount %>
+      <%= f.hidden_field :months , :value=> @order.months %>
+      <%= f.hidden_field :order_for , :value=> @order.order_for %>
+      
+
+    <%= f.submit  "continue"%>
   </div>
 <% end %>

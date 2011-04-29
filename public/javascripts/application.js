@@ -193,12 +193,25 @@ $('.suggest').live('click', function() {
           overlay: { 
               opacity: 0.7, 
               background: "black" 
-          }, 
-          buttons: {
-            Close: function() {
-              $(this).dialog('close');
-            }
           }
         });
         $("#dialog_"+$(this).attr('id')).dialog("open");
     });
+    
+$('.renew').live('click', function() {
+card_id = $(this).attr('id').replace('link_','');
+md = $(this).attr('name')
+mon_radio = 'months'+card_id;
+months = $('input:radio[name='+mon_radio+']:checked').val();
+
+if (months == null){
+  alert('Please select months');
+  return false;
+ } 
+ $("#dialog_"+card_id).dialog('close');
+ 
+ url = '/renewals/new?m='+months+'&md='+md;
+ $(location).attr('href',url);
+ 
+ return true;
+});

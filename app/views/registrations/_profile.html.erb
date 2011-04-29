@@ -7,12 +7,18 @@
       <% if member.valid_card[0].renewable? %>
       <%= link_to 'renew', "#", :id=>"#{member.valid_card[0].card_id}" ,:class=>'suggest'%>
         <div class = "dialog" id="<%="dialog_#{member.valid_card[0].card_id}" %>">
+
           Renew for: 
             <% member.valid_card[0].plan.renewMonthsArr.each do |month| %>
-              <%=month%>-<%= radio_button_tag("months", month.to_s, false) %>
+              <div class="greybox">
+                <%= radio_button_tag("months#{member.valid_card[0].card_id}", month.to_s, false) %> <%= pluralize(month,  'month') %>
+                till <%= member.valid_card[0].newExpiry(month).strftime('%d-%b-%Y') %> 
+                amount Rs. <%=member.valid_card[0].renewAmount(month) %>/-<br/>
+              </div>
             <% end %> 
-          months
+          
+          <%= link_to 'continue >>', '#',:name=>"#{member.id}" ,:id=>"link_#{member.valid_card[0].card_id}" ,:class=>'renew'   %>
         </div>
-              <br/>
+        <br/>
       <% end %>
     <% end %>

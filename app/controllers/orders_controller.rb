@@ -1,8 +1,10 @@
 class OrdersController < ApplicationController
+  before_filter :authenticate_user!
+  
   # GET /orders
   # GET /orders.xml
   def index
-    @orders = Order.all
+    @orders = Order.find_by_user_id(current_user.id)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -25,16 +27,22 @@ class OrdersController < ApplicationController
   # GET /orders/new.xml
   def new
     @order = Order.new
-
+    @order.order_for = params[:for]
+    @order.channel = "Web"
+    @order.user_id = current_user.id
+    @order.member_id = params[:md]
+    mem = Member.find(params[:md])
+    @order.card_id = mem.valid_card[0].card_id
+    @order.branch_id = 801 #remove hard coding
+    @order.state = "PrePayment"
+    @order.months = params[:m]
+    @order.amount = mem.valid_card[0].renewAmount(params[:m].to_i)
+    
+    
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @order }
     end
-  end
-
-  # GET /orders/1/edit
-  def edit
-    @order = Order.find(params[:id])
   end
 
   # POST /orders
@@ -42,22 +50,23 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(params[:order])
 
-    respond_to do |format|
+    
       if @order.save
-        format.html { redirect_to(@order, :notice => 'Order was successfully created.') }
-        format.xml  { render :xml => @order, :status => :created, :location => @order }
+        if @order.charge.eql?("YES")
+           redirect_to(:controller=>"payments", :action=>"new", :order_id => @order.id )
+        else
+          redirect_to(@order, :notice => 'Order was successfully created.') 
+        end
       else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @order.errors, :status => :unprocessable_entity }
+        render :action => "new" 
       end
-    end
+    
   end
 
   # PUT /orders/1
   # PUT /orders/1.xml
   def update
     @order = Order.find(params[:id])
-
     respond_to do |format|
       if @order.update_attributes(params[:order])
         format.html { redirect_to(@order, :notice => 'Order was successfully updated.') }
@@ -69,15 +78,4 @@ class OrdersController < ApplicationController
     end
   end
 
-  # DELETE /orders/1
-  # DELETE /orders/1.xml
-  def destroy
-    @order = Order.find(params[:id])
-    @order.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(orders_url) }
-      format.xml  { head :ok }
-    end
-  end
 end

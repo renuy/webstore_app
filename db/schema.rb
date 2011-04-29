@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110422084149) do
+ActiveRecord::Schema.define(:version => 20110429053313) do
 
   create_table "batches", :force => true do |t|
     t.datetime "created_at"
@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(:version => 20110422084149) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "book_lists", ["user_id", "category"], :name => "book_lists_idx1"
 
   create_table "collection_names", :force => true do |t|
     t.string   "name"
@@ -78,7 +80,6 @@ ActiveRecord::Schema.define(:version => 20110422084149) do
 
   create_table "orders", :force => true do |t|
     t.integer  "member_id",   :precision => 38, :scale => 0
-    t.integer  "payment_id",  :precision => 38, :scale => 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "branch_id",   :precision => 38, :scale => 0
@@ -87,19 +88,27 @@ ActiveRecord::Schema.define(:version => 20110422084149) do
     t.string   "description"
     t.integer  "user_id",     :precision => 38, :scale => 0
     t.string   "channel"
-    t.integer  "card_id",     :precision => 38, :scale => 0
+    t.string   "card_id"
     t.string   "charge"
+    t.decimal  "amount"
+    t.integer  "payment_id",  :precision => 38, :scale => 0
   end
 
   create_table "payments", :force => true do |t|
-    t.integer  "order_id",   :precision => 38, :scale => 0
+    t.integer  "order_id",    :precision => 38, :scale => 0
     t.string   "state"
-    t.integer  "orig_id",    :precision => 38, :scale => 0
+    t.integer  "orig_id",     :precision => 38, :scale => 0
     t.decimal  "amount"
     t.string   "mode"
     t.string   "details"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "fee"
+    t.string   "channel"
+    t.integer  "branch_id",   :precision => 38, :scale => 0
+    t.integer  "user_id",     :precision => 38, :scale => 0
+    t.integer  "member_id",   :precision => 38, :scale => 0
+    t.string   "payment_for"
   end
 
   create_table "pending_titles_for_collections", :force => true do |t|
@@ -117,9 +126,12 @@ ActiveRecord::Schema.define(:version => 20110422084149) do
     t.integer  "months",     :precision => 38, :scale => 0
     t.datetime "from_date"
     t.datetime "to_date"
-    t.integer  "card_id",    :precision => 38, :scale => 0
+    t.string   "card_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "member_id",  :precision => 38, :scale => 0
+    t.decimal  "amount"
+    t.string   "state"
   end
 
   create_table "reviews", :force => true do |t|
