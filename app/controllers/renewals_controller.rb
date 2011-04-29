@@ -25,7 +25,15 @@ class RenewalsController < ApplicationController
   # GET /renewals/new.xml
   def new
     @renewal = Renewal.new
-
+    @renewal.member_id = params[:md]
+    mem = Member.find(params[:md])
+    months = params[:m]
+    @renewal.card_id = mem.valid_card[0].card_id
+    @renewal.months = months
+    @renewal.amount = mem.valid_card[0].renewAmount(months.to_i)
+    @renewal.state = 'New'
+    @renewal.from_date = mem.valid_card[0].expiry_date
+    @renewal.to_date = mem.valid_card[0].newExpiry(months.to_i)
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @renewal }
@@ -42,15 +50,12 @@ class RenewalsController < ApplicationController
   def create
     @renewal = Renewal.new(params[:renewal])
 
-    respond_to do |format|
-      if @renewal.save
-        format.html { redirect_to(@renewal, :notice => 'Renewal was successfully created.') }
-        format.xml  { render :xml => @renewal, :status => :created, :location => @renewal }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @renewal.errors, :status => :unprocessable_entity }
-      end
+    if @renewal.save
+      redirect_to :action=>"new", :controller=>"payments", :id => @renewal.id,:for=>'ren'
+    else
+      render :action => "new"
     end
+  
   end
 
   # PUT /renewals/1

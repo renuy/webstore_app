@@ -277,6 +277,14 @@ text-decoration:none;
   -webkit-border-radius: 10px;
   border-radius:         10px;
 }
+.greybox{
+	background-color:#C0C0C0;
+  border-style:solid;
+  border-width: 1px;
+  border-color:#8B8B8B;
+  margin: 2px 2px 2px 2px;
+  padding: 5px 5px 5px 5px;
+}
 
 a.signup_button {
   margin-left: auto;

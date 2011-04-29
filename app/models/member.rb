@@ -9,4 +9,13 @@ belongs_to :branch
 has_many :read_shelf
 has_many :read_next_shelf
 has_many :lost_card, :class_name => "CardHistory"
+has_many :overdue
+
+  
+  
+  def balanceDueAmount
+    self.overdue.empty? ? 0 : self.overdue[0].amount
+  end
+  
+  
 end

@@ -12,6 +12,16 @@
   <% end %>
 
   <div class="actions">
-    <%= f.submit %>
+      Renew Membership: <%= @renewal.card_id %><br/>
+      Till : <%= @renewal.to_date.strftime('%d-%b-%Y') %><br/>
+      Amount : <%= @renewal.amount %><br/>
+      <%= f.hidden_field :card_id , :value=> @renewal.card_id %>
+      <%= f.hidden_field :member_id , :value=> @renewal.member_id %>
+      <%= f.hidden_field :state , :value=> @renewal.state %>
+      <%= f.hidden_field :amount , :value=> @renewal.amount %>
+      <%= f.hidden_field :months , :value=> @renewal.months %>
+      <%= f.hidden_field :from_date , :value=> @renewal.from_date %>
+      <%= f.hidden_field :to_date , :value=> @renewal.to_date %>
+    <%= f.submit  "continue"%>
   </div>
 <% end %>

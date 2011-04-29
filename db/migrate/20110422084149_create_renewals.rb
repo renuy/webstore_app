@@ -1,7 +1,6 @@
 class CreateRenewals < ActiveRecord::Migration
   def self.up
     create_table :renewals do |t|
-      t.references :order
       t.integer :months #reverse/original
       t.date :from_date
       t.date :to_date
