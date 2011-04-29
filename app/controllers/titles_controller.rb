@@ -1,7 +1,7 @@
 class TitlesController < ApplicationController
   def index
     newSearch = Sunspot.new_search(Title) do
-      paginate(:page => params[:page], :per_page => 6)
+      paginate(:page => params[:page], :per_page => 4)
       facet(:category_id, :publisher_id, :author_id)
     end
     
@@ -57,14 +57,64 @@ class TitlesController < ApplicationController
   
     @searchResults = newSearch.execute
     @shelfMR = search.execute
-  
-    @shelf0= @searchResults.facet(:category_id).rows.paginate(:page=> params[:page], :per_page=>3)
+    i = 0
+    shelf0= @searchResults.facet(:category_id).rows
+    @shelf_name = []
+    @shelf_name << ""
+    @shelf_name << ""
+    @shelf_name << ""
+    @shelf_name << ""
+    
+    #facetCategory
+    @shelf  =[]
+    @shelf << []
+    @shelf << []
+    @shelf << []
+    @shelf << []
+    @cat_id  =[]
+    @cat_id <<  1
+    @cat_id <<  2
+    @cat_id <<  3
+    @cat_id <<  4
+    
+    per_page = 1
+    @shelf0= @searchResults.facet(:category_id).rows
     @shelf1 = @searchResults.facet(:author_id).rows.paginate(:page=> params[:page], :per_page=>2)
     @shelf3 = @searchResults.facet(:publisher_id).rows.paginate(:page=> params[:page], :per_page=>2)
     @shelf4 = @searchResults.results
+    
+    @shelf0.each do |row|  
+      if i<4
+        case i
+          when 0 then per_page = 3
+          when 1 then per_page = 1
+          when 2 then per_page = 2
+          when 3 then per_page = 1
+        end
+        @shelf_name[i] = row.instance.name
+        @cat_id[i] = row.value
+        cat_search = Sunspot.new_search(Title) do
+          paginate(:page => params[:page], :per_page => per_page)
+          facet(:category_id)
+        end
+        cat_search.build do 
+          with(:category_id, row.value) 
+        end 
+        
+        cat_search.build do
+          keywords(params[:query] )
+        end
+        @shelf[i] = cat_search.execute  
+        
+      end
+      i+=1
+    end
+    
+    
     #@shelfMR = sr.results.paginate(:page=>1, :per_page=>5)
   end
   def refine
+    
     search = Sunspot.new_search(Title) do
       paginate(:page => params[:page], :per_page => params[:per_page])
     end
@@ -72,14 +122,18 @@ class TitlesController < ApplicationController
       keywords(params[:query] )
     end
     
+    search.build do 
+      with(:category_id, params[:facetCategory]) 
+    end if params[:facetCategory].to_i > 0
+
     search.build do
       order_by(:no_of_rented, :desc)
-    end
+    end if params[:shelf].eql?('MOST READ')
     shelfMR = search.execute
     
     @shelf0 = shelfMR.results
     
-    @shelf_name="MOST READ"
+    @shelf_name=params[:shelf]
     render 'show'  
   end
   
@@ -99,8 +153,8 @@ class TitlesController < ApplicationController
     end
     
     newSearch.build do 
-      with(:category_id, params[:facetCategory]) 
-    end if params[:facetCategory].to_i > 0
+      with(:category_id, params[:cat_id]) 
+    end if params[:cat_id].to_i > 0
 
     newSearch.build do 
       with(:publisher_id, params[:facetPublisher]) 
