@@ -708,6 +708,16 @@ padding: 13px 0px 0px 0px;
 background: url(../images/heading.png) no-repeat;
 }
 
+.breadcrumb{
+
+background: url(../images/label-blue.png) no-repeat;
+height:29px;
+width:212px;
+color:#ffffff;
+font-weight:bold; 
+text-align :center;
+
+}
 .rite {float:right !important;}
 
 div.dialog{
@@ -719,38 +729,18 @@ div.dialog{
       
     }
     
-div.black_box{
-  height:10px;
-  width:10px
-  background-color:black;
+
+div.input_box{
+
+height:407px;
+width:934px;
+background: url(../images/input_box.png) no-repeat;
+padding: 10px 10px 10px 20px;
+
 }
-div.brown_box{
-  height:10px;
-  width:10px
-  background-color:brown;
-}
-div.red_box{
-  height:10px;
-  width:10px
-  background-color:red;
-}
-div.orange_box{
-  height:10px;
-  width:10px
-  background-color:orange;
-}
-div.yellow_box{
-  height:10px;
-  width:10px
-  background-color:yellow;
-}
-div.green_box{
-  height:10px;
-  width:10px
-  background-color:green;
-}
-div.blue_box{
-  height:10px;
-  width:10px
-  background-color:blue;
+
+div.inner_box{
+
+padding: 10px 10px 10px 40px;
+
 }

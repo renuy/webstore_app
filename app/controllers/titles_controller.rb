@@ -85,13 +85,19 @@ class TitlesController < ApplicationController
   
 # not using more like this- not sure how this is working as of now
   def show
-    @title = Title.find(params[:id])
-
-    newSearch = Sunspot.new_more_like_this(@title, Title) do
-      paginate(:page => params[:page], :per_page => 15)
+    title = Title.find(params[:id])
+    params[:query] = title.title
+    
+    
+    params[:query] = title.title
+    shelf0 = []
+    shelf0 << title
+    @shelf_name=  title.title
+    
+    newSearch = Sunspot.new_more_like_this(title, Title) do
       facet(:category_id, :publisher_id, :author_id)
     end
-  
+    
     newSearch.build do 
       with(:category_id, params[:facetCategory]) 
     end if params[:facetCategory].to_i > 0
@@ -104,8 +110,11 @@ class TitlesController < ApplicationController
       with(:author_id, params[:facetAuthor]) 
     end if params[:facetAuthor].to_i > 0
   
-    @searchResults = newSearch.execute
-
+    searchResults = newSearch.execute
+    searchResults.results.each do |sr|
+      shelf0 << sr
+    end
+    @shelf0  = shelf0.paginate(:page => params[:page], :per_page => 9)
 #    @searchResults = Sunspot.more_like_this(@title, Title) do
 #      fields :title, :publisher, :author
 #      paginate(:page => params[:page], :per_page => 15)

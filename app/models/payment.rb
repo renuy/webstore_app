@@ -30,7 +30,7 @@ class Payment < ActiveRecord::Base
   end
   
   def RedirectUrl
-    "http://192.168.1.112:3000/gatewayentry"
+    "http://192.168.2.100:3000/gatewayentry"
   end
   
   def OrderId
@@ -43,8 +43,9 @@ class Payment < ActiveRecord::Base
     return self.Checksum.to_s
   end
   
-  def self.verifyChecksum(merchantId , orderId,  amount,  authDesc,   workingKey,   checkSum)
-    str = merchantId+"|"+orderId+"|"+amount+"|"+authDesc+"|"+workingKey;
+  def verifyChecksum(checkSum, authDesc)
+    s_amount =  "%0.2f" % self.amount
+    str = self.MerchantId+"|"+self.id.to_s+"|"+s_amount+"|"+authDesc+"|"+self.WorkingKey;
     curr_checksum = Zlib.adler32(str).to_s
     curr_checksum.eql?(checkSum) ? true : false
   end
@@ -56,13 +57,22 @@ class Payment < ActiveRecord::Base
     state :PrePayment # first one is the initial state before sending  for payement
     state :PendingPayment # if sent to payment gateway
     state :ConfirmPayment #
+    state :FailedPayment
+    state :UnknownPayment
     state :Cancel
     
     event :sent do
       transitions :to => :PendingPayment, :from => [:PrePayment]
     end
     event :paid do
-      transitions :to => :ConfirmPayment, :from => [:PrePayment, :PendingPayment]
+      transitions :to => :ConfirmPayment, :from => [:PendingPayment]
+    end
+    event :failed do
+      transitions :to => :FailedPayment, :from => [:PendingPayment]
+    end
+    
+    event :unknown do
+      transitions :to => :UnknownPayment, :from => [:PendingPayment]
     end
     event :cancel do
       transitions :to => :Cancelled, :from => [:PrePayment]
@@ -74,6 +84,8 @@ class Payment < ActiveRecord::Base
       when event.eql?('sent') then sent
       when event.eql?('paid') then paid
       when event.eql?('cancel') then cancel
+      when event.eql?('failed') then failed
+      when event.eql?('unknown') then unknown
     end
   end
   def process_state

@@ -15,9 +15,12 @@
         <p><br/></p>
         <p>
           <% @shelf0.each do |shelf| %>
-            <div class='span-2 prepend-1'><%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
-                :size => "50x70", :alt => "#{shelf.title.title} ", 
-                :title => "#{shelf.title.title}", :onerror => "this.src='#{default_image_url}';"  %>
+            <div class='span-2 prepend-1'>
+              <%= link_to shelf.title do -%> 
+                <%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
+                  :size => "50x70", :alt => "#{shelf.title.title} ", 
+                  :title => "#{shelf.title.title}", :onerror => "this.src='#{default_image_url}';"  %>
+              <% end -%>
             </div> 
           <% end %>
              
@@ -49,9 +52,12 @@
         <p>
           <!--div class='span-1'><br/> </div-->
           <% @shelf1.each do |shelf| %>
-            <div class='span-2  prepend-1'><%= image_tag image_url(shelf.id), :id=>"img_#{shelf.id}_#{shelf.id}", 
+            <div class='span-2  prepend-1'>
+              <%= link_to shelf do -%> 
+                <%= image_tag image_url(shelf.id), :id=>"img_#{shelf.id}_#{shelf.id}", 
                 :size => "50x70", :alt => "#{shelf.title} ", 
                 :title => "#{shelf.title}", :onerror => "this.src='#{default_image_url}';"  %>
+              <%end-%>
             </div> 
           <% end %>
              
@@ -70,9 +76,12 @@
           <!--div class='span-1'><br/> </div-->
           
           <% @kidshelf.each do |shelf| %>
-            <div class='span-2  prepend-1'><%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
+            <div class='span-2  prepend-1'>
+              <%= link_to shelf.title do -%> 
+                <%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
                 :size => "50x70", :alt => "#{shelf.title.title} ", 
                 :title => "#{shelf.title.title}", :onerror => "this.src='#{default_image_url}';"  %>
+              <% end -%>
             </div> 
           <% end %>
              
@@ -92,9 +101,12 @@
           <!--div class='span-1'><br/> </div-->
           
           <% @myshelf.each do |shelf| %>
-            <div class='span-2  prepend-1'><%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
+            <div class='span-2  prepend-1'>
+              <%= link_to shelf.title do -%> 
+                <%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
                 :size => "50x70", :alt => "#{shelf.title.title} ", 
                 :title => "#{shelf.title.title}", :onerror => "this.src='#{default_image_url}';"  %>
+              <% end -%>
             </div> 
           <% end %>
              
@@ -112,9 +124,12 @@
           <!--div class='span-1'><br/> </div-->
           
           <% @shelf2.each do |shelf| %>
-            <div class='span-2  prepend-1'><%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
+            <div class='span-2  prepend-1'>
+              <%= link_to shelf.title do -%> 
+                <%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
                 :size => "50x70", :alt => "#{shelf.title.title} ", 
                 :title => "#{shelf.title.title}", :onerror => "this.src='#{default_image_url}';"  %>
+              <% end -%>
             </div> 
           <% end %>
              
@@ -159,7 +174,7 @@
     </div>  
     <div class='span-24'>
       <div class='span-10 shelf-3'>
-        <div class='span-10' style="background:url(../images/quzzies.png) no-repeat; background-position:right bottom">
+        <div class='span-10'>
         <div id="title">
           <div class="title span-4">
               <p><a>MY RESTRICTIONS</a></p>
@@ -168,7 +183,7 @@
         
           <!--div class='span-1'><br/> </div-->
           
-            <div class='span-3 prepend-1 small'  style="margin:0px 0px 0px 20px;"><b>  Join the quiz contest and win the Jungle Book series.</b></div>
+            <div class='span-3 prepend-1 small'  style="margin:0px 0px 0px 20px;"><b>  </b></div>
             <div class='span-9'> <br/></div>
             <div class='span-9'> <br/></div>
             
@@ -190,9 +205,12 @@
           <!--div class='span-1'><br/> </div-->
           
           <% @mysugges.each do |shelf| %>
-            <div class='span-2  prepend-1'><%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
+            <div class='span-2  prepend-1'>
+              <%= link_to shelf.title do -%> 
+                <%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
                 :size => "50x70", :alt => "#{shelf.title.title} ", 
                 :title => "#{shelf.title.title}", :onerror => "this.src='#{default_image_url}';"  %>
+              <% end -%>
             </div> 
           <% end %>
              
