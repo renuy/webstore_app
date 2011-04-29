@@ -1,0 +1,38 @@
+
+<%= javascript_tag :defer => 'defer' do -%>
+	$(document).ready(function () {
+    form = document.forms["paymentDetails"];
+    form.submit();
+	});
+<% end -%>
+
+<%= form_tag("https://www.ccavenue.com/shopzone/cc_details.jsp", :id=>"paymentDetails", :method=>"post") do %>
+  <div class="actions">
+    REDIRECTING TO PAYMENT GATEWAY PLEASE DO PRESS BACK BUTTON  
+    <%= hidden_field_tag :Merchant_Param, form_authenticity_token %>
+    <%= hidden_field_tag :Order_Id , @payment.OrderId %>
+    <%= hidden_field_tag :Merchant_Id ,  @payment.MerchantId %>
+    <%= hidden_field_tag :TxnType ,  "A" %>
+    <%= hidden_field_tag :actionID,  "TXN" %>
+    <%= hidden_field_tag :Checksum ,  @payment.get_checksum %>
+    <%= hidden_field_tag :Redirect_Url ,  @payment.RedirectUrl %>
+      <%= hidden_field_tag :billing_cust_name, @payment.member.name %>
+			<%= hidden_field_tag :billing_cust_address ,@payment.member.address %>
+			<%= hidden_field_tag :billing_cust_country ,"INDIA" %>
+			<%= hidden_field_tag :billing_cust_state , @payment.member.state %>
+			<%= hidden_field_tag :billing_cust_tel ,@payment.member.mphone %>
+			<%= hidden_field_tag :billing_cust_email ,@payment.user.email %>
+			<%= hidden_field_tag :delivery_cust_name , @payment.member.name %>
+			<%= hidden_field_tag :delivery_cust_address ,@payment.member.address %>
+			<%= hidden_field_tag :delivery_cust_state ,@payment.member.state %>
+			<%= hidden_field_tag :delivery_cust_tel ,@payment.member.mphone %>
+			<%= hidden_field_tag :delivery_cust_notes ,"" %>
+			<%= hidden_field_tag :billing_cust_city ,@payment.member.city %>
+			<%= hidden_field_tag :billing_zip_code ,@payment.member.pincode %>
+			<%= hidden_field_tag :delivery_cust_city ,@payment.member.city %>
+			<%= hidden_field_tag :delivery_zip_code ,@payment.member.pincode %>
+      <%= hidden_field_tag :Amount ,  @payment.amount %>
+      <%= hidden_field_tag :billing_cust_notes, "SUB-MERHCANT TEST" %>
+  </div>
+  <!--%= submit_tag %-->
+<% end %>
