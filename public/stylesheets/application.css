@@ -179,19 +179,19 @@ background:url(../images/spiral-1.png) no-repeat;
 
 
 .shelfname a{
-  margin:6px 0px 0px 8px;
+  margin:4px 0px 0px 5px;
   color:#ffffff;
   font-weight:bold;
-  padding:8px 0px 0px 8px;
+  padding:5px 0px 0px 5px;
   text-decoration:none;
 }
 .shelfname a:hover{
   background-position:right center; 
   //height:32px;
-  margin:6px 0px 0px 8px;
+  margin:4px 0px 0px 5px;
   color:#ffffff;
   font-weight:bold;
-  padding:8px 0px 0px 8px;
+  padding:5px 0px 0px 5px;
   text-decoration:none;
 }
 .shelf-0{height:132px;

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110429053313) do
+ActiveRecord::Schema.define(:version => 20110430084814) do
 
   create_table "batches", :force => true do |t|
     t.datetime "created_at"
@@ -61,6 +61,13 @@ ActiveRecord::Schema.define(:version => 20110429053313) do
   add_index "devise_users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "devise_users", ["reset_password_token"], :name => "i_users_reset_password_token", :unique => true
 
+  create_table "favourites", :force => true do |t|
+    t.integer "user_id",   :precision => 38, :scale => 0
+    t.string  "favourite"
+    t.integer "item_id",   :precision => 38, :scale => 0
+    t.integer "rank",      :precision => 38, :scale => 0
+  end
+
   create_table "items", :force => true do |t|
     t.integer  "order_id",   :precision => 38, :scale => 0
     t.integer  "title_id",   :precision => 38, :scale => 0
@@ -109,6 +116,7 @@ ActiveRecord::Schema.define(:version => 20110429053313) do
     t.integer  "user_id",     :precision => 38, :scale => 0
     t.integer  "member_id",   :precision => 38, :scale => 0
     t.string   "payment_for"
+    t.decimal  "txn_amount"
   end
 
   create_table "pending_titles_for_collections", :force => true do |t|
@@ -122,7 +130,7 @@ ActiveRecord::Schema.define(:version => 20110429053313) do
   end
 
   create_table "renewals", :force => true do |t|
-    t.integer  "order_id",   :precision => 38, :scale => 0
+    t.integer  "payment_id", :precision => 38, :scale => 0
     t.integer  "months",     :precision => 38, :scale => 0
     t.datetime "from_date"
     t.datetime "to_date"

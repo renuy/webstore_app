@@ -35,6 +35,7 @@ JbkidsApp::Application.routes.draw do
   resources :titles do
     collection do
       get 'refine'
+      get 'favourite'
     end
     
   end
