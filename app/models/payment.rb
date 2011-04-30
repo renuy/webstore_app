@@ -7,7 +7,7 @@ class Payment < ActiveRecord::Base
   attr_accessor :AuthDesc
   validates :order_id, :presence => true  
   validates :amount, :presence => true
-  validates :mode, :presence => true
+  validates :p_mode, :presence => true
   
   
   belongs_to :member
