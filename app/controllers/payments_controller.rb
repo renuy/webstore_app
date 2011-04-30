@@ -39,7 +39,7 @@ class PaymentsController < ApplicationController
     @payment.order_id =  params[:id]
     @payment.branch_id = 801 #remove hard coding
     @payment.state = "PrePayment"
-    @payment.mode = 'Credit Card'
+    @payment.p_mode = 'Credit Card'
     @payment.fee = 15 #convinience fee
     @payment.amount = @payment.txn_amount + @payment.fee
     

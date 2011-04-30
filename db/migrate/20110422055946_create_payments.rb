@@ -4,7 +4,7 @@ class CreatePayments < ActiveRecord::Migration
       t.string :state #reverse/original
       t.integer :orig_id
       t.float :amount
-      t.string :mode
+      t.string :p_mode
       t.string :details
       t.float :fee
       t.timestamps
