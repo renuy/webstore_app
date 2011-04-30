@@ -1,0 +1,231 @@
+<%= javascript_tag :defer => 'defer' do -%>
+	$(document).ready(function () {
+		Collectionapp.initShelf('div_book_shelf');
+	});
+<% end -%>
+
+<div class='span-24 prepend-top'>
+  
+  <div class='span-24 shelf_7_89' id="div_book_shelf" style="background: url(../images/find-a-book-splice_62.png) no-repeat;display:none">
+    <div class='span-24'>
+      <div class='span-10 shelf-3'">
+        <div style="background:url(../images/series.png) no-repeat;background-position:5px 5px;">
+          <p class="shelfname">
+            <%= link_to @shelf_name[0].upcase, refine_titles_path(:shelf=>@shelf_name[0], :query=>params[:query],:cat_id=> @cat_id[0],:per_page=>9, :page=>1) %>
+          </p>
+          <p></p>
+          <p><br/></p>
+          
+          <p>        
+            <% if @shelf.size > 0 %>
+            <% @shelf[0].each_hit_with_result do |hit, result| -%>
+              
+              <div class='span-3'>
+                <%= link_to result do -%> 
+                  <%= image_tag image_url(result.id), :id=>"img_#{result.id}_#{result.id}", 
+                    :size => "50x70", :alt => "#{hit.stored(:title)} ", 
+                    :title => "#{hit.stored(:title)}", :onerror => "this.src='#{default_image_url}';"  %>
+                  <% end -%>
+                  (<%=hit.stored(:no_of_rented)%>)
+                </div> 
+            <% end -%>             
+            <% end %>
+          </p>      
+        </div>
+      </div>
+      <div class='span-7 shelf-2'>
+        <div style="background:url(../images/comic.png) no-repeat;background-position:5px 5px;">
+          <p class="shelfname"><%= link_to @shelf_name[1].upcase, refine_titles_path(:shelf=>@shelf_name[1], :query=>params[:query],:cat_id=> @cat_id[1],:per_page=>9, :page=>1) %></p>
+          <p></p>
+          <p><br/></p>
+          <p>
+            <% if @shelf.size > 1 %>
+            <% @shelf[1].each_hit_with_result do |hit, result| -%>
+            
+            <div class='span-3'>
+              <%= link_to result do -%> 
+                <%= image_tag image_url(result.id), :id=>"img_#{result.id}_#{result.id}", 
+                  :size => "50x70", :alt => "#{hit.stored(:title)} ", 
+                  :title => "#{hit.stored(:title)}", :onerror => "this.src='#{default_image_url}';"  %>
+                <% end -%>
+                (<%=hit.stored(:no_of_rented)%>)
+              </div> 
+            <% end -%>             
+            <% end %>
+             
+          </p>
+        </div>
+      </div>
+      <div class='span-7 shelf-2'>
+
+        <div style="background:url(../images/novel.png) no-repeat;background-position:5px 5px;">
+          <p class="shelfname"><%= link_to @shelf_name[2].upcase, refine_titles_path(:shelf=>@shelf_name[2], :query=>params[:query],:cat_id=> @cat_id[2],:per_page=>9, :page=>1) %></p>
+          <p></p>
+          <p><br/></p>
+          <p>
+            <% if @shelf.size > 2 %>
+            <% @shelf[2].each_hit_with_result do |hit, result| -%>
+            
+            <div class='span-3'>
+              <%= link_to result do -%> 
+                <%= image_tag image_url(result.id), :id=>"img_#{result.id}_#{result.id}", 
+                  :size => "50x70", :alt => "#{hit.stored(:title)} ", 
+                  :title => "#{hit.stored(:title)}", :onerror => "this.src='#{default_image_url}';"  %>
+                <% end -%>
+                (<%=hit.stored(:no_of_rented)%>)
+              </div> 
+            <% end -%>             
+            <% end %>   
+          </p>      
+        </div>    
+      </div>  
+          
+    </div>
+    
+    <div class='span-24'>
+      
+      <div class='span-7 shelf-2'>
+        
+          <div style="background:url(../images/s-stories.png) no-repeat;background-position:5px 5px;">
+          <p class="shelfname"><%= link_to @shelf_name[3].upcase, refine_titles_path(:shelf=>@shelf_name[3], :query=>params[:query],:cat_id=> @cat_id[3],:per_page=>9, :page=>1) %></p>
+          <p></p>
+          <p><br/></p>
+          <p>
+            <% if @shelf.size > 3 %>
+            <% @shelf[3].each_hit_with_result do |hit, result| -%>
+            
+            <div class='span-3'>
+              <%= link_to result do -%> 
+                <%= image_tag image_url(result.id), :id=>"img_#{result.id}_#{result.id}", 
+                  :size => "50x70", :alt => "#{hit.stored(:title)} ", 
+                  :title => "#{hit.stored(:title)}", :onerror => "this.src='#{default_image_url}';"  %>
+                <% end -%>
+                (<%=hit.stored(:no_of_rented)%>)
+              </div> 
+            <% end -%>             
+            <% end %>   
+          </p>      
+        </div>    
+      </div>
+      <div class='span-7 shelf-2'>
+
+        <div style="background:url(../images/sci-nature.png) no-repeat;background-position:5px 5px;">
+          <p class="shelfname"><%= link_to @shelf_name[4].upcase, refine_titles_path(:shelf=>@shelf_name[4], :query=>params[:query],:cat_id=> @cat_id[4],:per_page=>9, :page=>1) %></p>
+          <p></p>
+          <p><br/></p>
+          <p>
+            <% if @shelf.size > 4 %>
+            <% @shelf[4].each_hit_with_result do |hit, result| -%>
+            
+            <div class='span-3'>
+              <%= link_to result do -%> 
+                <%= image_tag image_url(result.id), :id=>"img_#{result.id}_#{result.id}", 
+                  :size => "50x70", :alt => "#{hit.stored(:title)} ", 
+                  :title => "#{hit.stored(:title)}", :onerror => "this.src='#{default_image_url}';"  %>
+                <% end -%>
+                (<%=hit.stored(:no_of_rented)%>)
+              </div> 
+            <% end -%>             
+            <% end %>
+          
+               
+          </p>
+        </div>
+      </div>
+      
+      <div class='span-10 shelf-3'>
+        
+        <div style="background:url(../images/school-z.png) no-repeat;background-position:5px 5px;">
+          <p class="shelfname"><%= link_to @shelf_name[5].upcase, refine_titles_path(:shelf=>@shelf_name[5], :query=>params[:query],:cat_id=> @cat_id[5],:per_page=>9, :page=>1) %></p>
+          <p></p>
+          <p><br/></p>
+          <p>
+            <% if @shelf.size > 5 %>
+            <% @shelf[5].each_hit_with_result do |hit, result| -%>
+            
+            <div class='span-3'>
+              <%= link_to result do -%> 
+                <%= image_tag image_url(result.id), :id=>"img_#{result.id}_#{result.id}", 
+                  :size => "50x70", :alt => "#{hit.stored(:title)} ", 
+                  :title => "#{hit.stored(:title)}", :onerror => "this.src='#{default_image_url}';"  %>
+                <% end -%>
+                (<%=hit.stored(:no_of_rented)%>)
+              </div> 
+            <% end -%>             
+            <% end %>
+          </p>
+               
+        </div>  
+      </div>
+      
+    </div>
+    <div class='span-24'>
+      <div class='span-10 shelf-3'>
+        
+        <div style="background:url(../images/act-adventure.png) no-repeat;background-position:5px 5px;">
+          <p class="shelfname"><%= link_to @shelf_name[6].upcase, refine_titles_path(:shelf=>@shelf_name[6], :query=>params[:query],:cat_id=> @cat_id[6],:per_page=>9, :page=>1) %></p>
+          <p>
+            <% if @shelf.size > 6 %>
+            <% @shelf[6].each_hit_with_result do |hit, result| -%>
+            
+            <div class='span-3'>
+              <%= link_to result do -%> 
+                <%= image_tag image_url(result.id), :id=>"img_#{result.id}_#{result.id}", 
+                  :size => "50x70", :alt => "#{hit.stored(:title)} ", 
+                  :title => "#{hit.stored(:title)}", :onerror => "this.src='#{default_image_url}';"  %>
+                <% end -%>
+                (<%=hit.stored(:no_of_rented)%>)
+              </div> 
+            <% end -%>             
+            <% end %>
+          </p>
+        </div>
+      </div>
+      
+      <div class='span-7 shelf-2'>
+        
+        <div style="background:url(../images/activity.png) no-repeat;background-position:5px 5px;">
+          <p class="shelfname"><%= link_to @shelf_name[7].upcase, refine_titles_path(:shelf=>@shelf_name[7], :query=>params[:query],:cat_id=> @cat_id[7],:per_page=>9, :page=>1) %></p>
+          <p>
+            <% if @shelf.size > 7 %>
+            <% @shelf[7].each_hit_with_result do |hit, result| -%>
+            
+            <div class='span-3'>
+              <%= link_to result do -%> 
+                <%= image_tag image_url(result.id), :id=>"img_#{result.id}_#{result.id}", 
+                  :size => "50x70", :alt => "#{hit.stored(:title)} ", 
+                  :title => "#{hit.stored(:title)}", :onerror => "this.src='#{default_image_url}';"  %>
+                <% end -%>
+                (<%=hit.stored(:no_of_rented)%>)
+              </div> 
+            <% end -%>             
+            <% end %>
+          </p>
+        </div>
+      </div>
+      
+      <div class='span-7 shelf-2'>
+        
+          <div style="background:url(../images/poetry.png) no-repeat;background-position:5px 5px;">
+          <p class="shelfname"><%= link_to @shelf_name[8].upcase, refine_titles_path(:shelf=>@shelf_name[8], :query=>params[:query],:cat_id=> @cat_id[8],:per_page=>9, :page=>1) %></p>
+          <p>
+        
+            <% if @shelf.size > 8 %>
+            <% @shelf[8].each_hit_with_result do |hit, result| -%>
+            
+            <div class='span-3'>
+              <%= link_to result do -%> 
+                <%= image_tag image_url(result.id), :id=>"img_#{result.id}_#{result.id}", 
+                  :size => "50x70", :alt => "#{hit.stored(:title)} ", 
+                  :title => "#{hit.stored(:title)}", :onerror => "this.src='#{default_image_url}';"  %>
+                <% end -%>
+                (<%=hit.stored(:no_of_rented)%>)
+              </div> 
+            <% end -%>             
+            <% end %>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

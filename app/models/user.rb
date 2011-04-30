@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   has_many :member, :conditions => ["status in (?)", [1,2]]
   has_many :kids, :foreign_key => "parent_id", :class_name => "User"
   has_many :book_lists
+  has_many :favourite
   def valid_password?(pass)
   
     pwd = Base64.encode64  Digest::SHA1.digest(pass)

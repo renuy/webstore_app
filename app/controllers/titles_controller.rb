@@ -125,6 +125,9 @@ class TitlesController < ApplicationController
     search.build do 
       with(:category_id, params[:facetCategory]) 
     end if params[:facetCategory].to_i > 0
+    search.build do 
+      with(:category_id, params[:cat_id]) 
+    end if params[:cat_id].to_i > 0
 
     search.build do
       order_by(:no_of_rented, :desc)
@@ -175,4 +178,90 @@ class TitlesController < ApplicationController
 #      facet(:category_id, :publisher_id, :author_id)
 #    end
   end
+  
+  
+  def favourite
+    newSearch = Sunspot.new_search(Title) do
+      paginate(:page => params[:page], :per_page => 4)
+      facet(:category_id)
+    end
+   
+    shelf0 = []
+    if user_signed_in?
+      u = User.find(current_user.id)
+      shelf0 = u.favourite 
+    end
+    @shelf_name = ["","","","","","","","",""]
+    @shelf  = [[],[],[],[],[],[],[],[],[]]
+    @cat_id =  [ 1+rand(6), 26, 7+rand(6), 12+rand(6), 17+rand(6),   22+rand(5), 27+rand(7), 34+rand(6), 41 ]
+    per_page = 1
+    x = shelf0.size > 9 ? 9 : shelf0.size 
+    idx = 0
+    
+    x.times do  
+        case idx
+          when 0 then per_page = 3
+          when 1 then per_page = 2
+          when 2 then per_page = 2
+          when 3 then per_page = 2
+          when 4 then per_page = 2
+          when 5 then per_page = 3
+          when 6 then per_page = 3
+          when 7 then per_page = 2
+          when 8 then per_page = 2
+          
+          
+        end
+        @shelf_name[idx] = shelf0[idx].category.name
+        @cat_id[idx] = shelf0[idx].category.id
+        cat_search = Sunspot.new_search(Title) do
+          paginate(:page => params[:page], :per_page => per_page)
+          facet(:category_id)
+        end
+        cat_search.build do 
+          with(:category_id, shelf0[idx].category.id) 
+        end 
+        cat_search.build do
+          keywords(params[:query] )
+        end
+        @shelf[idx] = cat_search.execute  
+        
+      idx+=1
+      
+    end
+    
+    x = 9 - idx 
+    x.times do 
+      case idx
+        when 0 then per_page = 3
+        when 1 then per_page = 2
+        when 2 then per_page = 2
+        when 3 then per_page = 2
+        when 4 then per_page = 2
+        when 5 then per_page = 3
+        when 6 then per_page = 3
+        when 7 then per_page = 2
+        when 8 then per_page = 2
+         
+      end
+        cat = Category.find(@cat_id[idx])
+        @shelf_name[idx] = cat.name
+        
+        cat_search = Sunspot.new_search(Title) do
+          paginate(:page => params[:page], :per_page => per_page)
+          facet(:category_id)
+        end
+        cat_search.build do 
+          with(:category_id, cat.id) 
+        end 
+        
+        cat_search.build do
+          keywords(params[:query] )
+        end
+        @shelf[idx] = cat_search.execute  
+      idx+=1
+    end
+    #@shelfMR = sr.results.paginate(:page=>1, :per_page=>5)
+  end
+
 end
