@@ -11,3 +11,4 @@ doc/app
 .DS_Store
 Gemfile
 Gemfile.lock
+solr/data/*
