@@ -30,8 +30,8 @@ class Payment < ActiveRecord::Base
   end
   
   def RedirectUrl
-    "http://192.168.2.100:3000/gatewayentry"
-    #http://kids.justbooksclc.com/gatewayentry"
+    #"http://192.168.2.100:3000/gatewayentry"
+    "http://kids.justbooksclc.com/gatewayentry"
   end
   
   def OrderId
