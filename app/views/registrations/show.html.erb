@@ -6,10 +6,10 @@
         
       </div>
       <% if @user.isParent? %>
-        
-        <span class="btn_link rite"><%=link_to 'NEW PROFILE', add_kid_profile_path(:pk=>'y') %> </span>
-        <p class="heading">KIDS PROFILES</p>
         <div class="inner_box">  
+        <hr/>
+        <span class="btn_link rite"><%=link_to 'NEW PROFILE', add_kid_profile_path(:pk=>'y') %> </span>
+        <div class="heading">KIDS PROFILES</div>
         <%= render :partial => "kid_profile", :collection=> @user.kids  %>
         </div>
         

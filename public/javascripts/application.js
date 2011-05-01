@@ -189,7 +189,9 @@ $('.suggest').live('click', function() {
         $("#dialog_"+$(this).attr('id')).dialog({
           autoOpen: false,
           modal: true,
-          position: 'center',
+          width: 280,
+          height: 217,
+          position: ['center', 'center'],
           overlay: { 
               opacity: 0.7, 
               background: "black" 
@@ -197,6 +199,10 @@ $('.suggest').live('click', function() {
         });
         $("#dialog_"+$(this).attr('id')).dialog("open");
     });
+$('.rcancel').live('click', function() {
+  card_id = $(this).attr('id').replace('can_','');
+  $("#dialog_"+card_id).dialog('close');
+});
     
 $('.renew').live('click', function() {
 card_id = $(this).attr('id').replace('link_','');

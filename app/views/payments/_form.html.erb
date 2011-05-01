@@ -24,12 +24,13 @@
     <%= f.hidden_field :branch_id , :value=> @payment.branch_id %>
     <%= f.hidden_field :payment_for , :value=> @payment.payment_for %>
     
-    <%= field_set_tag 'Payment Details' do %>
+    <div class="heading"> Payment Details </div>
       
       Amount         : <%= @payment.txn_amount %><br/>
       Convinience fee: <%= @payment.fee %> <br/>
       <b>Total Amount : <%= @payment.amount %><br/></b>
-    <% end %>
-  <%= f.submit "pay now >>", :class=>"btn_link" %>
+    <br/>
+    <%= f.submit "pay now", :class=>"btn_link" %>
+    <br/>
   </div>
 <% end %>

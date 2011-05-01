@@ -354,11 +354,13 @@ input.readonly {
 }
 input.link{
 	border:none;
-  background-color:white;
+  background-color:olive;
+  color:white;
 }
 input.link:hover{
 	border:none;
   text-decoration:underline;
+  color:white;
 }
 .spacer {
 	background-color:#B51F24;
@@ -720,14 +722,21 @@ text-align :center;
 }
 .rite {float:right !important;}
 
+
 div.dialog{
       display:none;
-      border: solid #CCCCCC 2px;
-      background-color: white;
-      padding: 10px 10px 10px 10px;
-      margin: 10px 10px 10px 10px;
-      
+      /*border: solid #CCCCCC 2px;*/
+      background: url(../images/login-bg.png) repeat-y;
+      padding: 20px 10px 10px 20px;
+      font-size:12px; 
+      font-weight:bold; 
+      color:#ffffff; 
+      height:217px;
+      width: 280px;
+      overflow-x: hidden;
+      overflow-y:auto;
     }
+
     
 
 div.input_box{
@@ -741,6 +750,18 @@ padding: 10px 10px 10px 20px;
 
 div.inner_box{
 
-padding: 10px 10px 10px 40px;
+padding: 10px 30px 10px 40px;
 
+}
+
+a.renew, a.rcancel{
+  text-decoration:none;
+  font-size:14px; 
+  
+}
+
+
+a.renew:hover, a.rcancel:hover{
+  color:#ffffff;
+  text-decoration:underline;
 }

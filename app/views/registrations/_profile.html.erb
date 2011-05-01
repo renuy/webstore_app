@@ -1,24 +1,30 @@
-    <%= user.username %><br/>
-    <%= user.email %><br/>
+    <h3><%= user.username %></h3/>
+    <h6><%= user.email %></h6>
     <% user.member.each do |member| %>
-     <br/>
-     <%= "Justbooks ID: #{member.valid_card[0].card_id}" %> 
+    
+     <%= "Justbooks ID: #{member.valid_card[0].card_id}" %>  <span class="prepend-1"><%=member.valid_card[0].plan.name %></span>
      
       <% if member.valid_card[0].renewable? %>
-      <%= link_to 'renew', "#", :id=>"#{member.valid_card[0].card_id}" ,:class=>'suggest'%>
+        <%= " (#{member.valid_card[0].plan.cnt_books} books, #{member.valid_card[0].plan.cnt_magazine} magazines)"%>
+        <span class="prepend-1">valid through: <%= member.valid_card[0].expiry_date.strftime('%d-%b-%Y') %></span>
+        <span class="prepend-1"><%= link_to 'renew', "#", :id=>"#{member.valid_card[0].card_id}" ,:class=>'suggest'%></span>
+        
         <div class = "dialog" id="<%="dialog_#{member.valid_card[0].card_id}" %>">
 
-          Renew for: 
+          Renew for: <br/>
             <% member.valid_card[0].plan.renewMonthsArr.each do |month| %>
-              <div class="greybox">
+              
                 <%= radio_button_tag("months#{member.valid_card[0].card_id}", month.to_s, false) %> <%= pluralize(month,  'month') %>
                 till <%= member.valid_card[0].newExpiry(month).strftime('%d-%b-%Y') %> 
                 amount Rs. <%=member.valid_card[0].renewAmount(month) %>/-<br/>
-              </div>
+              
             <% end %> 
           
-          <%= link_to 'continue >>', '#',:name=>"#{member.id}" ,:id=>"link_#{member.valid_card[0].card_id}" ,:class=>'renew'   %>
+          <%= link_to "continue", '#',:name=>"#{member.id}" ,:id=>"link_#{member.valid_card[0].card_id}" ,:class=>'renew'   %>
+          <span class="prepend-1"><%= link_to 'cancel', '#' , :id=>"can_#{member.valid_card[0].card_id}", :class =>'rcancel' %></span>
         </div>
-        <br/>
       <% end %>
+      <br/>
     <% end %>
+    <br/>
+    <%=link_to 'payment history', payments_path %>
