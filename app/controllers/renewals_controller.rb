@@ -1,4 +1,6 @@
 class RenewalsController < ApplicationController
+  
+  before_filter :authenticate_user!
 
   # GET /renewals/new
   # GET /renewals/new.xml

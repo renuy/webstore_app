@@ -1,21 +1,18 @@
-<div class='span-24 prepend-top'>
-  <!--div class='span-24 shelf_single' style="display:none" id="div_book_shelf"-->
-      <div class="setting">
-        <p class="settingtext">SETTINGS</p>
-        <p class="heading">MY PROFILE INFORMATION</p>
-        <p class="setting">
+<div class="input_box">
+  <div class="breadcrumb"> SETTINGS </div>
+      <div class="inner_box">  
+        <div class="heading"> MY PROFILE INFORMATION </div>
         <%= render :partial => "profile", :locals=>{:user => @user} %>
-        </p>
+        
       </div>
       <% if @user.isParent? %>
-      <div class="setting">
         
         <span class="btn_link rite"><%=link_to 'NEW PROFILE', add_kid_profile_path(:pk=>'y') %> </span>
         <p class="heading">KIDS PROFILES</p>
+        <div class="inner_box">  
         <%= render :partial => "kid_profile", :collection=> @user.kids  %>
+        </div>
         
-        
-      </div>
       <% end %>
     
 </div>

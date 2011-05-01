@@ -10,7 +10,6 @@
       </ul>
     </div>
   <% end %>
-
   <div class="actions">
 			
     <%= f.hidden_field :order_id , :value=> @payment.order_id %>
@@ -26,10 +25,11 @@
     <%= f.hidden_field :payment_for , :value=> @payment.payment_for %>
     
     <%= field_set_tag 'Payment Details' do %>
+      
       Amount         : <%= @payment.txn_amount %><br/>
       Convinience fee: <%= @payment.fee %> <br/>
       <b>Total Amount : <%= @payment.amount %><br/></b>
     <% end %>
-  <%= f.submit "continue" %>
+  <%= f.submit "pay now >>", :class=>"btn_link" %>
   </div>
 <% end %>

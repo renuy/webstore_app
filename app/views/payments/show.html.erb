@@ -1,5 +1,17 @@
+<div class="span-14">
 <p id="notice"><%= notice %></p>
+  <% unless @payment.nil? %>
+  <%= field_set_tag 'Payment Details' do %>
+      Payment for    :<%= @payment.payment_for %> <br/>  
+      Status         :<%= @payment.state %>         <br/>
+      Details        :<%=@payment.details %></br>
+      Amount         : <%= @payment.txn_amount %><br/>
+      Convinience fee:<%= @payment.fee %> <br/>
+      <h3>Total Amount :<%= @payment.amount %><br/></h3>
+      done at <%=@payment.created_at.strftime('%d-%b-%Y') %></br>
+  <% end %>
+  <% end %>
 
-
-<%= link_to 'Edit', edit_payment_path(@payment) %> |
-<%= link_to 'Back', payments_path %>
+<%= link_to 'settings', current_user_path %> |
+<%= link_to 'home', root_path %>
+</div>

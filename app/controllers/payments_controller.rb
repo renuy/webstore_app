@@ -1,27 +1,31 @@
 class PaymentsController < ApplicationController
-  #protect_from_forgery :only => [:create, :update, :destroy]
+  protect_from_forgery :only => [:create, :update, :destroy]
+  before_filter :authenticate_user!,  :only => [:create, :update, :destroy, :show, :new, :index]
   
   # GET /payments
   # GET /payments.xml
-  #def index
-  #  @payments = Payment.all
+  def index
+    @payments = Payment.find_all_by_user_id(current_user.id).paginate(:page =>params[:page], :per_page => 9)
 
-  #  respond_to do |format|
-  #    format.html # index.html.erb
-  #    format.xml  { render :xml => @payments }
-  #  end
-  #end
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @payments }
+    end
+  end
 
   # GET /payments/1
   # GET /payments/1.xml
-  #def show
-  #  @payment = Payment.find(params[:id])
-
-  #  respond_to do |format|
-  #    format.html # show.html.erb
-  #    format.xml  { render :xml => @payment }
-  #  end
-  #end
+  def show
+    @payment = Payment.find(params[:id])
+    if  @payment.user_id != current_user.id  
+      @payment = nil
+      flash[:notice] = "Unable display. Not your payment?"
+    end
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @payment }
+    end
+  end
 
   # GET /payments/new
   # GET /payments/new.xml
@@ -102,7 +106,8 @@ class PaymentsController < ApplicationController
     authDesc = params[:AuthDesc]
     
     @payment = Payment.find(order_Id)
-    if @payment.verifyChecksum(checksum, authDesc)
+    
+    if @payment.verifyChecksum(checksum, authDesc) and valid_request?
       case authDesc
         when "Y"
           @payment.state = "ConfirmPayment"
@@ -111,24 +116,25 @@ class PaymentsController < ApplicationController
           @payment.state = "UnknownPayment"
           @payment.details = "Thank you. We will keep you posted regarding the status of your order through e-mail"
         when "N"
-          @payment.state = "FailedPayment"
+          @payment.state = "ConfirmPayment"
           @payment.details = "Your transaction has been declined by the merchant. Please verify your details and retry."
       end
       if (@payment.save!)
         flash[:notice] = @payment.details
       else
-        render :action => "edit"
+        flash[:notice] = @payment.details + 'Failed to save payment.'
       end
     else
+      reset_session
       flash[:notice] = "The transaction could not be verified."
     end
     
-    redirect_to root_path
+    redirect_to(@payment)
   end
   
-  def v_request?
+  def valid_request?
     #abc=""
-    !protect_against_forgery? || request.get? ||    form_authenticity_token == params[:Merchant_Param] ||
+    form_authenticity_token == params[:Merchant_Param] ||
     form_authenticity_token == request.headers['X-CSRF-Token']
     
     #logger.debug "RENU  check here "+ abc 
@@ -144,10 +150,5 @@ class PaymentsController < ApplicationController
     #abc.eql?("TRUE") ? true : false
     
   end
-  
-  def verify_authenticity_token()
-    v_request? #|| handle_unverified_request
-  end
-  
 
 end

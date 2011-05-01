@@ -1,21 +1,25 @@
-<h1>Listing payments</h1>
+<div class="span-22">
+<h3>Your payments</h3>
 
 <table>
   <tr>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th class="span-3">Payment for</th>
+    <th class="span-3">Done at </th>
+    <th class="span-3">Status</th>
+    <th class="span-3">Total Amount</th>
   </tr>
-
+<%= will_paginate(@payments) %>
 <% @payments.each do |payment| %>
   <tr>
+    <td class="span-3"><%= payment.payment_for %></td>
+    <td class="span-3"><%=payment.created_at.strftime('%d-%b-%Y') %></td>
+    <td class="span-3"><%= payment.state %> </td>
+    <td class="span-3"><%= payment.amount %></h3></td>
     <td><%= link_to 'Show', payment %></td>
-    <td><%= link_to 'Edit', edit_payment_path(payment) %></td>
-    <td><%= link_to 'Destroy', payment, :confirm => 'Are you sure?', :method => :delete %></td>
+    <!--td><%= link_to 'Cancel', edit_payment_path(payment) %></td-->
   </tr>
 <% end %>
 </table>
 
 <br />
-
-<%= link_to 'New Payment', new_payment_path %>
+</div>
