@@ -67,7 +67,7 @@
       <div class='span-3 shelf-1'>
         <div id="title">
           <div class="span-3 title">
-              <p><%= link_to "KIDS SHELF", show_dashboard_path(:shelf=>"K",:per_page=>9, :page=>1) %></p>
+              <p><%= link_to "KIDS SHELF", 'book_lists/index_k' %></p>
           </div>
         </div>
           <p></p>
@@ -78,11 +78,11 @@
           <% @kidshelf.each do |shelf| %>
             <div class='span-2  prepend-1'>
               <%= link_to shelf.title do -%> 
-                <%= image_tag image_url(shelf.id), :id=>"img_#{shelf.id}_#{shelf.id}", 
-                :size => "50x70", :alt => "#{shelf.title} ", 
-                :title => "#{shelf.title}", :onerror => "this.src='#{default_image_url}';"  %>
+                <%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
+                :size => "50x70", :alt => "#{shelf.title.title} ", 
+                :title => "#{shelf.title.title}", :onerror => "this.src='#{default_image_url}';"  %>
               <% end -%>
-            </div>
+            </div> 
           <% end %>
              
         </p>
@@ -92,7 +92,7 @@
       <div class='span-3 shelf-1'>
         <div id="title">
           <div class="span-3 title">
-            <p><%= link_to "CURRENT READS", show_dashboard_path(:shelf=>"CRR",:per_page=>9, :page=>1) %></p>
+              <p><%= link_to "MY SHELF", 'book_lists/' %></p>
           </div>
         </div>
           <p></p>
@@ -174,35 +174,28 @@
     </div>  
     <div class='span-24'>
       <div class='span-10 shelf-3'>
+        <div class='span-10'>
         <div id="title">
           <div class="title span-4">
-              <p><%= link_to "EXPLORE", show_dashboard_path(:shelf=>"LR",:per_page=>9, :page=>1) %></p>
+              <p><a>MY RESTRICTIONS</a></p>
           </div>
         </div>
         
-        <p></p>
-        <p><br/></p>
-        <p>
           <!--div class='span-1'><br/> </div-->
           
-          <% @shelf3.each do |shelf| %>
-            <div class='span-2  prepend-1'>
-              <%= link_to shelf.title do -%> 
-                <%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
-                :size => "50x70", :alt => "#{shelf.title.title} ", 
-                :title => "#{shelf.title.title}", :onerror => "this.src='#{default_image_url}';"  %>
-              <% end -%>
-            </div> 
-          <% end %>
-             
-        </p>  
+            <div class='span-3 prepend-1 small'  style="margin:0px 0px 0px 20px;"><b>  </b></div>
+            <div class='span-9'> <br/></div>
+            <div class='span-9'> <br/></div>
+            
+            
+        </div>  
       </div>
       
       <div class='span-10 shelf-3'>
         
         <div id="title">
           <div class="title span-4 ">
-              <p><%= link_to "RECOMMENDED", show_dashboard_path(:shelf=>"CR",:per_page=>9, :page=>1) %></p>
+              <p><%=link_to 'MY SUGGESTIONS', suggestions_path %></p>
           </div>
         </div>
         

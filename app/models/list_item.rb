@@ -41,5 +41,4 @@ class ListItem < ActiveRecord::Base
     list_item
   end
   
-  
 end

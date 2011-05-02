@@ -76,5 +76,31 @@ class Title < ActiveRecord::Base
     return shelfNR.results
     
   end
+  
+  def self.kids(query, page, per_page)
+    #Title.find_all_by_category(['34','35','36','37','38','39'])
+    
+    newSearch = Sunspot.new_search(Title) do
+      paginate(:page => page, :per_page => per_page)
+      facet(:category_id)
+    end
+    newSearch.build do
+      keywords query do
+        highlight :title, :author
+      end
+    end
+    
+    newSearch.build do
+      order_by(:no_of_rented, :desc)
+    end
+    
+    newSearch.build do 
+      with(:category_id).any_of ['34','35','36','37','38','39']
+    end
 
+    shelfNR = newSearch.execute
+    
+    return shelfNR.results
+
+  end
 end

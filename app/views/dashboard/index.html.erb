@@ -6,8 +6,12 @@
 
 <div class='span-9'> <br/></div>
             
-<% if user_signed_in? and current_user.isKid? %>
-    <%= render :partial => "kid_index" %>
+<% if user_signed_in? %>
+    <% if current_user.isKid? %>
+      <%= render :partial => "kid_index" %>
+    <% else %>
+      <%= render :partial => "parent_index" %>
+    <% end %>
 <% else %>
       <%= render :partial => "all_index" %>
 <% end %>
