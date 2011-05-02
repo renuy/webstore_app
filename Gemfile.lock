@@ -162,4 +162,3 @@ DEPENDENCIES
   sunspot_rails (= 1.2.rc4)
   transitions
   will_paginate (~> 3.0.pre2)
-  
