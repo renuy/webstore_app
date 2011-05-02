@@ -23,7 +23,7 @@ class DashboardController < ApplicationController
       
       user.kids.each do |kid|
         rs = ListItem.find_by_book_list_id(kid.book_lists.collect{|x| x.id})
-        kidshelf << rs
+        kidshelf << rs unless rs.nil?
       end
       @kidshelf = kidshelf.paginate(:page => 1, :per_page => 1)
       
@@ -33,7 +33,7 @@ class DashboardController < ApplicationController
       @shelf2 = Review.all(:order => "id   desc").paginate(:page=> 1, :per_page => 2)
       @myshelf = CurrentRead.all(:order => "cnt desc").paginate(:page => 1, :per_page => 1)
       @mysugges = StarCategory.find_all_by_star_type('CR').paginate(:page=> 1, :per_page => 3)
-      @shelf3 = CurrentRead.all(:order => "cnt").paginate(:page => 1, :per_page => 1)
+      @shelf3 = CurrentRead.all(:order => "cnt").paginate(:page => 1, :per_page => 2)
       @kidshelf = Title.kids("", 1, 1)
     end
   end
@@ -66,7 +66,7 @@ class DashboardController < ApplicationController
         render_file = 'titles/show'
       when  shelf.eql?("LR")
         @shelf0 = CurrentRead.all(:order => "cnt").paginate(:page => params[:page],  :per_page => params[:per_page])
-        @shelf_name="DIFFERENT"
+        @shelf_name="UNCHARTED"
         render_file = 'show'
     end
     render render_file       
