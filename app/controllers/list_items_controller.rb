@@ -25,7 +25,7 @@ class ListItemsController < ApplicationController
   # GET /list_items/1.xml
   def show
     @list_item = ListItem.find(params[:id])
-    redirect_to book_list_path(@list_item.book_list)
+    redirect_to book_list_path(@list_item.book_list, :page=>1, :per_page => 9)
     
   end
 
