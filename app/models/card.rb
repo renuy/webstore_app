@@ -31,4 +31,7 @@ belongs_to :plan
     return new_expiry
   end
   
+  def payPerBook?
+    self.plan.frequency.upcase.eql?('N') ? true : false
+  end
 end
