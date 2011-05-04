@@ -15,9 +15,12 @@
           <p>
             <!--div class='span-1'><br/> </div-->
             <% shelf0.each do |shelf| %>
-              <div class='span-2 prepend-1'><%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
+              <div class='span-2 prepend-1'>
+                <%= link_to shelf.title do -%> 
+                  <%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
                   :size => "50x70", :alt => "#{shelf.title.title} ", 
                   :title => "#{shelf.title.title}", :onerror => "this.src='#{default_image_url}';"  %>
+                <% end -%>
               </div> 
             <% end %>
                
@@ -36,9 +39,12 @@
           <p>
             <!--div class='span-1'><br/> </div-->
             <% shelf1.each do |shelf| %>
-              <div class='span-2  prepend-1'><%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
-                  :size => "50x70", :alt => "#{shelf.title.title} ", 
-                  :title => "#{shelf.title.title}", :onerror => "this.src='#{default_image_url}';"  %>
+              <div class='span-2  prepend-1'>
+                <%= link_to shelf.title do -%> 
+                  <%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
+                    :size => "50x70", :alt => "#{shelf.title.title} ", 
+                    :title => "#{shelf.title.title}", :onerror => "this.src='#{default_image_url}';"  %>
+                <% end -%>
               </div> 
             <% end %>
                
@@ -57,9 +63,12 @@
           <p>
             <!--div class='span-1'><br/> </div-->
             <% shelf2.each do |shelf| %>
-              <div class='span-2  prepend-1'><%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
-                  :size => "50x70", :alt => "#{shelf.title.title} ", 
-                  :title => "#{shelf.title.title}", :onerror => "this.src='#{default_image_url}';"  %>
+              <div class='span-2  prepend-1'>
+                <%= link_to shelf.title do -%> 
+                  <%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
+                    :size => "50x70", :alt => "#{shelf.title.title} ", 
+                    :title => "#{shelf.title.title}", :onerror => "this.src='#{default_image_url}';"  %>
+                <% end -%>
               </div> 
             <% end %>
                
@@ -80,9 +89,12 @@
           <p>
             <!--div class='span-1'><br/> </div-->
             <% shelf3.each do |shelf| %>
-              <div class='span-2  prepend-1'><%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
-                  :size => "50x70", :alt => "#{shelf.title.title} ", 
-                  :title => "#{shelf.title.title}", :onerror => "this.src='#{default_image_url}';"  %>
+              <div class='span-2  prepend-1'>
+                <%= link_to shelf.title do -%> 
+                  <%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
+                    :size => "50x70", :alt => "#{shelf.title.title} ", 
+                    :title => "#{shelf.title.title}", :onerror => "this.src='#{default_image_url}';"  %>
+                <% end -%>
               </div> 
             <% end %>
                
@@ -101,9 +113,12 @@
           <p>
             <!-- div class='span-1'><br/> </div-->
             <% shelf4.each do |shelf| %>
-              <div class='span-2  prepend-1'><%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
-                  :size => "50x70", :alt => "#{shelf.title.title} ", 
-                  :title => "#{shelf.title.title}", :onerror => "this.src='#{default_image_url}';"  %>
+              <div class='span-2  prepend-1'>
+                <%= link_to shelf.title do -%> 
+                  <%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
+                    :size => "50x70", :alt => "#{shelf.title.title} ", 
+                    :title => "#{shelf.title.title}", :onerror => "this.src='#{default_image_url}';"  %>
+                <% end -%>
               </div> 
             <% end %>
                
@@ -121,9 +136,12 @@
           <p>
             <!--div class='span-1'><br/> </div-->
             <% shelf5.each do |shelf| %>
-              <div class='span-2  prepend-1'><%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
-                  :size => "50x70", :alt => "#{shelf.title.title} ", 
-                  :title => "#{shelf.title.title}", :onerror => "this.src='#{default_image_url}';"  %>
+              <div class='span-2  prepend-1'>
+                <%= link_to shelf.title do -%> 
+                  <%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
+                    :size => "50x70", :alt => "#{shelf.title.title} ", 
+                    :title => "#{shelf.title.title}", :onerror => "this.src='#{default_image_url}';"  %>
+                <% end -%>
               </div> 
             <% end %>
                
@@ -142,9 +160,12 @@
           <p>
             <!--div class='span-1'><br/> </div-->
             <% shelf6.each do |shelf| %>
-              <div class='span-2  prepend-1'><%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
-                  :size => "50x70", :alt => "#{shelf.title.title} ", 
-                  :title => "#{shelf.title.title}", :onerror => "this.src='#{default_image_url}';"  %>
+              <div class='span-2  prepend-1'>
+                <%= link_to shelf.title do -%> 
+                  <%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
+                    :size => "50x70", :alt => "#{shelf.title.title} ", 
+                    :title => "#{shelf.title.title}", :onerror => "this.src='#{default_image_url}';"  %>
+                <% end -%>
               </div> 
             <% end %>
                
@@ -161,9 +182,12 @@
           <p>
             <!--div class='span-1'><br/> </div-->
             <% shelf7.each do |shelf| %>
-              <div class='span-2  prepend-1'><%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
-                  :size => "50x70", :alt => "#{shelf.title.title} ", 
-                  :title => "#{shelf.title.title}", :onerror => "this.src='#{default_image_url}';"  %>
+              <div class='span-2  prepend-1'>
+                <%= link_to shelf.title do -%> 
+                  <%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
+                    :size => "50x70", :alt => "#{shelf.title.title} ", 
+                    :title => "#{shelf.title.title}", :onerror => "this.src='#{default_image_url}';"  %>
+                <% end -%>
               </div> 
             <% end %>
                
@@ -180,9 +204,12 @@
           <p>
             <!--div class='span-1'><br/> </div-->
             <% shelf8.each do |shelf| %>
-              <div class='span-2  prepend-1'><%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
-                  :size => "50x70", :alt => "#{shelf.title.title} ", 
-                  :title => "#{shelf.title.title}", :onerror => "this.src='#{default_image_url}';"  %>
+              <div class='span-2  prepend-1'>
+                <%= link_to shelf.title do -%> 
+                  <%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
+                    :size => "50x70", :alt => "#{shelf.title.title} ", 
+                    :title => "#{shelf.title.title}", :onerror => "this.src='#{default_image_url}';"  %>
+                <% end -%>
               </div> 
             <% end %>
                

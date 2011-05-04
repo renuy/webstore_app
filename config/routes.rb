@@ -11,11 +11,12 @@ JbkidsApp::Application.routes.draw do
     end
   end
 
-  resources :list_items do
-    collection do
-      get 'upsert'
-    end
-  end
+  resources :list_items 
+  #do
+  #  collection do
+  #    get 'upsert'
+  #  end
+  #end
   resources :book_lists do
     collection do
       get 'index_k'

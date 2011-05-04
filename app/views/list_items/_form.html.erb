@@ -1,8 +1,9 @@
+<div class="inner_box">
 <%= form_for(@list_item) do |f| %>
   <% if @list_item.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@list_item.errors.count, "error") %> prohibited this list_item from being saved:</h2>
-
+      
       <ul>
       <% @list_item.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -10,8 +11,16 @@
       </ul>
     </div>
   <% end %>
+  <div>
+      <%= f.hidden_field(:title_id, :value => @list_item.title_id) %>
+      <%= f.hidden_field(:d_user_id, :value => @list_item.d_user_id) %>      
+      <%= f.hidden_field(:d_category, :value => @list_item.d_category) %>      
+      <%= @list_item.d_category %>     <%= @list_item.title.title %> ? <br/>
+      Membership <%= f.select(:member_id , current_user.member.sort_by!{|x| x.default}.collect{|x| [x.valid_card[0].card_id, x.id]}, {:include_blank=> true}) %>
 
+  </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit  :class=>'btn_link' %>
   </div>
 <% end %>
+</div>

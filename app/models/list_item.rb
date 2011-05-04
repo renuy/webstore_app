@@ -6,7 +6,16 @@ class ListItem < ActiveRecord::Base
   attr_accessor :d_category, :d_user_id
   validates :title_id, :presence => true
   before_save :set_book_list
-  
+  #before_save :valid_category_and_user?
+  validate :verify_card
+  validate :valid_category_and_user?
+  before_destroy :valid_category_and_user?
+  def verify_card
+    if ['BOOKMARKED','ORDER'].include?(self.d_category) and self.member_id.nil?
+      errors.add(:member_id, "Please select membership")
+      return false
+    end
+  end
   
   def set_book_list
     book_list = 0
@@ -17,6 +26,8 @@ class ListItem < ActiveRecord::Base
         category = 'BOOKMARKED'
       when self.d_category.eql?("rnsd")
         category = 'READING'
+      when self.d_category.eql?("ORDER")
+        category = 'ORDER'
       else
         category = self.d_category
     end
@@ -40,5 +51,16 @@ class ListItem < ActiveRecord::Base
     list_item.save
     list_item
   end
-  
+  def valid_category_and_user?
+    if !self.book_list_id.nil? and (self.d_user_id.to_i != self.book_list.user_id )
+      errors.add(:title_id, "this list item does not belong to you")
+      return false
+    end
+    #logger.debug(self.book_list.category)
+    if !self.book_list_id.nil? and ['ORDER','READ'].include?( self.book_list.category) and !self.shelf_id.nil?
+      errors.add(:title_id, "This is system generated, cannot be removed")
+      return false
+    end
+    return false
+  end
 end
