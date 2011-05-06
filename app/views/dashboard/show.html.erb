@@ -17,13 +17,13 @@
             <% @shelf0.each do |shelf| %>
               <div class='span-2' style="padding:0px 0px 0px 0px; height:96px;">
                 <div class='span-2' style="padding:0px 3px 0px 12px; height:76px;">
-                  <%= image_tag image_url(shelf.id), :id=>"img_#{shelf.id}_#{shelf.id}", 
-                    :size => "59x76", :alt => "#{shelf.title} ", 
+                  <%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
+                    :size => "59x76", :alt => "#{shelf.title.title} ", 
                     :onerror => "this.src='#{default_image_url}';",  
-                    :onclick =>"Collectionapp.slidepage('#{shelf.id}_#{shelf.id}')"
+                    :onclick =>"Collectionapp.slidepage('#{shelf.id}_#{shelf.title.id}')"
                     %>
                 </div> 
-                <div class='span-2' style="padding:0px 0px 0px 0px;display:none;" id="<%="sel#{shelf.id}_#{shelf.id}" %>">
+                <div class='span-2' style="padding:0px 0px 0px 0px;display:none;" id="<%="sel#{shelf.id}_#{shelf.title.id}" %>">
                   <%= image_tag "select.png", :size => "84x20"  %>
                 </div> 
               </div> 
@@ -37,7 +37,7 @@
         </div>
         
         <div class="span-24" style="padding:0px 0px 0px 0px;">  
-          <%= hidden_field_tag 'curr_div', "#{@shelf0[0].id}_#{@shelf0[0].id}" unless @shelf0.blank?%>
+          <%= hidden_field_tag 'curr_div', "#{@shelf0[0].id}_#{@shelf0[0].title.id}" unless @shelf0.blank?%>
         </div>    
 
             
