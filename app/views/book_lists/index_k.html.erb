@@ -8,7 +8,7 @@
 
 
 <div class='span-24 prepend-top'>
-  <%= select_tag "kids", options_from_collection_for_select(@kids, "id", "username"),:onchange=> 'Collectionapp.changeShelf(this);'%>
+  <%= select_tag "kids", options_from_collection_for_select(Branch.all, "id", "username")%>
   <% i = 0 %>
   <% @shelves.each do |shelves| %>
     <div id="<%= "div_bs_#{@kids[i].id}" %>" style="display:none">

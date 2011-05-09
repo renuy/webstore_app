@@ -221,3 +221,20 @@ if (months == null){
  
  return true;
 });
+
+$('.signup').live('click', function() {
+plan_id = $(this).attr('id').replace('link_','');
+
+mon_radio = 'months'+plan_id;
+months = $('input:radio[name='+mon_radio+']:checked').val();
+
+if (months == null){
+  alert('Please select months');
+  return false;
+ } 
+ 
+ url = '/signups/new?m='+months+'&p='+plan_id;
+ $(location).attr('href',url);
+ 
+ return true;
+});

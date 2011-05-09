@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110430084814) do
+ActiveRecord::Schema.define(:version => 20110510063903) do
 
   create_table "batches", :force => true do |t|
     t.datetime "created_at"
@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(:version => 20110430084814) do
     t.integer  "shelf_id",     :precision => 38, :scale => 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "card_id"
   end
 
   create_table "orders", :force => true do |t|
@@ -106,7 +107,7 @@ ActiveRecord::Schema.define(:version => 20110430084814) do
     t.string   "state"
     t.integer  "orig_id",     :precision => 38, :scale => 0
     t.decimal  "amount"
-    t.string   "mode"
+    t.string   "p_mode"
     t.string   "details"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -163,6 +164,44 @@ ActiveRecord::Schema.define(:version => 20110430084814) do
     t.integer  "count_of_titles", :precision => 38, :scale => 0
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "signups", :force => true do |t|
+    t.string   "name",                                                               :null => false
+    t.string   "address",                                                            :null => false
+    t.integer  "mphone",             :precision => 38, :scale => 0
+    t.integer  "lphone",             :precision => 38, :scale => 0
+    t.string   "email",                                                              :null => false
+    t.string   "referrer_member_id"
+    t.integer  "referrer_cust_id",   :precision => 38, :scale => 0
+    t.integer  "plan_id",            :precision => 38, :scale => 0,                  :null => false
+    t.integer  "branch_id",          :precision => 38, :scale => 0
+    t.integer  "signup_months",      :precision => 38, :scale => 0,                  :null => false
+    t.decimal  "security_deposit",                                                   :null => false
+    t.decimal  "registration_fee",                                                   :null => false
+    t.decimal  "reading_fee",                                                        :null => false
+    t.decimal  "discount",                                                           :null => false
+    t.decimal  "advance_amt",                                                        :null => false
+    t.decimal  "paid_amt",                                                           :null => false
+    t.decimal  "overdue_amt",                                                        :null => false
+    t.integer  "payment_mode",       :precision => 38, :scale => 0,                  :null => false
+    t.string   "payment_ref",                                                        :null => false
+    t.string   "membership_no"
+    t.string   "application_no"
+    t.string   "employee_no"
+    t.integer  "created_by",         :precision => 38, :scale => 0,                  :null => false
+    t.integer  "modified_by",        :precision => 38, :scale => 0,                  :null => false
+    t.string   "flag_migrated",                                     :default => "U"
+    t.datetime "start_date",                                                         :null => false
+    t.datetime "expiry_date",                                                        :null => false
+    t.string   "remarks"
+    t.string   "state"
+    t.decimal  "coupon_amt"
+    t.string   "coupon_no"
+    t.integer  "coupon_id",          :precision => 38, :scale => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "info_source_id",     :precision => 38, :scale => 0
   end
 
   create_table "suggestions", :force => true do |t|

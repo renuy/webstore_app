@@ -1,8 +1,12 @@
 JbkidsApp::Application.routes.draw do
 
+  resources :signups
+
   resources :renewals
 
   resources :payments 
+  
+  resources :plans
       
 
   resources :suggestions do 
