@@ -3,7 +3,6 @@
   <% if @signup.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@signup.errors.count, "error") %> prohibited this signup from being saved:</h2>
-
       <ul>
       <% @signup.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -24,6 +23,7 @@
       <%= f.hidden_field :discount, :value=> @signup.discount%>
       <%= f.hidden_field :paid_amt, :value=> @signup.paid_amt%>
       <%= f.hidden_field :overdue_amt, :value=> @signup.overdue_amt%>
+      <%= f.hidden_field :info_source_id, :value=> "2"%>
       <%= f.hidden_field :coupon_id %>
 			
       <u>Enter Personal Details</u></br>
@@ -55,7 +55,7 @@
       <% end %>
       <br/>
       <%= f.label 'How did you come to know about us?' %>&nbsp;&nbsp;&nbsp;
-      <%= f.collection_select(:info_source_id, InformationSource.find(:all), :id, :name, {:include_blank => 'Please select'} )%>
+      <!--%= f.collection_select(:info_source_id, InformationSource.find(:all), :id, :name, {:include_blank => 'Please select'} )%-->
 
   <div class="actions">
     <%= f.submit %>
