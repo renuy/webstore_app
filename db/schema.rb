@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110510063903) do
+ActiveRecord::Schema.define(:version => 20110510063906) do
 
   create_table "batches", :force => true do |t|
     t.datetime "created_at"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(:version => 20110510063903) do
     t.datetime "updated_at"
   end
 
-  add_index "book_lists", ["user_id", "category"], :name => "book_lists_idx1"
+  add_index "book_lists", ["user_id", "category"], :name => "book_lists_idx"
 
   create_table "collection_names", :force => true do |t|
     t.string   "name"
@@ -68,6 +68,13 @@ ActiveRecord::Schema.define(:version => 20110510063903) do
     t.integer "rank",      :precision => 38, :scale => 0
   end
 
+  create_table "information_sources", :id => false, :force => true do |t|
+    t.integer  "id",         :precision => 38, :scale => 0, :null => false
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "items", :force => true do |t|
     t.integer  "order_id",   :precision => 38, :scale => 0
     t.integer  "title_id",   :precision => 38, :scale => 0
@@ -83,11 +90,116 @@ ActiveRecord::Schema.define(:version => 20110510063903) do
     t.integer  "shelf_id",     :precision => 38, :scale => 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "card_id"
   end
+
+  create_table "memp_events", :force => true do |t|
+    t.string    "event_type"
+    t.string    "val1"
+    t.string    "val2"
+    t.string    "val3"
+    t.string    "val4"
+    t.string    "val5"
+    t.string    "val6"
+    t.string    "val7"
+    t.string    "val8"
+    t.string    "val9"
+    t.string    "val10"
+    t.string    "val11"
+    t.string    "val12"
+    t.string    "val13"
+    t.string    "val14"
+    t.string    "val15"
+    t.string    "val16"
+    t.string    "val17"
+    t.string    "val18"
+    t.string    "val19"
+    t.string    "val20"
+    t.string    "val21"
+    t.string    "val22"
+    t.string    "val23"
+    t.string    "val24"
+    t.string    "val25"
+    t.string    "val26"
+    t.string    "val27"
+    t.string    "val28"
+    t.string    "val29"
+    t.string    "val30"
+    t.string    "val31"
+    t.string    "val32"
+    t.string    "val33"
+    t.string    "val34"
+    t.string    "val35"
+    t.string    "val36"
+    t.string    "val37"
+    t.string    "val38"
+    t.string    "val39"
+    t.string    "val40"
+    t.string    "val41"
+    t.string    "val42"
+    t.string    "val43"
+    t.string    "val44"
+    t.string    "val45"
+    t.string    "val46"
+    t.string    "val47"
+    t.string    "val48"
+    t.string    "val49"
+    t.string    "val50"
+    t.string    "val51"
+    t.string    "val52"
+    t.string    "val53"
+    t.string    "val54"
+    t.string    "val55"
+    t.timestamp "created_at", :limit => 6
+    t.timestamp "updated_at", :limit => 6
+    t.integer   "version",                 :precision => 38, :scale => 0
+    t.string    "status"
+  end
+
+  create_table "memp_signups", :force => true do |t|
+    t.string    "name",                                                                              :null => false
+    t.string    "address",                                                                           :null => false
+    t.integer   "mphone",                            :precision => 38, :scale => 0
+    t.integer   "lphone",                            :precision => 38, :scale => 0
+    t.string    "email",                                                                             :null => false
+    t.string    "referrer_member_id"
+    t.integer   "referrer_cust_id",                  :precision => 38, :scale => 0
+    t.integer   "plan_id",                           :precision => 38, :scale => 0,                  :null => false
+    t.integer   "branch_id",                         :precision => 38, :scale => 0
+    t.integer   "signup_months",                     :precision => 38, :scale => 0,                  :null => false
+    t.integer   "security_deposit",                  :precision => 38, :scale => 0,                  :null => false
+    t.integer   "registration_fee",                  :precision => 38, :scale => 0,                  :null => false
+    t.integer   "reading_fee",                       :precision => 38, :scale => 0,                  :null => false
+    t.integer   "discount",                          :precision => 38, :scale => 0,                  :null => false
+    t.integer   "advance_amt",                       :precision => 38, :scale => 0,                  :null => false
+    t.decimal   "paid_amt",                          :precision => 38, :scale => 2,                  :null => false
+    t.integer   "overdue_amt",                       :precision => 38, :scale => 0,                  :null => false
+    t.integer   "payment_mode",                      :precision => 38, :scale => 0,                  :null => false
+    t.string    "payment_ref",                                                                       :null => false
+    t.string    "membership_no"
+    t.string    "application_no"
+    t.string    "employee_no"
+    t.integer   "created_by",                        :precision => 38, :scale => 0,                  :null => false
+    t.integer   "modified_by",                       :precision => 38, :scale => 0,                  :null => false
+    t.string    "flag_migrated",                                                    :default => "U"
+    t.datetime  "start_date",                                                                        :null => false
+    t.datetime  "expiry_date",                                                                       :null => false
+    t.string    "remarks"
+    t.timestamp "created_at",         :limit => 6
+    t.timestamp "updated_at",         :limit => 6
+    t.integer   "coupon_amt",                        :precision => 38, :scale => 0
+    t.string    "coupon_no",          :limit => 20
+    t.integer   "coupon_id",                         :precision => 38, :scale => 0
+    t.string    "flag_reversed",                                                    :default => "N"
+    t.integer   "company_id",                        :precision => 38, :scale => 0
+    t.integer   "info_source_id",     :limit => nil
+    t.integer   "reversal_reason_id",                :precision => 38, :scale => 0
+  end
+
+  add_index "memp_signups", ["membership_no", "flag_reversed", "id"], :name => "memp_index1", :unique => true
 
   create_table "orders", :force => true do |t|
     t.integer  "member_id",   :precision => 38, :scale => 0
+    t.integer  "payment_id",  :precision => 38, :scale => 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "branch_id",   :precision => 38, :scale => 0
@@ -96,10 +208,13 @@ ActiveRecord::Schema.define(:version => 20110510063903) do
     t.string   "description"
     t.integer  "user_id",     :precision => 38, :scale => 0
     t.string   "channel"
-    t.string   "card_id"
+    t.integer  "card_id",     :precision => 38, :scale => 0
     t.string   "charge"
-    t.decimal  "amount"
-    t.integer  "payment_id",  :precision => 38, :scale => 0
+  end
+
+  create_table "overdues", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "payments", :force => true do |t|
@@ -199,10 +314,16 @@ ActiveRecord::Schema.define(:version => 20110510063903) do
     t.decimal  "coupon_amt"
     t.string   "coupon_no"
     t.integer  "coupon_id",          :precision => 38, :scale => 0
+    t.string   "flag_reversed"
+    t.integer  "company_id",         :precision => 38, :scale => 0
+    t.integer  "reversal_reason_id", :precision => 38, :scale => 0
+    t.integer  "payment_id",         :precision => 38, :scale => 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "info_source_id",     :precision => 38, :scale => 0
   end
+
+  add_index "signups", ["membership_no", "flag_reversed", "id"], :name => "index1", :unique => true
 
   create_table "suggestions", :force => true do |t|
     t.integer  "title_id",   :precision => 38, :scale => 0
