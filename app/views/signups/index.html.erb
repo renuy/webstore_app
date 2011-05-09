@@ -1,0 +1,21 @@
+<h1>Listing signups</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @signups.each do |signup| %>
+  <tr>
+    <td><%= link_to 'Show', signup %></td>
+    <td><%= link_to 'Edit', edit_signup_path(signup) %></td>
+    <td><%= link_to 'Destroy', signup, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Signup', new_signup_path %>

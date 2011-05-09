@@ -37,6 +37,11 @@ class PaymentsController < ApplicationController
         renewal = Renewal.find(params[:id])
         @payment.txn_amount = renewal.amount 
         @payment.member_id = renewal.member_id
+      when 'sig'
+        @payment.payment_for = 'Signup'
+        signup = Signup.find(params[:id])
+        @payment.txn_amount = signup.paid_amt 
+        @payment.member_id = signup.id
     end
     @payment.channel = "Web"
     @payment.user_id = current_user.id
@@ -62,6 +67,9 @@ class PaymentsController < ApplicationController
     @payment = Payment.new(params[:payment])
     if @payment.save
       @payment.sent!
+      if @payment.payment_for.eql?("Signup")
+        @member = Signup.find(@payment.order_id)
+      end
       render 'gateway'
     else
       render :action => "new"
@@ -107,7 +115,7 @@ class PaymentsController < ApplicationController
     
     @payment = Payment.find(order_Id)
     
-    if @payment.verifyChecksum(checksum, authDesc) and valid_request?
+    if @payment.verifyChecksum(checksum, authDesc) #and valid_request?
       case authDesc
         when "Y"
           @payment.state = "ConfirmPayment"

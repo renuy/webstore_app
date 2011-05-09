@@ -15,7 +15,7 @@
     <div class="inner_box">  
       <div class="heading"> YOUR BOOK TALKS </div>
       <%= f.text_field :heading , :maxlength=>250, :size => 61, :placeholder => 'Title' %></p><td>
-      <%= f.text_area :description , :maxlength=>1000, :size => "20X5",:placeholder => 'Description' %></p> <td>
+      <%= f.text_area :description , :maxlength=>1000, :size => "20X5",:placeholder => 'Description' %></p>
         <%= f.hidden_field :d_user_id , :value=>current_user.id %>
         <%= f.hidden_field :d_title_id , :value=>params[:title_id] %>
       

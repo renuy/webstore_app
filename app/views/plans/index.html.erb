@@ -1,0 +1,30 @@
+
+<div class="span-25 grid" style='text-align:center; height:506px;overflow-x: hidden;  overflow-y:auto; '>
+<div class="heading"> PLANS:TAKE A PICK</div>
+<% @plans.each do |plan| %>
+  <div class="span-6 planbox-indiv round">
+    <h4><%=plan.name %></h4>
+    Hold <%= pluralize(plan.cnt_books,'book') %> , <%= pluralize(plan.cnt_magazine,'magazine') %>  <b>at a time</b> <br/>
+    Registration fees <%= plan.registration_fee %> <%="(Corporates only)" if plan.plan_type.upcase.eql?("C")%><br/>
+    Deposit (refundable) of Rs. <%=plan.sec_dep %> <%= "PER BOOK" if plan.frequency.upcase.eql?("N") %> <br/>
+    Reading fee of Rs. <%=plan.read_fee %> <b><%= "PER BOOK" if plan.frequency.upcase.eql?("N") %> <%= "PER YEAR" if plan.frequency.upcase.eql?("Y") %>
+    <%= "PER MONTH" if plan.frequency.upcase.eql?("M") %></b> <br/><b><%= "Home delivered*" if plan.deliver.upcase.eql?('YES') %></b><br/>
+    
+    <% plan.renewMonthsArr.each do |month| %>
+      <%= radio_button_tag("months#{plan.id}", month.to_s, false) %> <%= pluralize(month,  'month') %>
+      Total amount Rs. <%=plan.sec_dep + plan.registration_fee+ plan.renewAmount(month) %>/-<br/>
+    <% end %> 
+    <% plan.ppb_books.each do |book_cnt| %>
+      <%= radio_button_tag("months#{plan.id}", book_cnt.to_s, false) %> <%= pluralize(book_cnt,  'book') %>
+      Total amount Rs. <%=plan.ppb_amount(book_cnt) + plan.registration_fee %>/-<br/>
+    <%end %>
+  <hr/>
+  <%= link_to "take this forward", '#',:id=>"link_#{plan.id}" ,:class=>'signup'   %>
+  </div>
+      
+  
+<% end %>
+</div>
+<br />
+
+

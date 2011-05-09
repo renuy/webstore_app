@@ -30,7 +30,7 @@ class Payment < ActiveRecord::Base
   end
   
   def RedirectUrl
-    #"http://192.168.2.100:3000/gatewayentry"
+    #"http://192.168.1.107:3000/gatewayentry"
     "http://kids.justbooksclc.com/gatewayentry"
   end
   
@@ -106,6 +106,22 @@ class Payment < ActiveRecord::Base
                     renew.sent!
                     
           end
+          when 'Signup' 
+          case self.state
+                when 'ConfirmPayment'
+                    signup = Signup.find(self.order_id)
+                    signup.execute!
+                    signup.migrate
+                when 'Cancelled'
+                    signup = Signup.find(self.order_id)
+                    signup.cancel!
+                when 'PendingPayment'
+                    signup = Signup.find(self.order_id)
+                    signup.payment_id = self.id
+                    signup.save!
+                    signup.sent!
+                    
+          end
     end
   end
   
@@ -117,6 +133,14 @@ class Payment < ActiveRecord::Base
           return true 
         else 
           errors.add(:payment_for, "Renewal is "+renew.state)
+          return false
+        end
+      when 'Signup' 
+        signup = Signup.find(self.order_id)
+        if signup.state.eql?('New') 
+          return true 
+        else 
+          errors.add(:payment_for, "Signup is "+signup.state)
           return false
         end
     end

@@ -15,13 +15,14 @@
     <%= hidden_field_tag :actionID,  "TXN" %>
     <%= hidden_field_tag :Checksum ,  @payment.get_checksum %>
     <%= hidden_field_tag :Redirect_Url ,  @payment.RedirectUrl %>
+    <% if !@payment.payment_for.eql?('Signup') %>
       <%= hidden_field_tag :billing_cust_name, @payment.member.name %>
 			<%= hidden_field_tag :billing_cust_address ,@payment.member.address %>
 			<%= hidden_field_tag :billing_cust_country ,"INDIA" %>
 			<%= hidden_field_tag :billing_cust_state , @payment.member.state %>
 			<%= hidden_field_tag :billing_cust_tel ,@payment.member.mphone %>
 			<%= hidden_field_tag :billing_cust_email ,@payment.user.email %>
-			<%= hidden_field_tag :delivery_cust_name , @payment.member.name %>
+			<%= hidden_field_tag :delivery_cust_name , @payment.user.username %>
 			<%= hidden_field_tag :delivery_cust_address ,@payment.member.address %>
 			<%= hidden_field_tag :delivery_cust_state ,@payment.member.state %>
 			<%= hidden_field_tag :delivery_cust_tel ,@payment.member.mphone %>
@@ -30,6 +31,21 @@
 			<%= hidden_field_tag :billing_zip_code ,@payment.member.pincode %>
 			<%= hidden_field_tag :delivery_cust_city ,@payment.member.city %>
 			<%= hidden_field_tag :delivery_zip_code ,@payment.member.pincode %>
+    <% else %>
+       <%= hidden_field_tag :billing_cust_name, @member.name %>
+			<%= hidden_field_tag :billing_cust_address ,@member.address %>
+			<%= hidden_field_tag :billing_cust_country ,"INDIA" %>
+			<%= hidden_field_tag :billing_cust_tel ,@mphone %>
+			<%= hidden_field_tag :billing_cust_email ,@payment.user.email %>
+			<%= hidden_field_tag :delivery_cust_name , @payment.user.username %>
+			<%= hidden_field_tag :delivery_cust_address ,@member.address %>
+			<%= hidden_field_tag :delivery_cust_tel ,@member.mphone %>
+			<%= hidden_field_tag :delivery_cust_notes ,"" %>
+			<%= hidden_field_tag :billing_cust_city ,"" %>
+			<%= hidden_field_tag :billing_zip_code ,"" %>
+			<%= hidden_field_tag :delivery_cust_city ,"" %>
+			<%= hidden_field_tag :delivery_zip_code ,"" %> 
+    <% end %>
       <%= hidden_field_tag :Amount ,  @payment.amount %>
       <!--%= hidden_field_tag :billing_cust_notes, "SUB-MERHCANT TEST" %-->
   </div>

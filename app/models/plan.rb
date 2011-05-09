@@ -1,7 +1,8 @@
 class Plan < ActiveRecord::Base
+  WAIVER_PLAN = 26
 
   def renewable?
-    (self.allow_renewal.upcase.eql?('NO')  or self.frequency.upcase.eql?("N") or  self.expired? ) ? false : true
+    (self.allow_renewal.upcase.eql?('NO')  or self.frequency.upcase.eql?("N") or  self.expired? or self.id == WAIVER_PLAN) ? false : true
   end
   
   def expired?
@@ -82,5 +83,45 @@ class Plan < ActiveRecord::Base
     end
     
     return renew_amount
+  end
+  
+  def ppb_books()
+    books_cnt = []
+    if self.frequency.upcase.eql?("N")
+      books_cnt << 1
+      books_cnt << 2
+      books_cnt << 3
+      books_cnt << 4
+    end
+    
+    return books_cnt
+  end
+  
+  def ppb_amount(books_cnt)
+    amount = 0
+    if self.frequency.upcase.eql?("N")
+      amount = (self.sec_dep + self.read_fee) * books_cnt
+    end
+    return amount
+  end
+  def ppb_sec_dep(books_cnt)
+    amount = 0
+    if self.frequency.upcase.eql?("N")
+      amount = (self.sec_dep ) * books_cnt
+    end
+    return amount
+  end
+  
+    def ppb_read_fee(books_cnt)
+    amount = 0
+    if self.frequency.upcase.eql?("N")
+      amount = (self.read_fee) * books_cnt
+    end
+    return amount
+  end
+
+  
+  def subscription
+    self.frequency.upcase.eql?("N") ? false : true
   end
 end
