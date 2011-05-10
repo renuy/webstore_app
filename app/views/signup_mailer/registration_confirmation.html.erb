@@ -1,0 +1,62 @@
+Dear <b><%= @signup.name %></b>
+	<br/>
+	<br/>
+	Welcome to JustBooks clc - the new generation community library chain!
+	<br/>Thank you for visiting our library at <b><%= @signup.branch.name unless @signup.branch.nil? %></b> on <b><%= @signup.created_at.strftime("%m-%d-%Y") %></b> and signing up as a member.
+	<br/>
+	<br/>
+	     Your plan <b><%= @signup.plan.name %></b> that you subscribed to by
+             paying <b><%= @signup.paid_amt %></b> lets you hold <b>
+            <%= @signup.plan.num_books %></b>
+             book(s) and <b><%= @signup.plan.num_magazines %></b> magazine(s) at a given time.
+               <br/>
+             Your membership is effective <%= @signup.start_date.strftime("%m-%d-%Y") %> and is paid until
+             <%= @signup.expiry_date.strftime("%m-%d-%Y") %>. For the plan that you have chosen, beyond <%= @signup.expiry_date.strftime("%m-%d-%Y") %>, you will be
+             required to pay a reading fee of <b><%= @signup.plan.monthly_amount %>
+             </b> every <%= if @signup.plan.subscription 
+                                @signup.decode_frequency+"."
+                            else
+                              "Book."
+                            end %>
+             <br/>As long as you hold a book, you will be charged the reading
+             fee every <%= @signup.decode_frequency %>.
+
+     <br/>
+     <br/>
+     A membership at Just Books comes with packed features. With the membership,
+     you can visit any of our branches and access all books at no additional cost
+     and Request for books to be brought from the other branches if they are not
+     available in your home branch . If you are traveling or short on reading
+     time, please visit our branch, return all books and record a request at the
+     branch for waiver of reading fee for a maximum period of three months, after
+     the first 3 months of membership.
+
+     <br/>
+	<br/>
+	Your online login details are:
+	<br/>
+	Login-id : <b><%= @signup.email %></b>
+	<br/>
+	Password : <a
+          href="http://justbooksclc.com/ForgotPassword_input.action?emailid=<%= @signup.email %>">
+          Click here to request for new password
+        </a>
+	<br/>
+	<br/>
+	For details on Terms & Conditions, please visit <a href="http://www.justbooksclc.com/TermsConditions.action">Terms & Conditions</a>.
+	<br/>
+	<br/>
+	<b><u><i>About JustBooks clc:</i></u></b>
+	<br/>
+	JustBooks clc is a new generation book library chain that provides a unique reading experience to book lovers with a wide range of books for every type of reader - Toddlers to Teens, Dabblers to Bookworms under a modern, vibrant ambience with effective use of technology. Like we love saying - At JustBooks, there is a book for everyone in the family.
+	<br/>
+	Warm Regards,
+	<br/>
+	Team JustBooks
+	<br/>
+	<br/>
+	Contact Customer care:
+	<br/>T: 080-60015285
+	<br/>E: <a href="mailto:care@justbooksclc.com">care@justbooksclc.com</a>
+	<br/>W: <a href="http://www.justbooksclc.com">www.justbooksclc.com</a>
+	<br/>
