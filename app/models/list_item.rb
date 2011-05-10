@@ -1,6 +1,7 @@
 class ListItem < ActiveRecord::Base
   belongs_to :book_list
   belongs_to :title
+  belongs_to :member
   belongs_to :read_next_shelf ,:foreign_key => :shelf_id
   belongs_to :read_shelf ,:foreign_key => :shelf_id
   attr_accessor :d_category, :d_user_id
@@ -13,6 +14,11 @@ class ListItem < ActiveRecord::Base
   def verify_card
     if ['BOOKMARKED','ORDER'].include?(self.d_category) and self.member_id.nil?
       errors.add(:member_id, "Please select membership")
+      return false
+    end
+    
+    if self.d_category.eql?('ORDER') and !self.member.valid_card[0].plan.deliver.upcase.eql?('YES')
+      errors.add(:member_id, "Please visit your branch to get the book issued on this card")
       return false
     end
   end
