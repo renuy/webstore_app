@@ -302,7 +302,7 @@ end
   end
   
     def decode_frequency
-      case self.plan.frequency
+      case self.plan.frequency.upcase
       when 'M' then
         'month'
       when 'Y' then

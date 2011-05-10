@@ -119,6 +119,14 @@ class Plan < ActiveRecord::Base
     end
     return amount
   end
+  
+  def monthly_amount
+    if self.subscription 
+      self.renewAmount(self.renewMonthsArr[0])
+    else
+      self.ppb_read_fee(1)
+    end
+  end
 
   
   def subscription

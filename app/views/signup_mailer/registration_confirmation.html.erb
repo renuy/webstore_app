@@ -2,13 +2,13 @@ Dear <b><%= @signup.name %></b>
 	<br/>
 	<br/>
 	Welcome to JustBooks clc - the new generation community library chain!
-	<br/>Thank you for visiting our library at <b><%= @signup.branch.name unless @signup.branch.nil? %></b> on <b><%= @signup.created_at.strftime("%m-%d-%Y") %></b> and signing up as a member.
+	<br/>Thank you for visiting our website and signing up for <b><%= @signup.branch.name unless @signup.branch.nil? %></b> branch on <b><%= @signup.created_at.strftime("%m-%d-%Y") %></b>.
 	<br/>
 	<br/>
 	     Your plan <b><%= @signup.plan.name %></b> that you subscribed to by
              paying <b><%= @signup.paid_amt %></b> lets you hold <b>
-            <%= @signup.plan.num_books %></b>
-             book(s) and <b><%= @signup.plan.num_magazines %></b> magazine(s) at a given time.
+            <%= @signup.plan.cnt_books %></b>
+             book(s) and <b><%= @signup.plan.cnt_magazine %></b> magazine(s) at a given time.
                <br/>
              Your membership is effective <%= @signup.start_date.strftime("%m-%d-%Y") %> and is paid until
              <%= @signup.expiry_date.strftime("%m-%d-%Y") %>. For the plan that you have chosen, beyond <%= @signup.expiry_date.strftime("%m-%d-%Y") %>, you will be
