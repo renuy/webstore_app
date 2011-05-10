@@ -12,3 +12,4 @@ doc/app
 Gemfile
 Gemfile.lock
 solr/data/*
+config/initializers/setup_mail.rb

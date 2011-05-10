@@ -35,7 +35,7 @@
        <%= hidden_field_tag :billing_cust_name, @member.name %>
 			<%= hidden_field_tag :billing_cust_address ,@member.address %>
 			<%= hidden_field_tag :billing_cust_country ,"INDIA" %>
-			<%= hidden_field_tag :billing_cust_tel ,@mphone %>
+			<%= hidden_field_tag :billing_cust_tel ,@member.mphone %>
 			<%= hidden_field_tag :billing_cust_email ,@payment.user.email %>
 			<%= hidden_field_tag :delivery_cust_name , @payment.user.username %>
 			<%= hidden_field_tag :delivery_cust_address ,@member.address %>

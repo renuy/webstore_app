@@ -124,7 +124,7 @@ class PaymentsController < ApplicationController
           @payment.state = "UnknownPayment"
           @payment.details = "Thank you. We will keep you posted regarding the status of your order through e-mail"
         when "N"
-          @payment.state = "FailedPayment"
+          @payment.state = "FailedPayment" #"ConfirmPayment" use for testing
           @payment.details = "Your transaction has been declined by the merchant. Please verify your details and retry."
       end
       if (@payment.save!)
