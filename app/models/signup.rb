@@ -317,6 +317,7 @@ end
       migrate_signup
       generateSignupEvent
       self.done!
+      SignupMailer.registration_confirmation(self).deliver
     end
     
   end
