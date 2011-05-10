@@ -40,8 +40,11 @@ class Title < ActiveRecord::Base
     integer :author_id, :references => Author, :stored => true
     integer :no_of_rented, :stored => true
     string :title_type, :stored => true
-    integer :stock, :references => Stock, :multiple => true
+    #integer :stock, :references => Stock, :multiple => true
     #integer :branch, :references => Stock, :multiple => true
+    integer :branch, :multiple => true do
+      stock.collect{|x| x.branch_id}
+    end
   end   
   
   
@@ -57,7 +60,7 @@ class Title < ActiveRecord::Base
       order_by(:no_of_rented, :desc)
     end
     search.build do 
-      with(:stock).any_of Title::BRANCH
+      with(:branch).any_of Title::BRANCH
     end
     shelfMR = search.execute
     
@@ -80,7 +83,7 @@ class Title < ActiveRecord::Base
       order_by(:id, :desc)
     end
     search.build do 
-      with(:stock).any_of Title::BRANCH
+      with(:branch).any_of Title::BRANCH
     end
     shelfNR = search.execute
     
@@ -110,7 +113,7 @@ class Title < ActiveRecord::Base
     end
     
     newSearch.build do 
-      with(:stock).any_of Title::BRANCH
+      with(:branch).any_of Title::BRANCH
     end
     shelfNR = newSearch.execute
     

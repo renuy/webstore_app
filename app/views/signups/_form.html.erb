@@ -50,7 +50,7 @@
       <br/>
         <%= f.collection_select(:company_id, Company.find(:all, :conditions => ["expiry_date >= ? and start_date <= ?", Date.current, Date.current]), :id, :name, {:include_blank => 'Select Company'} ) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <%= f.label 'Employee Number' %>
-        <%= f.text_field :employee_no, :class => 'searchTextbox', :maxlength => 10, :style => 'width:48%' %>
+        <%= f.text_field :employee_no, :maxlength => 10, :style => 'width:48%' %>
       <% end %>
       <br/>
       <%= f.label 'How did you come to know about us?' %>&nbsp;&nbsp;&nbsp;

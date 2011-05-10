@@ -43,7 +43,7 @@ class TitlesController < ApplicationController
       order_by(:no_of_rented, :desc)
     end
     search.build do 
-      with(:stock).any_of Title::BRANCH
+      with(:branch).any_of Title::BRANCH
     end
     newSearch.build do 
       with(:category_id, params[:facetCategory]) 
@@ -58,7 +58,7 @@ class TitlesController < ApplicationController
     end if params[:facetAuthor].to_i > 0
     
     newSearch.build do 
-      with(:stock).any_of Title::BRANCH
+      with(:branch).any_of Title::BRANCH
     end
     
     @searchResults = newSearch.execute
@@ -140,7 +140,7 @@ class TitlesController < ApplicationController
     end if params[:shelf].eql?('MOST READ')
     
     search.build do 
-      with(:stock).any_of Title::BRANCH
+      with(:branch).any_of Title::BRANCH
     end
     shelfMR = search.execute
     
@@ -177,7 +177,7 @@ class TitlesController < ApplicationController
       with(:author_id, params[:facetAuthor]) 
     end if params[:facetAuthor].to_i > 0
     newSearch.build do 
-      with(:stock).any_of Title::BRANCH
+      with(:branch).any_of Title::BRANCH
     end
     searchResults = newSearch.execute
     searchResults.results.each do |sr|
@@ -237,7 +237,7 @@ class TitlesController < ApplicationController
           keywords(params[:query] )
         end
         cat_search.build do 
-          with(:stock).any_of Title::BRANCH
+          with(:branch).any_of Title::BRANCH
         end
         @shelf[idx] = cat_search.execute  
         
@@ -270,7 +270,7 @@ class TitlesController < ApplicationController
           with(:category_id, cat.id) 
         end 
         cat_search.build do 
-          with(:stock).any_of Title::BRANCH
+          with(:branch).any_of Title::BRANCH
         end
         cat_search.build do
           keywords(params[:query] )
