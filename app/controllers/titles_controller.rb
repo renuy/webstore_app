@@ -38,11 +38,13 @@ class TitlesController < ApplicationController
     search.build do
       keywords(params[:query] )
     end
-    
+      
     search.build do
       order_by(:no_of_rented, :desc)
     end
-    
+    search.build do 
+      with(:stock).any_of Title::BRANCH
+    end
     newSearch.build do 
       with(:category_id, params[:facetCategory]) 
     end if params[:facetCategory].to_i > 0
@@ -54,7 +56,11 @@ class TitlesController < ApplicationController
     newSearch.build do 
       with(:author_id, params[:facetAuthor]) 
     end if params[:facetAuthor].to_i > 0
-  
+    
+    newSearch.build do 
+      with(:stock).any_of Title::BRANCH
+    end
+    
     @searchResults = newSearch.execute
     @shelfMR = search.execute
     i = 0
@@ -132,6 +138,10 @@ class TitlesController < ApplicationController
     search.build do
       order_by(:no_of_rented, :desc)
     end if params[:shelf].eql?('MOST READ')
+    
+    search.build do 
+      with(:stock).any_of Title::BRANCH
+    end
     shelfMR = search.execute
     
     @shelf0 = shelfMR.results
@@ -166,7 +176,9 @@ class TitlesController < ApplicationController
     newSearch.build do 
       with(:author_id, params[:facetAuthor]) 
     end if params[:facetAuthor].to_i > 0
-  
+    newSearch.build do 
+      with(:stock).any_of Title::BRANCH
+    end
     searchResults = newSearch.execute
     searchResults.results.each do |sr|
       shelf0 << sr
@@ -224,6 +236,9 @@ class TitlesController < ApplicationController
         cat_search.build do
           keywords(params[:query] )
         end
+        cat_search.build do 
+          with(:stock).any_of Title::BRANCH
+        end
         @shelf[idx] = cat_search.execute  
         
       idx+=1
@@ -254,7 +269,9 @@ class TitlesController < ApplicationController
         cat_search.build do 
           with(:category_id, cat.id) 
         end 
-        
+        cat_search.build do 
+          with(:stock).any_of Title::BRANCH
+        end
         cat_search.build do
           keywords(params[:query] )
         end

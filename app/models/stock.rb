@@ -15,4 +15,8 @@ class Stock < ActiveRecord::Base
       'values' => [in_circulation_cnt, instore_cnt , unavailable_cnt, assigned_cnt, other_branch_cnt ]
     }
   end
+  
+  def to_i
+    self.branch_id
+  end
 end
