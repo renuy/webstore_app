@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-before_filter :authenticate_user!
+before_filter :authenticate_user! :only => [:create, :update, :destroy, :new, :edit]
   
   def upsert
     title_id = params[:title_id]

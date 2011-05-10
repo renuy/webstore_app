@@ -6,6 +6,9 @@ class Title < ActiveRecord::Base
   has_many   :reviews, :class_name => "Reviews" , :order =>"review_type"
   attr_accessible :title, :yearofpublication, :edition, :isbn10, :isbn13, :noofpages, :language ,:no_of_rented, :title_type
   
+  BRANCH = ['44']
+  #has_many :branch, :through => :stock
+  
   validates :title, :presence => true
   
   searchable do
@@ -37,6 +40,11 @@ class Title < ActiveRecord::Base
     integer :author_id, :references => Author, :stored => true
     integer :no_of_rented, :stored => true
     string :title_type, :stored => true
+    #integer :stock, :references => Stock, :multiple => true
+    #integer :branch, :references => Stock, :multiple => true
+    integer :branch, :multiple => true do
+      stock.collect{|x| x.branch_id}
+    end
   end   
   
   
@@ -50,6 +58,9 @@ class Title < ActiveRecord::Base
     
     search.build do
       order_by(:no_of_rented, :desc)
+    end
+    search.build do 
+      with(:branch).any_of Title::BRANCH
     end
     shelfMR = search.execute
     
@@ -70,6 +81,9 @@ class Title < ActiveRecord::Base
     end
     search.build do
       order_by(:id, :desc)
+    end
+    search.build do 
+      with(:branch).any_of Title::BRANCH
     end
     shelfNR = search.execute
     
@@ -97,7 +111,10 @@ class Title < ActiveRecord::Base
     newSearch.build do 
       with(:category_id).any_of ['34','35','36','37','38','39']
     end
-
+    
+    newSearch.build do 
+      with(:branch).any_of Title::BRANCH
+    end
     shelfNR = newSearch.execute
     
     return shelfNR.results

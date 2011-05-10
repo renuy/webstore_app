@@ -5,7 +5,7 @@
         <%= render :partial => "profile", :locals=>{:user => @user} %>
         
       </div>
-      <% if @user.isParent? %>
+        <!--% if @user.isParent? %>
         <div class="inner_box">  
         <hr/>
         <span class="btn_link rite"><%=link_to 'NEW PROFILE', add_kid_profile_path(:pk=>'y') %> </span>
@@ -13,6 +13,6 @@
         <%= render :partial => "kid_profile", :collection=> @user.kids  %>
         </div>
         
-      <% end %>
+      <% end %-->
     
 </div>
