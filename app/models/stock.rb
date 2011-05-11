@@ -16,7 +16,4 @@ class Stock < ActiveRecord::Base
     }
   end
   
-  def to_i
-    self.branch_id
-  end
 end
