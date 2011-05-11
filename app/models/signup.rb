@@ -37,7 +37,7 @@ class Signup < ActiveRecord::Base
   validate :paid_amt_greater_than_bill_amt
   validate :membership_no_should_be_unique
   validate :company_and_employee_not_blank
-  validate :company_and_employee_uniqness
+  
   validate :referrer_existence_validation
   validate :membership_dup_validation
   validate :paid_amt_only_rupee_allowed
@@ -45,6 +45,7 @@ class Signup < ActiveRecord::Base
   validate :validate_membership_format
 
   before_save :set_defaults
+  before_create :company_and_employee_uniqness
   #after_create { generateSignupEvent }
   #after_update { generateNMReversalEvent }
     
@@ -146,6 +147,7 @@ class Signup < ActiveRecord::Base
           signup = Signup.find(:all, :conditions=> ["company_id=? and employee_no=?", company_id, employee_no])
            unless signup.blank?
            errors.add(:company_id, " and employee is already a member!") if plan.plan_type == "C"
+           return false
            end
   end
 
@@ -182,126 +184,15 @@ class Signup < ActiveRecord::Base
   def validate_membership_format
   
     reg = /^T[[\d]]{10}$/
-  
-   if !(reg.match(membership_no))
+
+    if !(reg.match(membership_no))
      errors.add(:base, "Membership number format is wrong, it should be 'T' followed by 6 digits")
-   end
-  
-end
-
-
-  def generateNMReversalEvent
-    eventObj = Event.new
-
-    eventObj.event_type = "NEW_MEMBER_REVERSAL"
-    eventObj.version = "1"
-    eventObj.status = "P"
-    eventObj.val1 = self.membership_no
-    eventObj.val2 = self.created_by
-    eventObj.val3 = self.branch_id
-    eventObj.val4 = self.address
-    eventObj.val5 = self.advance_amt
-    eventObj.val6 = self.application_no
-    eventObj.val7 = self.branch_id
-    eventObj.val8 = self.coupon_amt
-    eventObj.val9 = self.coupon_id
-    eventObj.val10 = self.coupon_no
-    eventObj.val11 = self.discount
-    eventObj.val12 = self.email
-    eventObj.val13 = self.employee_no
-    eventObj.val14 = self.expiry_date
-    eventObj.val15 = self.lphone
-    eventObj.val16 = self.mphone
-    eventObj.val17 = self.name
-    eventObj.val18 = self.overdue_amt
-    eventObj.val19 = self.paid_amt
-    eventObj.val20 = self.payment_mode
-    eventObj.val21 = self.payment_ref
-    eventObj.val22 = self.plan_id
-    eventObj.val23 = self.reading_fee
-    eventObj.val24 = self.referrer_member_id
-    eventObj.val25 = self.registration_fee
-    eventObj.val26 = self.remarks
-    eventObj.val27 = self.security_deposit
-    eventObj.val28 = self.signup_months
-    eventObj.val29 = self.start_date
-    eventObj.val30 = self.flag_migrated
-
-    eventObj.save
-
-    # generate event for reward points reversal
-    if !self.referrer_member_id.blank? && Plan.find(self.plan_id).referrals_allowed == 'Y'
-      eventObj1 = Event.new
-
-      eventObj1.event_type = "REWARD_POINTS_REVERSAL"
-      eventObj1.version = "1"
-      eventObj1.status = "P"
-      eventObj1.val1 = self.referrer_member_id
-      card = Card.find_by_membership_no(self.referrer_member_id)
-      eventObj1.val2 = card.branch_id
-      eventObj1.val3 = self.created_at
-      eventObj1.val4 = self.plan_id
-      eventObj1.val5 = self.created_by
-      eventObj1.val6 = self.membership_no
-      eventObj1.save
     end
+
   end
 
-  def generateSignupEvent
-    eventObj = MempEvent.new
 
-    eventObj.event_type = "SIGNUP"
-    eventObj.version = "1"
-    eventObj.status = "P"
-    eventObj.val1 = self.membership_no
-    eventObj.val2 = self.branch_id
-    eventObj.val3 = self.email
-    eventObj.val4 = self.name
-    eventObj.val5 = self.created_by
-    eventObj.val6 = self.mphone
-    eventObj.val7 = self.lphone
-    eventObj.val8 = self.referrer_member_id
-    eventObj.val9 = self.plan_id
-    eventObj.val10 = self.start_date
-    eventObj.val11 = self.expiry_date
-    eventObj.val12 = self.employee_no
-    eventObj.val13 = self.security_deposit
-    eventObj.val14 = self.registration_fee
-    eventObj.val15 = self.reading_fee
-    eventObj.val16 = self.discount
-    eventObj.val17 = self.advance_amt
-    eventObj.val18 = self.created_at
-    eventObj.val19 = self.overdue_amt
-    eventObj.val20 = self.paid_amt
-    eventObj.val21 = self.signup_months
-    eventObj.val22 = self.payment_mode
-    eventObj.val23 = self.payment_ref
-    eventObj.val24 = self.remarks
-    eventObj.val25 = self.coupon_amt
-    eventObj.val26 = self.coupon_no
-    eventObj.val27 = self.company_id
-    eventObj.val28 = self.address
-    eventObj.val29 = self.id
-    eventObj.save
-    
-    if !self.referrer_member_id.blank? && Plan.find(self.plan_id).referrals_allowed == 'Y'
-      eventObj1 = Event.new
-
-      eventObj1.event_type = "REWARD_POINTS"
-      eventObj1.version = "1"
-      eventObj1.status = "P"
-      eventObj1.val1 = self.referrer_member_id
-      card = Card.find_by_membership_no(self.referrer_member_id)
-      eventObj1.val2 = card.branch_id
-      eventObj1.val3 = self.created_at
-      eventObj1.val4 = self.plan_id
-      eventObj1.val5 = self.created_by
-      eventObj1.val6 = self.membership_no
-      eventObj1.save
-    end
-  end
-  
-    def decode_frequency
+  def decode_frequency
       case self.plan.frequency.upcase
       when 'M' then
         'month'
@@ -315,7 +206,6 @@ end
   def migrate
     if self.state.eql?('Paid')
       migrate_signup
-      generateSignupEvent
       self.done!
       SignupMailer.registration_confirmation(self).deliver
     end
@@ -347,8 +237,8 @@ end
     memp_signup.membership_no = self.membership_no
     memp_signup.application_no = self.application_no
     memp_signup.employee_no = self.employee_no
-    memp_signup.created_by = self.created_by
-    memp_signup.modified_by = self.modified_by 
+    memp_signup.created_by = 1000
+    memp_signup.modified_by = 1000
     memp_signup.flag_migrated = self.flag_migrated
     memp_signup.start_date = self.start_date
     memp_signup.expiry_date = self.expiry_date
