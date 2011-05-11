@@ -37,7 +37,7 @@ class Signup < ActiveRecord::Base
   validate :paid_amt_greater_than_bill_amt
   validate :membership_no_should_be_unique
   validate :company_and_employee_not_blank
-  validate :company_and_employee_uniqness
+  
   validate :referrer_existence_validation
   validate :membership_dup_validation
   validate :paid_amt_only_rupee_allowed
@@ -45,6 +45,7 @@ class Signup < ActiveRecord::Base
   validate :validate_membership_format
 
   before_save :set_defaults
+  before_create :company_and_employee_uniqness
   #after_create { generateSignupEvent }
   #after_update { generateNMReversalEvent }
     
@@ -146,6 +147,7 @@ class Signup < ActiveRecord::Base
           signup = Signup.find(:all, :conditions=> ["company_id=? and employee_no=?", company_id, employee_no])
            unless signup.blank?
            errors.add(:company_id, " and employee is already a member!") if plan.plan_type == "C"
+           return false
            end
   end
 
