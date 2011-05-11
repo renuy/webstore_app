@@ -79,11 +79,11 @@
           <% @kidshelf.each do |shelf| %>
             <div class='span-2  prepend-1'>
               <%= link_to shelf.title do -%> 
-                <%= image_tag image_url(shelf.title.id), :id=>"img_#{shelf.id}_#{shelf.title.id}", 
-                :size => "50x70", :alt => "#{shelf.title.title} ", 
-                :title => "#{shelf.title.title}", :onerror => "this.src='#{default_image_url}';"  %>
+                <%= image_tag image_url(shelf.id), :id=>"img_#{shelf.id}_#{shelf.id}", 
+                :size => "50x70", :alt => "#{shelf.title} ", 
+                :title => "#{shelf.title}", :onerror => "this.src='#{default_image_url}';"  %>
               <% end -%>
-            </div> 
+            </div>
           <% end %>
              
         </p>
