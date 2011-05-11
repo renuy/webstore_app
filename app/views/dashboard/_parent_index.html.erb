@@ -78,7 +78,7 @@
           
           <% @kidshelf.each do |shelf| %>
             <div class='span-2  prepend-1'>
-              <%= link_to shelf.title do -%> 
+              <%= link_to shelf do -%> 
                 <%= image_tag image_url(shelf.id), :id=>"img_#{shelf.id}_#{shelf.id}", 
                 :size => "50x70", :alt => "#{shelf.title} ", 
                 :title => "#{shelf.title}", :onerror => "this.src='#{default_image_url}';"  %>
