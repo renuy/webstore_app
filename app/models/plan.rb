@@ -1,5 +1,6 @@
 class Plan < ActiveRecord::Base
   WAIVER_PLAN = 26
+  has_and_belongs_to_many :branches
 
   def renewable?
     (self.allow_renewal.upcase.eql?('NO')  or self.frequency.upcase.eql?("N") or  self.expired? or self.id == WAIVER_PLAN) ? false : true
