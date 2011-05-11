@@ -144,7 +144,7 @@ class Signup < ActiveRecord::Base
 
   def company_and_employee_uniqness
         plan = Plan.find(plan_id)
-          signup = Signup.find(:all, :conditions=> ["company_id=? and employee_no=?", company_id, employee_no])
+          signup = Signup.find(:all, :conditions=> ["company_id=? and employee_no=? and state in (?)", company_id, employee_no,['Paid', 'Executed']])
            unless signup.blank?
            errors.add(:company_id, " and employee is already a member!") if plan.plan_type == "C"
            return false
