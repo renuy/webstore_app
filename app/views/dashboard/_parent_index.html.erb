@@ -67,7 +67,8 @@
       <div class='span-3 shelf-1'>
         <div id="title">
           <div class="span-3 title">
-              <p><%= link_to "KIDS SHELF", 'book_lists/index_k' %></p>
+              <!--p><%= link_to "KIDS SHELF", 'book_lists/index_k' %></p-->
+              <p><%= link_to "KIDS SHELF", show_dashboard_path(:shelf=>"K",:per_page=>9, :page=>1) %></p>
           </div>
         </div>
           <p></p>
@@ -195,7 +196,8 @@
         
         <div id="title">
           <div class="title span-4 ">
-              <p><%=link_to 'MY SUGGESTIONS', suggestions_path %></p>
+              <!--p><%=link_to 'MY SUGGESTIONS', suggestions_path %></p-->
+              <p><%= link_to "RECOMMENDED", show_dashboard_path(:shelf=>"CR",:per_page=>9, :page=>1) %></p>
           </div>
         </div>
         

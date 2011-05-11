@@ -21,14 +21,15 @@ class DashboardController < ApplicationController
       myshelf = ListItem.find_all_by_book_list_id(user.book_lists.collect{|x| x.id}, :limit => 1)
       @myshelf = myshelf.paginate(:page => 1, :per_page => 1)
       
-      user.kids.each do |kid|
-        rs = ListItem.find_by_book_list_id(kid.book_lists.collect{|x| x.id})
-        kidshelf << rs unless rs.nil?
-      end
-      @kidshelf = kidshelf.paginate(:page => 1, :per_page => 1)
-      
-      mysugges = Suggestion.find_all_by_by_id(user.id, :limit => 1)
-      @mysugges = mysugges.paginate(:page => 1, :per_page => 3)
+      #user.kids.each do |kid|
+      #  rs = ListItem.find_by_book_list_id(kid.book_lists.collect{|x| x.id})
+      #  kidshelf << rs unless rs.nil?
+      #end
+      #@kidshelf = kidshelf.paginate(:page => 1, :per_page => 1)
+      @kidshelf = Title.kids("", 1, 1) #honeywell changes
+      #mysugges = Suggestion.find_all_by_by_id(user.id, :limit => 1)
+      #@mysugges = mysugges.paginate(:page => 1, :per_page => 3)
+      @mysugges = StarCategory.find_all_by_star_type('CR').paginate(:page=> 1, :per_page => 3)
     else
       @shelf2 = Review.all(:order => "id   desc").paginate(:page=> 1, :per_page => 2)
       @myshelf = CurrentRead.all(:order => "cnt desc").paginate(:page => 1, :per_page => 1)
