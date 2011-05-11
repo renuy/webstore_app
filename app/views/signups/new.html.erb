@@ -1,9 +1,10 @@
 <div class="input_box">  
-  <div class="breadcrumb"> SIGNUP</div>
+  <div class="breadcrumb"> Signup From : <%= Time.now.strftime('%d-%b-%Y') %> To : <%= (Time.now + @signup.signup_months.months).strftime('%d-%b-%Y') %></div>
   <div class="inner_box">  
 
     <%= render 'form' %>
 
-    <%= link_to 'Back', :back %>
+    
   </div>
+  <%= link_to 'Back', :back %>
 </div>

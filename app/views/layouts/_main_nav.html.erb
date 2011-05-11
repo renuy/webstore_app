@@ -5,7 +5,8 @@
       <div class="toplink span-3"> <%= link_to "SETTING", current_user_path %></div>
       <div class="toplink span-3"> <%= link_to "LOGOUT", destroy_user_session_path %></div>
     <% else %>
-      <%= link_to "Sign up", new_user_registration_path(:pk=>'pkn') %> or <%= link_to "sign in", new_user_session_path %>
+      <div class="toplink span-3"><%= link_to "Sign up", new_user_registration_path(:pk=>'pkn') %></div> 
+      <div class="toplink span-3">      <%= link_to "sign in", new_user_session_path %></div>
     <% end %>
     </div>
     <p class="masthead"><%= image_tag('JBK.jpg', :id => 'logo')%></p>
