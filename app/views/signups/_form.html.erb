@@ -45,7 +45,7 @@
       <%= f.collection_select(:info_source_id, InformationSource.find(:all), :id, :name, {:include_blank => 'How did you come to know about us?'} )%>
 
       <div class="actions">
-        <%= f.submit %>
+        <%= f.submit  "CONTINUE", :class=>"btn_link" %>
         <%= link_to 'Back', :back %>  
       </div>
   </div>
