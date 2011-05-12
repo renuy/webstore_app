@@ -782,25 +782,24 @@ a.renew:hover, a.rcancel:hover{
   margin: 5px 2px 10px 2px;
   text-align: left;
   width: 230px;
-  height: 270px;
+  height: 280px;
   color: #fff;
-  font-size:14px; 
+  font-size:12px;
   background: #175E9D;
   padding:5px 5px 10px 5px;
   border-width:1px;
 }
 
 .planbox-indiv a{
-  color: #fff;
+  color: #ffd324;
   background: #175E9D;
   border-width:1px;
   text-decoration:none;
-  font-size:14px; 
+  font-size:12px;
 }
 
 .planbox-indiv a:hover{
-  text-decoration:none;
-  font-size:14px; 
+  font-weight: bold;
+  font-size:12px;
   text-decoration:underline;
-
 }
