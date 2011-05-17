@@ -40,7 +40,7 @@
         
         <% plan.renewMonthsArr.each do |month| %>
           <%= radio_button_tag("months#{plan.id}", month.to_s, false) %> <%= pluralize(month,  'month') %>
-          Total amount Rs. <!-- %=  plan.sec_dep + plan.registration_fee + plan.renewAmount(month) %-->/-<br/>
+          Total amount Rs. <%=  plan.sec_dep + plan.registration_fee + plan.renewAmount(month) %>/-<br/>
         <% end %>
 
         <% plan.ppb_books.each do |book_cnt| %>
@@ -50,7 +50,7 @@
 
         <hr/>
         <div style="text-align:center;">
-          <%= link_to "take this forward", '#', :id => "link_#{plan.id}" %>
+          <%= link_to "take this forward", '#', :id => "link_#{plan.id}", :class=>'signup' %>
         </div>
     </div>
 
