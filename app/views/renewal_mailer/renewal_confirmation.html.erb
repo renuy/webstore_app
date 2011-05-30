@@ -1,0 +1,66 @@
+<div style="width:850px;">
+<div style="width:750px; padding-left:50px">
+
+Dear Member(<b><%= @renewal.card_id %></b>),
+	<br/>
+	<br/>
+	Thank you for your continous patronage of JustBooksClc!
+	<br/>Your order will be executed shortly and it will reflect in your account within 15 minutes.  <br/>Your membership will be renewed till <b><%= @renewal.to_date.strftime('%d-%b-%Y') %></b>.
+	<br/>
+	<br/>
+      
+      <h4>Renewal Details</h4>
+      <div style="align:left;margin:0px 0px 0px 10px; width:200px;border-style:solid;  border-width: 1px;  border-color:#8B8B8B;  margin: 2px 2px 2px 2px;  padding: 5px 5px 5px 5px;">
+        <div>
+        <b>Order No:</b>
+        <span style="float:right"><%= @renewal.payment_id%></span>
+        </div>
+        <div>
+        <b>Membership:</b>
+        <span style="float:right"><%= @renewal.card_id %></span>
+        </div>
+        <div>
+        <b>Renewed Till:</b>
+        <span style="float:right"><%= @renewal.to_date.strftime('%d-%b-%Y') %></span>
+        </div>
+        <div>
+        <b>Amount:</b>
+        <span style="float:right"> <%= "INR #{'%0.2f' % @renewal.payment.txn_amount}"%></span>
+        </div>
+        <div>
+        <b>Convenience Fees:</b>
+        <span style="float:right"> <%="INR #{'%0.2f' % @renewal.payment.fee}"%></span>
+        </div>
+        <div>
+        
+        <hr/>
+        </div>
+        <div>
+        <b>Total Amount:</b>
+        <span style="float:right"><b><%= "INR #{'%0.2f' % @renewal.payment.amount}"%></b></span>
+        </div>
+      </div>
+     <br/>
+     <br/>
+     
+	<br/>
+  
+	For details on Terms & Conditions, please visit <a href="http://www.justbooksclc.com/TermsConditions.action">Terms & Conditions</a>.
+	<br/>
+	<br/>
+	<b><u><i>About JustBooks clc:</i></u></b>
+	<br/>
+	JustBooks clc is a new generation book library chain that provides a unique reading experience to book lovers with a wide range of books for every type of reader - Toddlers to Teens, Dabblers to Bookworms under a modern, vibrant ambience with effective use of technology. Like we love saying - At JustBooks, there is a book for everyone in the family.
+	<br/>
+	Warm Regards,
+	<br/>
+	Team JustBooks
+	<br/>
+	<br/>
+	Contact Customer care:
+	<br/>T: 080-60015285
+	<br/>E: <a href="mailto:care@justbooksclc.com">care@justbooksclc.com</a>
+	<br/>W: <a href="http://corporate.justbooksclc.com">corporate.justbooksclc.com</a>
+	<br/>
+</div>
+</div>
