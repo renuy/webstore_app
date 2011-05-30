@@ -21,7 +21,9 @@ class RenewalsController < ApplicationController
     end
   end
 
-
+  #def show
+  #  @renewal = Renewal.find(params[:id])
+  #end
   # POST /renewals
   # POST /renewals.xml
   def create

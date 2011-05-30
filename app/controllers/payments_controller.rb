@@ -49,7 +49,7 @@ class PaymentsController < ApplicationController
     @payment.branch_id = 801 #remove hard coding
     @payment.state = "PrePayment"
     @payment.p_mode = 'Credit Card'
-    @payment.fee = 15 #convinience fee
+    @payment.fee = @payment.calc_conv_fee #15 #convinience fee
     @payment.amount = @payment.txn_amount + @payment.fee
     
     

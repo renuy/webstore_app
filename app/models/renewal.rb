@@ -1,7 +1,7 @@
 class Renewal < ActiveRecord::Base
   include ActiveRecord::Transitions
   belongs_to :member
-  belongs_to :order
+  belongs_to :payment
   belongs_to :card
 
   validates :member_id, :presence => true  
@@ -30,6 +30,9 @@ class Renewal < ActiveRecord::Base
     end
   end
   
+  def send_mail
+    RenewalMailer.renewal_confirmation(self).deliver
+  end
   def processEvent(event)
     case 
       when event.eql?('sent') then sent

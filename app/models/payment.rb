@@ -1,4 +1,6 @@
 class Payment < ActiveRecord::Base
+  CONV_FEE = 5.5
+
   include ActiveRecord::Transitions
 
   attr_accessor :Merchant_Id, :Order_Id, :TxnType, :actionID, :Checksum, :Redirect_Url, :workingKey, :Amount, :billing_cust_name,:billing_cust_address
@@ -30,8 +32,7 @@ class Payment < ActiveRecord::Base
   end
   
   def RedirectUrl
-    #"http://192.168.1.111:3000/gatewayentry"
-    #"http://kids.justbooksclc.com/gatewayentry"
+    #"http://192.168.1.110:3000/gatewayentry"
     "http://corporate.justbooksclc.com/gatewayentry"
   end
   
@@ -52,7 +53,10 @@ class Payment < ActiveRecord::Base
     curr_checksum.eql?(checkSum) ? true : false
   end
   
-  
+  def calc_conv_fee
+    conv_fee = "%0.2f" % (txn_amount * Payment::CONV_FEE.to_f/100)
+    conv_fee
+  end  
   
   
   state_machine do
@@ -97,6 +101,7 @@ class Payment < ActiveRecord::Base
                 when 'ConfirmPayment'
                     renew = Renewal.find(self.order_id)
                     renew.execute!
+                    renew.send_mail
                 when 'Cancelled'
                     renew = Renewal.find(self.order_id)
                     renew.cancel!
