@@ -17,6 +17,9 @@
   height:47px; 
   background-repeat:no-repeat;
   background-position:right;
+  font:Arial;
+  font-size:12px;
+  
 }
 
 #footer {
@@ -24,6 +27,8 @@
 	bottom:10px;
 	left:40px;
   color: #DBDBDB;
+  font:Arial;
+  font-size:12px;
 }
 
 .background{
@@ -68,7 +73,8 @@
   font-weight:bold;
   text-decoration:none;
   padding:0px 0px 0px 0px;
-  font-family:Arial Narrow;
+  font-family: "Tw Cen MT Condensed";
+  font-size:14px;
   background-image:url(../images/grey-butn-mid.png); 
   background-position:left top; background-repeat:repeat-x;
 }
@@ -79,7 +85,8 @@
   font-weight:bold;
   text-decoration:none;
   padding:4px 0px 0px 0px;
-  font-family:Arial Narrow;
+  font-family: "Tw Cen MT Condensed";
+  font-size:14px;
   background-image:url(../images/grey-butn-rght.png); 
   background-position:right top; background-repeat:no-repeat;
   text-align:bottom;  
@@ -94,7 +101,8 @@
   padding: 5px 30px 5px 0px;
   background-image:url(../images/arrow-grey.png); 
   background-position:right top; background-repeat:no-repeat;
-  font-family:Arial Narrow;
+  font-family: "Tw Cen MT Condensed";
+  font-size:14px;
   
 }
 
@@ -106,8 +114,8 @@
   padding:5px 30px 5px 0px;
   background-image:url(../images/arrow-white-right.png); 
   background-position:right top; background-repeat:no-repeat;
-  font-family:Arial Narrow;
-  
+  font-family: "Tw Cen MT Condensed";
+  font-size:14px;
 }
 #title{
   height:32px;
@@ -117,8 +125,8 @@
   padding:0px 0px 0px 15px;
   background-image:url(../images/grey-butn-left.png); 
   background-position:left top; background-repeat:no-repeat;
-  font-family:Arial Narrow;
-  
+  font-family: "Tw Cen MT Condensed";
+  font-size:14px;
 }
 
 .bar{
@@ -127,7 +135,8 @@
   font-weight:bold;
   text-decoration:none;
   padding:5px 0px 0px 10px;
-  font-family:Arial Narrow;
+  font-family: "Tw Cen MT Condensed";
+  font-size:14px;
 }
 
 .bar a{
@@ -139,7 +148,8 @@
   padding: 10px 30px 4px 10px;
   background-image:url(../images/arrow-grey.png); 
   background-position:right top; background-repeat:no-repeat;
-  font-family:Arial Narrow;
+  font-family: "Tw Cen MT Condensed";
+  font-size:14px;
 }
 
 .bar a:hover{
@@ -151,7 +161,8 @@
   padding:10px 30px 4px 10px;
   background-image:url(../images/arrow-white-right.png); 
   background-position:right top; background-repeat:no-repeat;
-  font-family:Arial Narrow;
+  font-family: "Tw Cen MT Condensed";
+  font-size:14px;
 }
 #bar{
   height:32px;
@@ -161,7 +172,8 @@
   padding:0px 0px 0px 5px;
   background-image:url(../images/myshelf.png); 
   background-position:left center; background-repeat:no-repeat;
-  font-family:Arial Narrow;
+  font-family: "Tw Cen MT Condensed";
+  font-size:14px;
 }
 
 .page{
@@ -174,6 +186,8 @@ background:url(../images/spiral-1.png) no-repeat;
   font-weight:bold;
   text-decoration:none;
   padding:10px 0px 0px 10px;
+  font-family: "Tw Cen MT Condensed";
+  font-size:14px;
 }
 
 
@@ -183,6 +197,8 @@ background:url(../images/spiral-1.png) no-repeat;
   font-weight:bold;
   padding:5px 0px 0px 5px;
   text-decoration:none;
+  font-family: "Tw Cen MT Condensed";
+  font-size:14px;
 }
 .shelfname a:hover{
   background-position:right center; 
@@ -192,6 +208,8 @@ background:url(../images/spiral-1.png) no-repeat;
   font-weight:bold;
   padding:5px 0px 0px 5px;
   text-decoration:none;
+  font-family: "Tw Cen MT Condensed";
+  font-size:14px;
 }
 .shelf-0{height:132px;
 width:125px;}
@@ -226,7 +244,8 @@ background-position:5px 5px; background-repeat:no-repeat;
   padding:8px 0px 0px 5px;
   background-image:url(../images/myshelf.png); 
   background-position:left center; background-repeat:no-repeat;
-  font-family:Arial Narrow;
+  font-family: "Tw Cen MT Condensed";
+  font-size:14px;
 }
 
 .s-shelf a{
@@ -237,7 +256,8 @@ background-position:5px 5px; background-repeat:no-repeat;
   padding:0px 0px 0px 5px;
   background-image:url(../images/myshelf.png); 
   background-position:left center; background-repeat:no-repeat;
-  font-family:Arial Narrow;
+  font-family: "Tw Cen MT Condensed";
+  font-size:14px;
 }
 
 .s-shelf a:hover{
@@ -248,7 +268,8 @@ background-position:5px 5px; background-repeat:no-repeat;
   padding:0px 0px 0px 5px;
   background-image:url(../images/myshelf.png); 
   background-position:left center; background-repeat:no-repeat;
-  font-family:Arial Narrow;
+  font-family: "Tw Cen MT Condensed";
+  font-size:14px;
 }
 
 .btn_link{
@@ -258,18 +279,22 @@ height:32px;
 width:113px; 
 color:#ffffff;
 text-align:center;  
-font-size:15px;
-font-family:Arial Narrow;
+font-size:14px;
+font-family: "Tw Cen MT Condensed";
 font-weight:bold;
+border-color:#white;
+border-width:0px;
 }
 
 .btn_link a{
 color:#ffffff;
 text-align:center;  
-font-size:15px;
-font-family:Arial Narrow;
+font-size:14px;
+font-family: "Tw Cen MT Condensed";
 font-weight:bold;
-text-decoration:none; 
+text-decoration:none;
+  border-color:#white;
+ 
 }
 .round {
   -moz-border-radius:    10px;
@@ -580,7 +605,7 @@ float:left;
 height:32px; 
 font-size:14px; 
 font-weight:bold; 
-color:#111111; 
+color:#ffffff; 
 line-height:18px; 
 text-align:center; 
 text-decoration:none; 
@@ -607,17 +632,23 @@ background: url(../images/menu-select.png) no-repeat;
 
 
 .searchSection
-{margin:2px 0px 0px 0px; padding:0px 0px 0px 10px; float:right; font-size:13px; width:200px; height:50px;
+{margin:2px 0px 0px 0px; padding:0px 0px 0px 10px; float:right; font-size:14px; width:185px; height:50px;
 background: url(../images/search.png) no-repeat;
+font-size:14px; 
+font-weight:bold; 
+font-family: "Tw Cen MT Condensed";
+
 }
 
-input.searchTextbox{border:none;}
-input.search_button{height:25px;width:35px;}
-//input.search_button:hover{background:url(../images/search-select.png) }
+input.searchTextbox{border:none; font-size:14px; 
+font-weight:bold; font-family: "Tw Cen MT Condensed";
+color:gray;}
+input.search_button{height:25px;width:35px; float:right;}
 
 
 .searchListBox
-{margin:0px 2px 0px 5px; padding:0px; height:20px; border:0px; font-family:Arial; font-size:11px; color:#666666; line-height:15px; border:1px solid #CCCCCC;}
+{margin:0px 2px 0px 5px; padding:0px; height:20px; border:0px; font-size:14px; 
+font-weight:bold;  color:gray;line-height:15px; border:1px solid #CCCCCC;font-family: "Tw Cen MT Condensed";}
 
 
 /*navigation ends */
@@ -626,19 +657,22 @@ input.search_button{height:25px;width:35px;}
 {
   margin:8px 0px 0px 0px; 
   background: url(../images/text.png) no-repeat;
+  font-family: "Arial";
   padding: 4px 0px 0px 0px;
   height: 32px;
   width: 104px;
   text-align:center;
   color: #ffffff;
   line-height:18px; 
-  font-size: 14px;
+  font-size: 13px;
+  
 }
 
 .toplink{
 margin:8px 0px 0px 0px; 
 padding:5pxpx; 
 float:left; 
+font-family: "Tw Cen MT Condensed";
 font-size:14px; 
 font-weight:bold;  
 color:#ffffff;
@@ -659,6 +693,7 @@ float:left;
 height:32px; 
 font-size:14px; 
 font-weight:bold; 
+font-family: "Tw Cen MT Condensed";
 color:#ffffff;
 line-height:18px; 
 text-align:center;
@@ -675,6 +710,7 @@ float:left;
 height:32px; 
 font-size:14px; 
 font-weight:bold; 
+font-family: "Tw Cen MT Condensed";
 color:#ffffff; 
 line-height:18px; 
 text-align:center; 
@@ -727,13 +763,14 @@ div.dialog{
       /*border: solid #CCCCCC 2px;*/
       background: url(../images/login-bg.png) repeat-y;
       padding: 20px 10px 10px 20px;
-      font-size:12px; 
+      font-size:13px; 
       font-weight:bold; 
       color:#ffffff; 
-      height:217px;
+      height:230px;
       width: 280px;
       overflow-x: hidden;
       overflow-y:auto;
+      font-family: "Tw Cen MT Condensed";
     }
 
     

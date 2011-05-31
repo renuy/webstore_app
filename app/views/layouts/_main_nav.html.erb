@@ -29,7 +29,7 @@
             <!-- search section -->
             <div class="searchSection">
               <%= form_tag titles_path, :id => 'searchForm', :method => 'get' do -%>
-                <%= text_field_tag :query, params[:query], :size => 17, :class=>'searchTextbox' %>
+                <%= text_field_tag :query, params[:query], :size => 20, :class=>'searchTextbox',:placeholder => 'SEARCH FOR A BOOK'  %>
                 <%= image_submit_tag("search-normal.png", :id=>'submit_btn', :class=>'search_button', :onmouseout=>"Collectionapp.rollout(this);", :onmouseover=>"Collectionapp.rollin(this);" )%>
                 <%= hidden_field_tag :queryTitleId, '' %>
 
