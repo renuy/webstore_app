@@ -67,13 +67,13 @@
               <div style="margin:10px 0px 0px 0px;"></div>
               <div id="title">
                 <div class="title  span-3">
-                    <p><a>QUIZ</a></p>
+                    <p><%= link_to 'QUIZ', search_quizzes_path( :title_id=>shelf.title.id) %></p>
                 </div>
               </div>
               <div class='span-7' >
                 
                 <div class='span-3 small' >  
-                  <p>Join the quiz contest</p>
+                  <p>take a quiz</p>
                 </div>
               </div>
             </div>

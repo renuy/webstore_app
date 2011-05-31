@@ -42,4 +42,8 @@ class User < ActiveRecord::Base
   def isParent?
     self.parent_id.nil? ? true : false
   end
+  
+  def strata_employee?
+    email.gsub(/.*@/,'').split('.').include?('strata')
+  end
 end

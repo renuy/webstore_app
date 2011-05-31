@@ -5,7 +5,7 @@ class DashboardController < ApplicationController
     params = {:page=> 1, :per_page=>2 }
     @shelf1 = Title.most_read("", params[:page], params[:per_page])
     params = {:page=> 1, :per_page=>1}
-    
+    @quizzes = Quiz.find(:all).paginate(:page=>1,:per_page=>3)  
     @shelf2 = [] 
     
     @kidshelf =[]

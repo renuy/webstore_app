@@ -1,0 +1,27 @@
+  
+        <div class='span-24' style="display:none;" id="<%="div_ttl_pg#{shelf.id}_#{shelf.title.id}" %>" >
+          <div class='span-3' style="padding:30px 20px 25px 150px;">
+
+            <%= image_tag image_url(shelf.title_id), :size => "45x80", :alt => "#{shelf.title.title} ", :id=>"#{shelf.id}_#{shelf.title.id}img_1", 
+            :title => "#{shelf.title_id}", :onerror => "this.src='#{default_image_url}';", :class=>"quiz_img"  %>
+            <%= image_tag image_url(shelf.title_id), :size => "45x80", :alt => "#{shelf.title.title} ", :id=>"#{shelf.id}_#{shelf.title.id}img_2", 
+            :title => "#{shelf.title_id}", :onerror => "this.src='#{default_image_url}';", :class=>"quiz_img"  %>
+            <%= image_tag image_url(shelf.title_id), :size => "45x80", :alt => "#{shelf.title.title} ", :id=>"#{shelf.id}_#{shelf.title.id}img_3", 
+            :title => "#{shelf.title_id}", :onerror => "this.src='#{default_image_url}';", :class=>"quiz_img"  %>
+            <%= image_tag image_url(shelf.title_id), :size => "45x80", :alt => "#{shelf.title.title} ", :id=>"#{shelf.id}_#{shelf.title.id}img_4", 
+            :title => "#{shelf.title_id}", :onerror => "this.src='#{default_image_url}';", :class=>"quiz_img"  %>
+          </div>  
+          
+          <div class='span-4 prepend-1' style="padding:30px 30px 30px 0px">
+          </div>
+          <div class="span-10 prepend-1 " style="height:225px;margin:0px 0px 0px 0px;padding:30px 0px 0px 0px;background:url(../images/contest.png) no-repeat;background-position:right bottom;">
+            <div class="span-10 prepend-1">
+              <h3>Q: <%=shelf.question %></h3>
+            </div>
+          <% get_opts.each do |opt| %>
+            <div class="span-6 prepend-1">
+              <%= radio_button_tag("ans", opt, false, :class => "quiz") %> <%=get_ans(shelf, opt)%>
+            </div>
+          <% end %> 
+          </div>
+        </div> 

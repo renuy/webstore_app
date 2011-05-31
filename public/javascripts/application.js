@@ -238,3 +238,51 @@ if (months == null){
  
  return true;
 });
+
+$('.quiz').live('click', function() {
+ if ($(this).val() == 1) {
+    alert('well done!!');
+    div_id = $('#curr_div').val();
+    Collectionapp.ansImg(div_id);
+ }
+ else{
+  alert('wrong answer, try again');
+ }
+ 
+
+});
+
+Collectionapp.teaseImg = function(id){
+  $('#'+id+'img_1').animate({opacity: .20,
+            
+            }, 900,function(){});
+  $('#'+id+'img_2').animate({opacity: .20,
+            
+            }, 900,function(){});
+  $('#'+id+'img_3').animate({opacity: .20,
+            
+            }, 900,function(){});
+  $('#'+id+'img_4').animate({opacity: .20,
+            
+            }, 900,function(){});
+}
+
+Collectionapp.ansImg = function(id){
+  $('#'+id+'img_2').hide();
+  $('#'+id+'img_3').hide();
+  $('#'+id+'img_4').hide();
+  $('#'+id+'img_1').animate({opacity: 1,
+            height:'200',
+            width:'133',
+            }, 900,function(){});
+}
+
+Collectionapp.quizpage = function(div_id) {
+div_id_hide = $('#curr_div').val();
+$('#curr_div').val(div_id);
+$('#sel'+div_id_hide).hide('fast',function(){});
+$('#sel'+div_id).show('slide',{},600,function(){});
+$('#div_ttl_pg'+div_id_hide).hide('fast');
+$('#div_ttl_pg'+div_id).show('fast');
+Collectionapp.teaseImg(div_id);
+};

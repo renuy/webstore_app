@@ -1,0 +1,35 @@
+<%= javascript_tag :defer => 'defer' do -%>
+	$(document).ready(function () {
+    Collectionapp.teaseImg();
+	});
+<% end -%>
+
+<div class="input_box">  
+  <div class="breadcrumb"> QUIZ </div>
+  <div class="inner_box">  
+    <div class="span-4">
+      <%= image_tag image_url(@quiz.title_id), :size => "65x100", :alt => "#{@quiz.title.title} ", :id=>"img_1", 
+      :title => "#{@quiz.title_id}", :onerror => "this.src='#{default_image_url}';", :class=>"quiz_img"  %>
+      <%= image_tag image_url(@quiz.title_id), :size => "65x100", :alt => "#{@quiz.title.title} ", :id=>"img_2", 
+      :title => "#{@quiz.title_id}", :onerror => "this.src='#{default_image_url}';", :class=>"quiz_img"  %>
+      <%= image_tag image_url(@quiz.title_id), :size => "65x100", :alt => "#{@quiz.title.title} ", :id=>"img_3", 
+      :title => "#{@quiz.title_id}", :onerror => "this.src='#{default_image_url}';", :class=>"quiz_img"  %>
+      <%= image_tag image_url(@quiz.title_id), :size => "65x100", :alt => "#{@quiz.title.title} ", :id=>"img_4", 
+      :title => "#{@quiz.title_id}", :onerror => "this.src='#{default_image_url}';", :class=>"quiz_img"  %>
+    </div>  
+    <div class="span-11">
+      <div class="span-11">
+        <h3>Q: <%=@quiz.question %></h3>
+      </div>
+    <% get_opts.each do |opt| %>
+      <div class="span-5">
+        <%= radio_button_tag("ans", opt, false, :class => "quiz") %> <%=get_ans(@quiz, opt)%>
+      </div>
+    <% end %> 
+    </div>
+    <%= link_to 'Back', :back %>
+  </div>
+</div>
+
+<%= link_to 'Edit', edit_quiz_path(@quiz) %> |
+<%= link_to 'Back', quizzes_path %>

@@ -1,5 +1,7 @@
 JbkidsApp::Application.routes.draw do
 
+  resources :quizzes
+
   resources :signups
 
   resources :renewals
@@ -78,7 +80,7 @@ JbkidsApp::Application.routes.draw do
   match "show_myshelf" => "myshelf#show"
   match "myshelves/:shelf" => "myshelf#show"
   match "gatewayentry" => "payments#gatewayentry" , :via => :post
-  
+  match "search_quizzes" => "quizzes#search"
   match "list_items/upsert/:title_id" => "list_items#upsert"
   # The priority is based upon order of creation:
   # first created -> highest priority.
