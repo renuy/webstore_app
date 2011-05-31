@@ -19,9 +19,9 @@
                 amount Rs. <%=member.valid_card[0].renewAmount(month) %>/-<br/>
               
             <% end %> 
-          
-          <%= link_to "continue", '#',:name=>"#{member.id}" ,:id=>"link_#{member.valid_card[0].card_id}" ,:class=>'renew'   %>
-          <span class="prepend-1"><%= link_to 'cancel', '#' , :id=>"can_#{member.valid_card[0].card_id}", :class =>'rcancel' %></span>
+          <br/>
+          <%= link_to "Continue", '#',:name=>"#{member.id}" ,:id=>"link_#{member.valid_card[0].card_id}" ,:class=>'renew'   %>
+          <span class="prepend-1"><%= link_to 'Cancel', '#' , :id=>"can_#{member.valid_card[0].card_id}", :class =>'rcancel' %></span>
         </div>
       <% end %>
       <br/>

@@ -190,7 +190,7 @@ $('.suggest').live('click', function() {
           autoOpen: false,
           modal: true,
           width: 280,
-          height: 217,
+          height: 230,
           position: ['center', 'center'],
           overlay: { 
               opacity: 0.7, 
