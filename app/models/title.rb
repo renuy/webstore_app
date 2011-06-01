@@ -6,7 +6,7 @@ class Title < ActiveRecord::Base
   has_many   :reviews, :class_name => "Reviews" , :order =>"review_type"
   attr_accessible :title, :yearofpublication, :edition, :isbn10, :isbn13, :noofpages, :language ,:no_of_rented, :title_type
   
-  BRANCH = ['44']
+  BRANCH = ['1']
   #has_many :branch, :through => :stock
   
   validates :title, :presence => true

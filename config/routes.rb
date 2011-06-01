@@ -29,10 +29,6 @@ JbkidsApp::Application.routes.draw do
     end
   end
 
-  resources :items
-
-  resources :orders
-
   resources :reviews do
     collection do
       get 'search'
