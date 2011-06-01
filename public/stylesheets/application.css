@@ -753,7 +753,8 @@ width:212px;
 color:#ffffff;
 font-weight:bold; 
 text-align :center;
-
+font-family: "Tw Cen MT Condensed";
+font-size:14px;
 }
 .rite {float:right !important;}
 

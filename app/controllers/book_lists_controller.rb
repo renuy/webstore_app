@@ -132,7 +132,9 @@ class BookListsController < ApplicationController
     @collection_name = BookList.find(params[:id])
     
     @shelf0 = ListItem.find_all_by_book_list_id(@collection_name.id).paginate(:page=>params[:page], :per_page => params[:per_page])
-    
+    #unless params[:notice].blank? 
+    #  flash[:notice] = params[:notice]  
+    #end
   end
 
   # GET /book_lists/new

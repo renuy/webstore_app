@@ -23,8 +23,8 @@
                <%= link_to get_btn_name(caller), get_link(caller, shelf.title.id) %>
             </div>
             <div class="span-6" >
-               <%= link_to 'read',  new_list_item_path(:title_id=> shelf.title.id, :cat=>'READ') %>
-               <%= link_to '| bookmark', new_list_item_path(:title_id => shelf.title.id, :cat =>'BOOKMARKED') %>
+               <%= link_to 'read',  new_list_item_path(:title_id=> shelf.title.id, :cat=>BookList::CATEGORY[:READ') %>
+               <%= link_to '| bookmark', new_list_item_path(:title_id => shelf.title.id, :cat =>BookList::CATEGORY[:BOOKMARK]) %>
                <%= link_to '| suggest', "#", :id=>"#{shelf.title.id}" ,:class=>'suggest'%>
             </div>
             <div class = "dialog" id="<%="dialog_#{shelf.title.id}" %>">

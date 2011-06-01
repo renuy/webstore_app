@@ -16,23 +16,23 @@ module TitlesHelper
   case 
     when caller.nil?  then 'BORROW'
     when caller.blank?  then 'BORROW'
-    when caller.eql?('READ') then 'REVIEW'
-    when caller.eql?('BOOKMARKED') then 'BORROW'
-    when caller.eql?('READING') then 'RETURN'
-    when caller.eql?('ORDER') then 'CANCEL'
+    when caller.eql?(BookList::CATEGORY[:READ]) then 'REVIEW'
+    when caller.eql?(BookList::CATEGORY[:BOOKMARK]) then 'BORROW'
+    when caller.eql?(BookList::CATEGORY[:READING]) then 'RETURN'
+    when caller.eql?(BookList::CATEGORY[:ORDER]) then 'CANCEL'
     else 'BORROW'
     end
   end
   
   def get_link(caller, title_id)
     case
-      when caller.eql?('READ') then upsert_reviews_path(:title_id=>title_id)
-      when caller.eql?('ORDER') then new_list_item_path(:title_id=> title_id, :cat=>'BOOKMARKED')
-      when caller.eql?('BOOKMARKED') then new_list_item_path(:title_id=> title_id, :cat=>'ORDER')
-      when caller.nil?  then new_list_item_path(:title_id=> title_id, :cat=>'ORDER')
-      when caller.blank?  then new_list_item_path(:title_id=> title_id, :cat=>'ORDER')
-      when caller.eql?('READING') then new_list_item_path(:title_id=> title_id, :cat=>'RETURN')
-      else  new_list_item_path(:title_id=> title_id, :cat=>'ORDER')
+      when caller.eql?(BookList::CATEGORY[:READ]) then upsert_reviews_path(:title_id=>title_id)
+      when caller.eql?(BookList::CATEGORY[:ORDER]) then new_list_item_path(:title_id=> title_id, :cat=>BookList::CATEGORY[:BOOKMARK])
+      when caller.eql?(BookList::CATEGORY[:BOOKMARK]) then new_list_item_path(:title_id=> title_id, :cat=>BookList::CATEGORY[:ORDER])
+      when caller.nil?  then new_list_item_path(:title_id=> title_id, :cat=>BookList::CATEGORY[:ORDER])
+      when caller.blank?  then new_list_item_path(:title_id=> title_id, :cat=>BookList::CATEGORY[:ORDER])
+      when caller.eql?(BookList::CATEGORY[:READING]) then new_list_item_path(:title_id=> title_id, :cat=>'RETURN')
+      else  new_list_item_path(:title_id=> title_id, :cat=>BookList::CATEGORY[:ORDER])
     end
   end
   

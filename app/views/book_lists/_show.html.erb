@@ -23,9 +23,9 @@
                 <%= link_to get_btn_name("#{shelf.book_list.category}"), get_link("#{shelf.book_list.category}", shelf.title.id) %>
             </div>
             <div class="span-6" >
-               <%= link_to 'read',  edit_list_item_path(shelf, :title_id=> shelf.title.id,:cat=>'READ') %>
-               <%= link_to 'bookmark',  edit_list_item_path(shelf, :title_id=> shelf.title.id,:cat=>'BOOKMARKED') %>
-               <td><%= link_to '| remove', shelf, :confirm => 'Are you sure?', :method => :delete %></td>
+               <%= link_to 'read',  edit_list_item_path(shelf, :title_id=> shelf.title.id,:cat=>BookList::CATEGORY[:READ]) %>
+               <%= link_to ' | bookmark',  edit_list_item_path(shelf, :title_id=> shelf.title.id,:cat=>BookList::CATEGORY[:BOOKMARK]) %>
+               <%= link_to '| remove', shelf, :confirm => 'Are you sure?', :method => :delete %>
                <%= link_to '| suggest', "#", :id=>"#{shelf.title.id}" ,:class=>'suggest'%>
             </div>
             <div class = "dialog" id="<%="dialog_#{shelf.title.id}" %>">

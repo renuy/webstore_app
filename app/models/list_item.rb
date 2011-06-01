@@ -12,12 +12,12 @@ class ListItem < ActiveRecord::Base
   validate :valid_category_and_user?
   before_destroy :valid_category_and_user?
   def verify_card
-    if ['BOOKMARKED','ORDER'].include?(self.d_category) and self.member_id.nil?
+    if [BookList::CATEGORY[:BOOKMARK],BookList::CATEGORY[:ORDER]].include?(self.d_category) and self.member_id.nil?
       errors.add(:member_id, "Please select membership")
       return false
     end
     
-    if self.d_category.eql?('ORDER') and !self.member.valid_card[0].plan.deliver.upcase.eql?('YES')
+    if self.d_category.eql?(BookList::CATEGORY[:ORDER]) and !self.member.valid_card[0].plan.deliver.upcase.eql?('YES')
       errors.add(:member_id, "Please visit your branch to get the book issued on this card")
       return false
     end
@@ -26,14 +26,14 @@ class ListItem < ActiveRecord::Base
   def set_book_list
     book_list = 0
     case 
-      when self.d_category.eql?("rs")
-        category = 'READ'
-      when self.d_category.eql?("rns")
-        category = 'BOOKMARKED'
-      when self.d_category.eql?("rnsd")
-        category = 'READING'
-      when self.d_category.eql?("ORDER")
-        category = 'ORDER'
+      when self.d_category.eql?(BookList::CATEGORY[:READ])
+        category = BookList::CATEGORY[:READ]
+      when self.d_category.eql?(BookList::CATEGORY[:BOOKMARK])
+        category = BookList::CATEGORY[:BOOKMARK]
+      when self.d_category.eql?(BookList::CATEGORY[:READING])
+        category = BookList::CATEGORY[:READING]
+      when self.d_category.eql?(BookList::CATEGORY[:ORDER])
+        category = BookList::CATEGORY[:ORDER]
       else
         category = self.d_category
     end
@@ -46,6 +46,12 @@ class ListItem < ActiveRecord::Base
       book_list = BookList.find_by_user_id_and_category(self.d_user_id, category)
     end
     self.book_list_id = book_list.id
+  end
+  
+  def self.search(title_id, user_id)
+    lists = ListItem.find_all_by_title_id_and_book_list_id(title_id, BookList.find_all_by_user_id(user_id).collect{|x| x.id})
+    list_item = lists.empty? ? nil : lists[0]
+    return list_item
   end
   
   def self.upsert(title_id, user_id, category)
@@ -63,7 +69,7 @@ class ListItem < ActiveRecord::Base
       return false
     end
     #logger.debug(self.book_list.category)
-    if !self.book_list_id.nil? and ['ORDER','READ'].include?( self.book_list.category) and !self.shelf_id.nil?
+    if !self.book_list_id.nil? and [BookList::CATEGORY[:ORDER],BookList::CATEGORY[:READ]].include?( self.book_list.category) and !self.shelf_id.nil?
       errors.add(:title_id, "This is system generated, cannot be removed")
       return false
     end

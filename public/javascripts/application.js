@@ -227,13 +227,13 @@ plan_id = $(this).attr('id').replace('link_','');
 
 mon_radio = 'months'+plan_id;
 months = $('input:radio[name='+mon_radio+']:checked').val();
-
+branch_id=$('#branch_id').val();
 if (months == null){
   alert('Please select months');
   return false;
  } 
  
- url = '/signups/new?m='+months+'&p='+plan_id;
+ url = '/signups/new?m='+months+'&p='+plan_id+'&b='+branch_id;
  $(location).attr('href',url);
  
  return true;
