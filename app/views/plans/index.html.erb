@@ -1,5 +1,18 @@
-<div class="span-25 grid" style='text-align:center; height:495px;overflow-x: hidden;  overflow-y:auto; '>
-  <div class="heading"> PLANS:TAKE A PICK</div>
+<div class="span-5">
+  <h3> Select Your Office *</h3>
+  <hr/>
+  <% Title::BRANCH.each do |branch_id| %>
+  
+    <%= link_to Branch.find(branch_id).name, plans_path(:b => branch_id) %> <br/>
+  <% end %>
+  <div class="small"><hr/>* Your card would be sent to the selected the office</div>
+</div>
+
+<div class="span-19 grid" style='text-align:center; height:495px;overflow-x: hidden;  overflow-y:auto; '>
+  <div class="heading"> PLANS FOR <%=@branch.name %>
+  <%= hidden_field_tag 'branch_id', "#{@branch.id}" %>
+  </div>
+  <%= will_paginate @plans %>
   <% @plans.each do |plan| %>
     <div class="span-8 planbox-indiv round">
         <div style="font-size: 13px; font-weight: bold; text-align: center; color: #fff"><%=plan.name %></div>

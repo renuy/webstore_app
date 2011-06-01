@@ -40,6 +40,7 @@ class SignupsController < ApplicationController
     @signup.signup_months = signUpMonths
     @signup.email = current_user.email
     @signup.name = current_user.username
+    @signup.branch_id=params[:b]
     if (@plan.subscription)
       @signup.security_deposit = @plan.sec_dep
       @signup.registration_fee = @plan.registration_fee
