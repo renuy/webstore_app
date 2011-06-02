@@ -133,4 +133,8 @@ class Plan < ActiveRecord::Base
   def subscription
     self.frequency.upcase.eql?("N") ? false : true
   end
+  
+  def isCorporate?
+    self.plan_type.upcase.eql?("C") ? true : false
+  end
 end
