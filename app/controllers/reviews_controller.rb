@@ -44,7 +44,7 @@ before_filter :authenticate_user!, :only => [:create, :update, :destroy, :new, :
   # GET /reviews/new.xml
   def new
     @review = Review.new
-
+    @title = Title.find(params[:title_id])
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @review }
@@ -54,6 +54,7 @@ before_filter :authenticate_user!, :only => [:create, :update, :destroy, :new, :
   # GET /reviews/1/edit
   def edit
     @review = Review.find(params[:id])
+    @title = Title.find(params[:title_id])
   end
 
   # POST /reviews

@@ -116,7 +116,7 @@ class ListItemsController < ApplicationController
     @list_item.d_user_id = current_user.id
     respond_to do |format|
       if @list_item.destroy
-        format.html { redirect_to(list_items_url) }
+        format.html { redirect_to(book_lists_path, :notice => 'The book was successfully removed from your '+@list_item.book_list.category+' shelf.') }
         format.xml  { head :ok }
       else
         err_msg = ''

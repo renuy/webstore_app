@@ -40,6 +40,19 @@ module TitlesHelper
     (user_signed_in? and current_user.isParent?) ? true : false
   end
   
+  def get_availability(branch_id, title_id)
+    branch = Branch.find(branch_id)
+    if branch.category.upcase.eql?("W") 
+      "NA"
+    else
+      stock =  Stock.find_by_title_id_and_branch_id(title_id, branch_id)
+      if stock.nil?
+        "0"
+      else
+        stock.in_store_cnt
+      end
+    end
+  end
   def colorArr()
    @x = 200
    @y = 200
