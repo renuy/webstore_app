@@ -7,8 +7,8 @@ class BookList < ActiveRecord::Base
     :BOOKMARK  => 'BOOKMARK', 
     :ORDER   => 'ORDER',
     :READING => 'READING',
-    :RECOMMEND => 'RECOMMEND'
-    
+    :RECOMMEND => 'RECOMMEND',
+    :TRANSFER => 'TRANSFER'
   }  
 
 end

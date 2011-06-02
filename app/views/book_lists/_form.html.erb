@@ -11,10 +11,12 @@
     </div>
   <% end %>
 
-  <div class="actions">
+  
+      
       <%= f.text_field :category , :maxlength=>250, :size => 61, :placeholder => 'Shelf Name' %></p><td>
       
       <%= f.hidden_field :user_id , :value=>current_user.id %>
+  <div class="actions">  
     <%= f.submit %>
   </div>
 <% end %>

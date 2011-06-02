@@ -12,13 +12,13 @@ class ListItem < ActiveRecord::Base
   validate :valid_category_and_user?
   before_destroy :valid_category_and_user?
   def verify_card
-    if [BookList::CATEGORY[:BOOKMARK],BookList::CATEGORY[:ORDER]].include?(self.d_category) and self.member_id.nil?
+    if [BookList::CATEGORY[:BOOKMARK],BookList::CATEGORY[:ORDER], BookList::CATEGORY[:TRANSFER]].include?(self.d_category) and self.member_id.nil?
       errors.add(:member_id, "Please select membership")
       return false
     end
     
     if self.d_category.eql?(BookList::CATEGORY[:ORDER]) and !self.member.valid_card[0].plan.deliver.upcase.eql?('YES')
-      errors.add(:member_id, "Please visit your branch to get the book issued on this card")
+      errors.add(:member_id, "Sorry, the plan subscribed by you does not have door deliver. Please visit your branch to get the book issued on this card")
       return false
     end
   end
@@ -69,10 +69,10 @@ class ListItem < ActiveRecord::Base
       return false
     end
     #logger.debug(self.book_list.category)
-    if !self.book_list_id.nil? and [BookList::CATEGORY[:ORDER],BookList::CATEGORY[:READ]].include?( self.book_list.category) and !self.shelf_id.nil?
+    if !self.book_list_id.nil?  and [BookList::CATEGORY[:ORDER],BookList::CATEGORY[:READ], BookList::CATEGORY[:READING]].include?( self.book_list.category) and !self.shelf_id.nil?
       errors.add(:title_id, "This is system generated, cannot be removed")
       return false
     end
-    return false
+    return true
   end
 end

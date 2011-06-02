@@ -23,9 +23,10 @@
                <%= link_to get_btn_name(caller), get_link(caller, details.id) %>
             </div>
             <div class="span-6" >
-               <%= link_to 'read',  new_list_item_path(:title_id=> details.id, :cat=>BookList::CATEGORY[:READ]) %>
-               <%= link_to '| bookmark', new_list_item_path(:title_id => details.id, :cat =>BookList::CATEGORY[:BOOKMARK]) %>
-               <%= link_to '| suggest', "#", :id=>"#{details.id}" ,:class=>'suggest'%>
+               <%= link_to 'Read',  new_list_item_path(:title_id=> details.id, :cat=>BookList::CATEGORY[:READ]) %> | 
+               <%= link_to 'Bookmark', new_list_item_path(:title_id => details.id, :cat =>BookList::CATEGORY[:BOOKMARK]) %> <br/>
+               <%= link_to 'Req transfer',  new_list_item_path(:title_id=> details.id,:cat=>BookList::CATEGORY[:TRANSFER]) %>
+               <!--%= link_to '| suggest', "#", :id=>"#{details.id}" ,:class=>'suggest'%-->
             </div>
             <div class = "dialog" id="<%="dialog_#{details.id}" %>">
               <div id = "<%= "flash_#{details.id}" %>" class="span-6">
@@ -57,8 +58,8 @@
               <div class='span-7' >
                 
                 <div class='span-3 small'>  
-                  <p>Checkout the reviews on this book,or pen your own..</p>
-                  
+                  <p><%= link_to 'Checkout', search_reviews_path( :title_id=>details.id, :user_id=>0) %> the reviews on this book,or 
+                  <%= link_to 'pen your own',upsert_reviews_path(:title_id=>details.id) %>..</p>
                 </div>
               </div>
             </div>
@@ -77,19 +78,24 @@
               </div>
             </div>
           </div>
-          <!--div class='span-3 prepend-1' >
+          <% if user_signed_in? and !current_user.member.empty? %>
+          <div class='span-3 prepend-1' >
             <div class='span-3' style="height:225px;margin:10px 0px 0px 0px;padding:0px 0px 0px 0px;background:url(../images/videos.png) no-repeat;background-position:right center;">
               <div id="title">
                 <div class="title">
-                    <a>VIDEOS</a>
+                    <a>AVAILABILITY</a>
                 </div>
               </div>
               <div class='span-3' >
                 
                 <div class='span-3 small' >  
-                  <p></p>
+                  <% current_user.member.each do |member| %>
+                    <%=member.branch.name.gsub(member.branch.id.to_s+' - ','') %> : <%=get_availability(member.branch.id, details.id) %> 
+                    <br/>
+                  <% end %>
                 </div>
               </div>
             </div>
-          </div-->
+          </div>
+          <% end %>
         </div> 
