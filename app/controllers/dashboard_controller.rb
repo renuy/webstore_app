@@ -15,6 +15,8 @@ class DashboardController < ApplicationController
     myshelf = []
     kidshelf = []
     mysuggess=[]
+    @mysugges = StarCategory.find_all_by_star_type('CR').paginate(:page=> 1, :per_page => 3)
+    
     if user_signed_in?
       #@shelf2 = Review.find_all_by_user_id(current_user.id, :order => "id   desc").paginate(:page=> 1, :per_page => 2)
       user = current_user
@@ -30,10 +32,9 @@ class DashboardController < ApplicationController
       @kidshelf = Title.kids("", 1, 1) #honeywell changes
       #mysugges = Suggestion.find_all_by_by_id(user.id, :limit => 1)
       #@mysugges = mysugges.paginate(:page => 1, :per_page => 3)
-      @mysugges = StarCategory.find_all_by_star_type('CR').paginate(:page=> 1, :per_page => 3)
     else
       @myshelf = CurrentRead.all(:order => "cnt desc").paginate(:page => 1, :per_page => 1)
-      @mysugges = StarCategory.find_all_by_star_type('CR').paginate(:page=> 1, :per_page => 3)
+      
       @shelf3 = CurrentRead.all(:order => "cnt").paginate(:page => 1, :per_page => 2)
       @kidshelf = Title.kids("", 1, 1)
     end
