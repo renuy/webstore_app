@@ -1,7 +1,7 @@
     <h3><%= user.username %></h3/>
     <h6><%= user.email %></h6>
     <% user.member.each do |member| %>
-    
+    <% unless member.valid_card.blank? %> 
      <%= "Justbooks ID: #{member.valid_card[0].card_id}" %>  <span class="prepend-1"><%=member.valid_card[0].plan.name %></span>
      
       <% if member.valid_card[0].renewable? %>
@@ -25,6 +25,7 @@
         </div>
       <% end %>
       <br/>
+    <% end %>
     <% end %>
     <br/>
     <%=link_to 'payment history', payments_path %>
