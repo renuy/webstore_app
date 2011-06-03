@@ -7,7 +7,8 @@ class DashboardController < ApplicationController
     params = {:page=> 1, :per_page=>1}
     @quizzes = Quiz.find(:all).paginate(:page=>1,:per_page=>3)  
     @shelf2 = [] 
-    
+    @shelf2 = Review.all(:order => "id   desc").paginate(:page=> 1, :per_page => 2)
+
     @kidshelf =[]
     @myshelf = []
     @mysugges = []
@@ -15,7 +16,7 @@ class DashboardController < ApplicationController
     kidshelf = []
     mysuggess=[]
     if user_signed_in?
-      @shelf2 = Review.find_all_by_user_id(current_user.id, :order => "id   desc").paginate(:page=> 1, :per_page => 2)
+      #@shelf2 = Review.find_all_by_user_id(current_user.id, :order => "id   desc").paginate(:page=> 1, :per_page => 2)
       user = current_user
       
       myshelf = ListItem.find_all_by_book_list_id(user.book_lists.collect{|x| x.id}, :limit => 1)
@@ -31,7 +32,6 @@ class DashboardController < ApplicationController
       #@mysugges = mysugges.paginate(:page => 1, :per_page => 3)
       @mysugges = StarCategory.find_all_by_star_type('CR').paginate(:page=> 1, :per_page => 3)
     else
-      @shelf2 = Review.all(:order => "id   desc").paginate(:page=> 1, :per_page => 2)
       @myshelf = CurrentRead.all(:order => "cnt desc").paginate(:page => 1, :per_page => 1)
       @mysugges = StarCategory.find_all_by_star_type('CR').paginate(:page=> 1, :per_page => 3)
       @shelf3 = CurrentRead.all(:order => "cnt").paginate(:page => 1, :per_page => 2)
