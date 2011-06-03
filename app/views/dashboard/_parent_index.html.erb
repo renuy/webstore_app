@@ -116,7 +116,7 @@
       <div class='span-7 shelf-2'>
         <div id="title">
           <div class="span-3 title">
-              <p><%= link_to "BOOK TALK", search_reviews_path(:page=>1, :per_page=>9, :user_id=> user_signed_in? ? current_user.id : 0) %></p>
+              <p><%= link_to "BOOK TALK", reviews_path(:page=>1, :per_page=>9) %></p>
           </div>
         </div>
           <p></p>
