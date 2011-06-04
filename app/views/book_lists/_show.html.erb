@@ -7,7 +7,7 @@
           </div>
           <div class='span-6 prepend-1' style="padding:30px 30px 30px 0px">
             <h3><%= shelf.title.title  %></h3>
-            <h6><%= shelf.title.author.name  %></h6>
+            <h6><%= shelf.title.author.name unless  shelf.title.author.nil?  %></h6>
             <p>
             <br/>
             <% 5.times do |i|%>
