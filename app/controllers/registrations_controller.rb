@@ -1,5 +1,10 @@
 class RegistrationsController < Devise::RegistrationsController
-  before_filter :authenticate_user!, :only=>[:add, :show]
+  #before_filter :authenticate_user!, :only=>[:add, :show]
+  before_filter :authenticate_user!
+  prepend_before_filter :require_no_authentication, :only => [ :new, :create ]
+  prepend_before_filter :authenticate_scope!, :only => [ :edit, :update, :destroy, :show]
+  include Devise::Controllers::InternalHelpers
+
   def new
     super
   end
