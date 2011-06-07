@@ -43,7 +43,7 @@ class Renewal < ActiveRecord::Base
   end
   
   def set_defaults
-    self.reading_fee = self.valid_card[0].renewAmount(self.months)
+    self.reading_fee = self.member.valid_card[0].renewAmount(self.months)
     self.security_deposit = 0
     self.plan_id = self.member.valid_card[0].plan_id
     self.new_plan_id  = self.member.valid_card[0].plan_id
