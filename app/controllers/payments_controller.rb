@@ -51,9 +51,6 @@ class PaymentsController < ApplicationController
     @payment.p_mode = 'Credit Card'
     @payment.fee = @payment.calc_conv_fee #15 #convinience fee
     @payment.amount = @payment.txn_amount + @payment.fee
-    
-    
-    
   end
 
   # GET /payments/1/edit

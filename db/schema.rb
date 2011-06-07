@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110531065917) do
+ActiveRecord::Schema.define(:version => 20110607061249) do
 
   create_table "book_lists", :force => true do |t|
     t.integer  "user_id",    :precision => 38, :scale => 0
@@ -101,16 +101,21 @@ ActiveRecord::Schema.define(:version => 20110531065917) do
   end
 
   create_table "renewals", :force => true do |t|
-    t.integer   "payment_id",              :precision => 38, :scale => 0
-    t.integer   "months",                  :precision => 38, :scale => 0
+    t.integer   "payment_id",                    :precision => 38, :scale => 0
+    t.integer   "months",                        :precision => 38, :scale => 0
     t.datetime  "from_date"
     t.datetime  "to_date"
     t.string    "card_id"
-    t.timestamp "created_at", :limit => 6
-    t.timestamp "updated_at", :limit => 6
-    t.integer   "member_id",               :precision => 38, :scale => 0
-    t.integer   "amount",                  :precision => 38, :scale => 0
+    t.timestamp "created_at",       :limit => 6
+    t.timestamp "updated_at",       :limit => 6
+    t.integer   "member_id",                     :precision => 38, :scale => 0
+    t.integer   "amount",                        :precision => 38, :scale => 0
     t.string    "state"
+    t.integer   "plan_id",                       :precision => 38, :scale => 0
+    t.integer   "new_plan_id",                   :precision => 38, :scale => 0
+    t.integer   "pay_mode",                      :precision => 38, :scale => 0
+    t.decimal   "reading_fee"
+    t.decimal   "security_deposit"
   end
 
   create_table "reviews", :force => true do |t|

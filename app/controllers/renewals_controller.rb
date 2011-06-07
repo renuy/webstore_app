@@ -15,6 +15,7 @@ class RenewalsController < ApplicationController
     @renewal.state = 'New'
     @renewal.from_date = mem.valid_card[0].expiry_date
     @renewal.to_date = mem.valid_card[0].newExpiry(months.to_i)
+    @renewal.pay_mode = Signup::PAYMENT_MODES[:card]
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @renewal }

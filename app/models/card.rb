@@ -15,16 +15,26 @@ belongs_to :plan
       (self.inWaiver? or !self.plan.renewable? ) ? false : true
   end
   
+  def auto_changeable?
+    !self.plan.auto_changeable?  ? false : true
+  end
+  
   def renewAmount(months)
     renew_amount = 0
     if self.renewable?
       renew_amount = self.plan.renewAmount(months.to_i)
+    elsif self.auto_changeable?
+      renew_amount = self.plan.new_plan.renewAmount(months.to_i)
     end
   end
+  
+
   
   def newExpiry(months)
     new_expiry = self.expiry_date
     if (self.renewable?  and self.plan.renewMonthsArr.include?(months.to_i))
+      new_expiry = self.expiry_date.advance(:months=> months.to_i)
+    elsif(self.auto_changeable?  and self.plan.new_plan.renewMonthsArr.include?(months.to_i))
       new_expiry = self.expiry_date.advance(:months=> months.to_i)
     end
     
