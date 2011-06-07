@@ -1,9 +1,13 @@
 class Plan < ActiveRecord::Base
   WAIVER_PLAN = 26
   has_and_belongs_to_many :branches
-
+  belongs_to :new_plan, :foreign_key => "new_plan_id", :class_name => "Plan"
   def renewable?
-    (self.allow_renewal.upcase.eql?('NO')  or self.frequency.upcase.eql?("N") or  self.expired? or self.id == WAIVER_PLAN) ? false : true
+    (self.allow_renewal.upcase.eql?('NO') or self.allow_renewal.upcase.eql?('BUL')  or self.frequency.upcase.eql?("N") or  self.expired? or self.id == WAIVER_PLAN) ? false : true
+  end
+  
+  def auto_changeable?
+    (self.renewable?  or self.new_plan_id.nil? or self.id == WAIVER_PLAN) ? false : true
   end
   
   def expired?
@@ -13,7 +17,7 @@ class Plan < ActiveRecord::Base
   def renewMonthsArr
     renew_for =[]
     
-    if self.allow_renewal.upcase.eql?('NO') 
+    if !self.renewable? 
       return renew_for
     end
     
@@ -137,4 +141,5 @@ class Plan < ActiveRecord::Base
   def isCorporate?
     self.plan_type.upcase.eql?("C") ? true : false
   end
+  
 end

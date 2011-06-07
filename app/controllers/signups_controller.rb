@@ -62,9 +62,9 @@ class SignupsController < ApplicationController
       q.created_by = current_user.id
       q.modified_by = current_user.id
       q.membership_no = 'T'+"%010d" % Time.now.to_i
-      q.payment_mode = 2
+      q.payment_mode = Signup::PAYMENT_MODES[:card]
       # this does not look to be the best way to work with virtual attributes..
-      q.payment_ref = 'Card'
+      q.payment_ref = 'card'
       q.state = 'New'
     end
     @plan = Plan.find(@signup.plan_id)
