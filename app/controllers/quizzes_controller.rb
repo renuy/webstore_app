@@ -1,25 +1,43 @@
 class QuizzesController < ApplicationController
   before_filter :authenticate_user!, :only => [:create, :destroy, :edit, :new, :update]
   before_filter :authenticate_strata_user!, :only => [:create, :destroy, :edit, :new, :update]
-
+  before_filter :find_title 
+  
+  
   # GET /quizzes
   # GET /quizzes.xml
   def index
-    @shelf0 = Quiz.all(:order => "id desc").paginate(:page =>params[:page],:per_page=>params[:per_page])
+    
+    if (@title)
+      breadcrumbs.add 'TITLES', titles_path
+      breadcrumbs.add @title.title.upcase, title_path(@title)
 
+      @shelf0 = Quiz.find_all_by_title_id(params[:title_id]).paginate(:page =>params[:page],:per_page=>params[:per_page])
+    else
+      @shelf0 = Quiz.find(:all, :order => "id desc").paginate(:page =>params[:page],:per_page=>params[:per_page])
+    end
+    breadcrumbs.add 'QUIZZES'
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @quizzes }
     end
   end
+  
   def search
-    
+    if (@title)
+      breadcrumbs.add 'TITLES', titles_path
+      breadcrumbs.add @title.title.upcase, title_path(@title)
+    end
+    breadcrumbs.add 'QUIZZES'
     @shelf0 = Quiz.find_all_by_title_id(params[:title_id]).paginate(:page =>params[:page],:per_page=>params[:per_page])
     render 'index'
   end  
   # GET /quizzes/1
   # GET /quizzes/1.xml
   def show
+    breadcrumbs.add 'QUIZZES' , quizzes_path
+    breadcrumbs.add params[:id]
     @quiz = Quiz.find(params[:id])
 
     respond_to do |format|
@@ -96,6 +114,13 @@ class QuizzesController < ApplicationController
         format.xml  
         
       end
+    end
+  end
+  
+  private
+  def find_title
+    if params[:title_id]
+      @title = Title.find(params[:title_id])
     end
   end
 end

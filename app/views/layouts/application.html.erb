@@ -43,7 +43,10 @@
       <%= render :partial => "layouts/main_nav" %>
   <% end %>
 	<div class="span-25 prepend-2" style="height:506px;">
-  			<section class="span-22 round">
+        <div class="span-18 breadcrumbs">
+          <%= breadcrumbs.render(:format => :inline, :separator => '>') %>
+        </div>
+  			<section class="span-18 round">
 				<% flash.each do |key, value| %>
 					<div class="flash <%= key %>"><%= value %></div>
 				<% end %>

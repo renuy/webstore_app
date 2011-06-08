@@ -756,6 +756,11 @@ text-align :center;
 font-family: "Tw Cen MT Condensed";
 font-size:14px;
 }
+
+.breadcrumbs{
+font-family: "Tw Cen MT Condensed";
+font-size:13px;
+}
 .rite {float:right !important;}
 
 

@@ -6,4 +6,10 @@ class ApplicationController < ActionController::Base
   #def set_p3p
   #  response.headers["P3P"]='CP="CAO PSA OUR"'
   #end
+  
+  before_filter :add_initial_breadcrumbs
+  private
+  def add_initial_breadcrumbs
+    breadcrumbs.add 'HOME', root_path
+  end
 end

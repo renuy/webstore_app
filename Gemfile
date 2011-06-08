@@ -17,6 +17,7 @@ gem 'jquery-rails'
 gem 'activerecord-oracle_enhanced-adapter'
 gem 'acts_as_versioned'
 gem 'omniauth'
+gem 'breadcrumbs'
 # Use unicorn as the web server
 # gem 'unicorn'
 
