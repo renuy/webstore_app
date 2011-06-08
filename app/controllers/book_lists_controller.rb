@@ -4,6 +4,8 @@ class BookListsController < ApplicationController
   # GET /book_lists.xml
   def index
     
+    breadcrumbs.add 'MY SHELVES'
+    
     @shelves = BookList.find_all_by_user_id(current_user.id)
     if(@shelves.size > 0)
       @shelf0 = ListItem.find_all_by_book_list_id(@shelves[0].id).paginate(:page=>1, :per_page => 3)
@@ -130,7 +132,8 @@ class BookListsController < ApplicationController
   # GET /book_lists/1.xml
   def show
     @collection_name = BookList.find(params[:id])
-    
+    breadcrumbs.add 'MY SHELVES', book_lists_path
+    breadcrumbs.add @collection_name.category.upcase+' SHELF'
     @shelf0 = ListItem.find_all_by_book_list_id(@collection_name.id).paginate(:page=>params[:page], :per_page => params[:per_page])
     #unless params[:notice].blank? 
     #  flash[:notice] = params[:notice]  

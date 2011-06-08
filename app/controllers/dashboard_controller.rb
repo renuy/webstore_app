@@ -7,7 +7,7 @@ class DashboardController < ApplicationController
     params = {:page=> 1, :per_page=>1}
     @quizzes = Quiz.find(:all).paginate(:page=>1,:per_page=>3)  
     @shelf2 = [] 
-    @shelf2 = Review.all(:order => "id   desc").paginate(:page=> 1, :per_page => 2)
+    
 
     @kidshelf =[]
     @myshelf = []
@@ -18,7 +18,7 @@ class DashboardController < ApplicationController
     @mysugges = StarCategory.find_all_by_star_type('CR').paginate(:page=> 1, :per_page => 3)
     
     if user_signed_in?
-      #@shelf2 = Review.find_all_by_user_id(current_user.id, :order => "id   desc").paginate(:page=> 1, :per_page => 2)
+      @shelf2 = Review.find_all_by_user_id(current_user.id, :order => "id   desc").paginate(:page=> 1, :per_page => 2)
       user = current_user
       
       myshelf = ListItem.find_all_by_book_list_id(user.book_lists.collect{|x| x.id}, :limit => 1)
@@ -37,10 +37,13 @@ class DashboardController < ApplicationController
       
       @shelf3 = CurrentRead.all(:order => "cnt").paginate(:page => 1, :per_page => 2)
       @kidshelf = Title.kids("", 1, 1)
+      @shelf2 = Review.all(:order => "id   desc").paginate(:page=> 1, :per_page => 2)
     end
   end
   
   def show
+    
+
     shelf = params[:shelf]
     @shelf0 = []
     @shelf_name =""
@@ -71,6 +74,7 @@ class DashboardController < ApplicationController
         @shelf_name="UNCHARTED"
         render_file = 'show'
     end
+    breadcrumbs.add @shelf_name.upcase + ' SHELF'
     render render_file       
     
   end

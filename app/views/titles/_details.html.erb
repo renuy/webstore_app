@@ -67,7 +67,7 @@
               <div style="margin:10px 0px 0px 0px;"></div>
               <div id="title">
                 <div class="title  span-3">
-                    <p><%= link_to 'QUIZ', search_quizzes_path( :title_id=>details.id) %></p>
+                    <p><%= link_to 'QUIZ', quizzes_path( :title_id=>details.id,:per_page=>9) %></p>
                 </div>
               </div>
               <div class='span-7' >

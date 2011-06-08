@@ -4,9 +4,10 @@ class Title < ActiveRecord::Base
   belongs_to :category
   has_many   :stock, :class_name =>"Stock"
   has_many   :reviews, :class_name => "Reviews" , :order =>"review_type"
+  has_many   :quiz, :class_name => "Quiz"
   attr_accessible :title, :yearofpublication, :edition, :isbn10, :isbn13, :noofpages, :language ,:no_of_rented, :title_type
   
-  BRANCH = ['44','30','29']
+  BRANCH = ['1','1','3']
   #has_many :branch, :through => :stock
   
   validates :title, :presence => true

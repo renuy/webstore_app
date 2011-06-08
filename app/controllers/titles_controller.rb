@@ -1,5 +1,7 @@
 class TitlesController < ApplicationController
   def index
+    breadcrumbs.add 'TITLES'
+  
     newSearch = Sunspot.new_search(Title) do
       paginate(:page => params[:page], :per_page => 4)
       facet(:category_id, :publisher_id, :author_id)
@@ -20,6 +22,8 @@ class TitlesController < ApplicationController
         end
       end
     end
+    
+    breadcrumbs.add 'TITLES '+ params[:query].nil? ? '' : params[:query].upcase unless 
     
 #    newSearch = Sunspot.new_search(Title) do
 #      keywords params[:query] do
@@ -119,8 +123,10 @@ class TitlesController < ApplicationController
     
     #@shelfMR = sr.results.paginate(:page=>1, :per_page=>5)
   end
+  
   def refine
-    
+    breadcrumbs.add 'FIND A BOOK', catalogue_path
+    breadcrumbs.add params[:shelf].upcase+' SHELF'
     search = Sunspot.new_search(Title) do
       paginate(:page => params[:page], :per_page => params[:per_page])
     end
@@ -152,11 +158,15 @@ class TitlesController < ApplicationController
   
 # not using more like this- not sure how this is working as of now
   def show
+    
+    
+    
     title = Title.find(params[:id])
     params[:query] = title.title
     
+    breadcrumbs.add 'TITLES', titles_path(:queryTitleId=>params[:id])
+    breadcrumbs.add params[:query].upcase
     
-    params[:query] = title.title
     shelf0 = []
     shelf0 << title
     @shelf_name=  title.title
@@ -193,6 +203,7 @@ class TitlesController < ApplicationController
   
   
   def favourite
+    breadcrumbs.add 'FIND A BOOK'
     newSearch = Sunspot.new_search(Title) do
       paginate(:page => params[:page], :per_page => 4)
       facet(:category_id)
