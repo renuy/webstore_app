@@ -20,14 +20,19 @@ before_filter :authenticate_user!, :only => [:create, :update, :destroy, :new, :
       params[:title_id] = "0"
     end
     @shelf0 = Review.search(params).paginate(:page =>params[:page],:per_page=>params[:per_page])
-    breadcrumbs.add 'BOOK TALK'+ (params[:user_id].eql?("0") ? "" : (" BY "+User.find(params[:user_id]).username) ) + (params[:title_id].eql?("0") ? "" : (" FOR "+Title.find(params[:title_id]).title))
+    if !params[:title_id].eql?("0")
+      @title = Title.find(params[:title_id])
+      breadcrumbs.add 'TITLES', titles_path
+      breadcrumbs.add @title.title.upcase, title_path(@title)      
+    end
+    breadcrumbs.add 'BOOK TALK'+ (params[:user_id].eql?("0") ? "" : (" BY "+User.find(params[:user_id]).username) ) 
     render 'index'
   end  
   
   # GET /reviews
   # GET /reviews.xml
   def index
-    breadcrumbs.add 'ALL BOOK TALKS'
+    breadcrumbs.add 'BOOK TALKS'
     @shelf0 = Review.all(:order => "id desc").paginate(:page =>params[:page],:per_page=>params[:per_page])
 
     respond_to do |format|
@@ -40,7 +45,7 @@ before_filter :authenticate_user!, :only => [:create, :update, :destroy, :new, :
   # GET /reviews/1.xml
   def show
     @review = Review.find(params[:id])
-    breadcrumbs.add 'ALL BOOK TALKS'
+    breadcrumbs.add 'BOOK TALK'
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @review }
