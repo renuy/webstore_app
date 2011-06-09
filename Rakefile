@@ -4,4 +4,4 @@
 require File.expand_path('../config/application', __FILE__)
 require 'rake'
 
-JbkidsApp::Application.load_tasks
+WebstoreApp::Application.load_tasks

@@ -1,4 +1,4 @@
-JbkidsApp::Application.routes.draw do
+WebstoreApp::Application.routes.draw do
 
   resources :quizzes
 
