@@ -1,9 +1,10 @@
+<div class="span-25">
 <div class="span-5">
-  <h3> Select Your Office *</h3>
+  <h3> Select branch</h3>
   <hr/>
-  <% Title::BRANCH.each do |branch_id| %>
+  <% @branches.each do |branch| %>
   
-    <%= link_to Branch.find(branch_id).name, plans_path(:b => branch_id) %> <br/>
+    <%= link_to branch.name, plans_path(:b => branch.id) %> <br/>
   <% end %>
   <div class="small"><hr/>* Your card would be sent to the selected the office</div>
 </div>
@@ -70,5 +71,4 @@
   <% end %>
 </div>
 <br />
-
-
+</div>

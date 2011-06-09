@@ -1,7 +1,5 @@
 WebstoreApp::Application.routes.draw do
 
-  resources :quizzes
-
   resources :signups
 
   resources :renewals
@@ -11,73 +9,16 @@ WebstoreApp::Application.routes.draw do
   resources :plans
       
 
-  resources :suggestions do 
-    collection do
-      get 'pattern'
-    end
-  end
-
-  resources :list_items 
-  #do
-  #  collection do
-  #    get 'upsert'
-  #  end
-  #end
-  resources :book_lists do
-    collection do
-      get 'index_k'
-    end
-  end
-
-  resources :reviews do
-    collection do
-      get 'search'
-      get 'upsert'
-    end
-  end
-  resources :titles do
-    collection do
-      get 'refine'
-      get 'favourite'
-    end
-    
-  end
   
   devise_for :users, :controllers => {:registrations => 'registrations'} 
   devise_scope :user do 
     get '/users/current' => "registrations#show", :as => 'current_user'
-    get '/users/add' => "registrations#add", :as => 'add_kid_profile'
-    post '/users/kid' => "registrations#kid", :as => 'kid_profile' 
-    resources :users, :only => [:add, :show, :kid] 
+    resources :users, :only => [:add, :show] 
+    root :to => "registrations#show"
   end 
   
-  resources :pending_titles_for_collections
-
-  resources :batches
-
-  resources :serialised_titles
-
-  resources :series
-
-  resources :collections
-
-  resources :collection_names
-
-  resources :authors, :branches, :stock
-  get "titles/index"
-  get "catalogue/index"
-  get "dashboard/index"
-
-  match "catalogue" => "catalogue#index"
-  match "dashboard" => "dashboard#index"
-  match "dashboard/:shelf" => "dashboard#show" ,:as => 'show_dashboard'
-  match "myshelf" => "myshelf#index"
-  match "show_collection_name" => "collection_names#show"
-  match "show_myshelf" => "myshelf#show"
-  match "myshelves/:shelf" => "myshelf#show"
+  resources :branches
   match "gatewayentry" => "payments#gatewayentry" , :via => :post
-  match "search_quizzes" => "quizzes#search"
-  match "list_items/upsert/:title_id" => "list_items#upsert"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -127,7 +68,6 @@ WebstoreApp::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => "dashboard#index"
 
   # See how all your routes lay out with "rake routes"
 

@@ -1,3 +1,4 @@
+<div class="span-25">
 <div class="input_box">
   <div class="breadcrumb"> SETTINGS </div>
       <div class="inner_box">  
@@ -5,14 +6,6 @@
         <%= render :partial => "profile", :locals=>{:user => @user} %>
         
       </div>
-        <!--% if @user.isParent? %>
-        <div class="inner_box">  
-        <hr/>
-        <span class="btn_link rite"><%=link_to 'NEW PROFILE', add_kid_profile_path(:pk=>'y') %> </span>
-        <div class="heading">KIDS PROFILES</div>
-        <%= render :partial => "kid_profile", :collection=> @user.kids  %>
-        </div>
-        
-      <% end %-->
     
+</div>
 </div>

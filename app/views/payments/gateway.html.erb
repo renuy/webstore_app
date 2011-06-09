@@ -1,10 +1,11 @@
+
 <%= javascript_tag :defer => 'defer' do -%>
 	$(document).ready(function () {
     form = document.forms["paymentDetails"];
     form.submit();
 	});
 <% end -%>
-
+<div class="span-25">
 <%= form_tag("https://www.ccavenue.com/shopzone/cc_details.jsp", :id=>"paymentDetails", :method=>"post") do %>
   <div class="actions">
     REDIRECTING TO PAYMENT GATEWAY PLEASE DO PRESS BACK BUTTON  
@@ -51,3 +52,4 @@
   </div>
   <!--%= submit_tag %-->
 <% end %>
+</div>
