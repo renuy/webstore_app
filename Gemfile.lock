@@ -128,8 +128,6 @@ GEM
     rake (0.9.2)
     rest-client (1.6.3)
       mime-types (>= 1.16)
-    ruby-oci8 (2.0.4)
-    ruby-oci8 (2.0.4-x86-mingw32)
     ruby-openid (2.1.8)
     ruby-openid-apps-discovery (1.2.0)
       ruby-openid (>= 2.1.7)
@@ -155,6 +153,5 @@ DEPENDENCIES
   jquery-rails
   omniauth
   rails (= 3.0.3)
-  ruby-oci8
   transitions
   will_paginate (~> 3.0.pre2)
