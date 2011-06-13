@@ -131,6 +131,7 @@ GEM
       mime-types (>= 1.16)
     rsolr (0.12.1)
       builder (>= 2.1.2)
+    ruby-oci8 (2.0.4-x86-mingw32)
     ruby-openid (2.1.8)
     ruby-openid-apps-discovery (1.2.0)
       ruby-openid (>= 2.1.7)
@@ -162,6 +163,7 @@ DEPENDENCIES
   jquery-rails
   omniauth
   rails (= 3.0.3)
+  ruby-oci8
   sunspot_rails (= 1.2.rc4)
   transitions
   will_paginate (~> 3.0.pre2)
