@@ -8,7 +8,7 @@
 <div class="span-25">
 <%= form_tag("https://www.ccavenue.com/shopzone/cc_details.jsp", :id=>"paymentDetails", :method=>"post") do %>
   <div class="actions">
-    REDIRECTING TO PAYMENT GATEWAY PLEASE DO PRESS BACK BUTTON  
+    REDIRECTING TO PAYMENT GATEWAY PLEASE DO NOT PRESS BACK BUTTON  
     <%= hidden_field_tag :Merchant_Param, form_authenticity_token %>
     <%= hidden_field_tag :Order_Id , @payment.OrderId %>
     <%= hidden_field_tag :Merchant_Id ,  @payment.MerchantId %>
