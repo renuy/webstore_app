@@ -1,6 +1,0 @@
-  <%= render :partial => 'collection', :locals => { :collection_name_id => shelf.id} %>
-  <div class="span-21" id= "<%= "div_coll_#{shelf.id}" %>" onmouseover="<%= "Collectionapp.showShelfContent(#{shelf.id}, div_coll_#{shelf.id})" %>"><%= shelf.name %></div>
-  
-  <!--% will_paginate(shelf.collection) %-->
-  <%= render :partial => 'book', :collection => shelf.collection,  :locals => { :collection_name_id => shelf.id} %>    
-    

@@ -1,11 +1,11 @@
 require 'bundler/capistrano'
 
-set :application, "opac"
-set :repository,  "git://github.com/renuy/jbkids_app.git"
+set :application, "webstore_app"
+set :repository,  "git://github.com/renuy/webstore_app.git"
 
 set :scm, :git
 
-set :deploy_to, "/disk1/jbkids_app"
+set :deploy_to, "/disk1/webstore_app"
 set :user, 'rails'
 set :scm_username, 'akil_rails'
 set :use_sudo, false
@@ -22,25 +22,16 @@ role :db,  "74.86.131.195", :primary => true # This is where Rails migrations wi
 # these http://github.com/rails/irs_process_scripts
   namespace :deploy do
     task :copy_database_configuration do 
-      production_db_config = "/disk1/jbkids_app/database.yml" 
+      production_db_config = "/disk1/webstore_app/database.yml" 
       run "cp #{production_db_config} #{release_path}/config/database.yml"
     end
     after "deploy:update_code", "deploy:copy_database_configuration"
   end
 
-  namespace :deploy do
-    task :copy_sunspot_configuration do 
-      production_sunspot_config = "/disk1/jbkids_app/sunspot.yml" 
-      run "cp #{production_sunspot_config} #{release_path}/config/sunspot.yml"
-      production_solr_config = "/disk1/rails/data-config.xml"
-      run "cp #{production_solr_config} #{release_path}/solr/conf/data-config.xml"
-    end
-    after "deploy:update_code", "deploy:copy_sunspot_configuration"
-  end
 
   namespace :deploy do
     task :copy_mail_configuration do 
-      production_mail_config = "/disk1/jbkids_app/setup_mail.rb" 
+      production_mail_config = "/disk1/webstore_app/setup_mail.rb" 
       run "cp #{production_mail_config} #{release_path}/config/initializers/setup_mail.rb"
     end
     after "deploy:update_code", "deploy:copy_mail_configuration"

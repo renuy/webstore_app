@@ -1,5 +1,0 @@
-  <div class="shelf-1" id= "<%= "div_#{collection_name_id}_#{book.title.id}" %>" style="display:none">
-    <%= image_tag image_url(book.title.id), :id=>"img_#{collection_name_id}_#{book.title.id}", 
-    :onmouseover => "Collectionapp.showImage( this)" ,
-    :size => "10x120", :alt => "#{book.title.id} ", :title => "#{book.title.id}", :onerror => "this.src='#{default_image_url}';"  %>
-  </div>

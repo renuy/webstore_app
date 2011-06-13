@@ -37,11 +37,7 @@
 <body>
 
 <div class="container  background">	
-	<% if user_signed_in? and current_user.isKid? %>
-    <%= render :partial => "layouts/kids_nav" %>
-  <% else %>
-      <%= render :partial => "layouts/main_nav" %>
-  <% end %>
+  <%= render :partial => "layouts/main_nav" %>
 	<div class="span-25 prepend-2" style="height:506px;">
         <div class="span-18 breadcrumbs">
           <%= breadcrumbs.render(:format => :inline, :separator => '>') %>

@@ -27,6 +27,9 @@ class SignupsController < ApplicationController
   end
 
   def new
+    
+    @branches = Branch.find_all_by_category(['S','P'], :order=>('id'))
+
     signUpMonths = 1
     @plan = Plan.find(params[:p])
     signUpMonths = params[:m].to_i unless params[:m].empty?

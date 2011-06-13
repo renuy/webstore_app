@@ -1,5 +1,0 @@
-IBTCharts["<%= "infovis#{params[:result]}" %>"].loadJSON(<%= raw @stockHash.to_json %>);
-
-$("#<%= "title_#{params[:result]}" %>").val('<%= @title.title if @title %>');
-
-$("#<%= "img_#{params[:result]}" %>").attr("src", '<%= image_url(@title.id) if @title %>' )
