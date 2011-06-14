@@ -32,7 +32,7 @@ class Payment < ActiveRecord::Base
   end
   
   def RedirectUrl
-    #"http://192.168.1.102:3000/gatewayentry"
+    #"http://192.168.1.103:3000/gatewayentry"
     "http://accounts.justbooksclc.com/gatewayentry"
   end
   
@@ -54,7 +54,7 @@ class Payment < ActiveRecord::Base
   end
   
   def calc_conv_fee
-    if txn_amount.to_i < 150
+    if txn_amount.to_i < 151
       conv_fee = "%0.2f" % (txn_amount * (Payment::CONV_FEE.to_f + 2)/100)
     else
       conv_fee = "%0.2f" % (txn_amount * Payment::CONV_FEE.to_f/100)
