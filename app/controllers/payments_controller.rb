@@ -1,6 +1,6 @@
 class PaymentsController < ApplicationController
   protect_from_forgery :only => [:create, :update, :destroy]
-  before_filter :authenticate_user!,  :only => [:create, :update, :destroy, :show, :new, :index]
+  before_filter :authenticate_user!,  :only => [:create, :update, :destroy, :show, :new, :index, :gatewayentry]
   
   # GET /payments
   # GET /payments.xml
@@ -112,7 +112,7 @@ class PaymentsController < ApplicationController
     
     @payment = Payment.find(order_Id)
     
-    if @payment.verifyChecksum(checksum, authDesc) #and valid_request?
+    if @payment.verifyChecksum(checksum, authDesc) and valid_request?
       case authDesc
         when "Y"
           @payment.state = "ConfirmPayment"
@@ -139,6 +139,7 @@ class PaymentsController < ApplicationController
   
   def valid_request?
     #abc=""
+    request.get? ||
     form_authenticity_token == params[:Merchant_Param] ||
     form_authenticity_token == request.headers['X-CSRF-Token']
     
