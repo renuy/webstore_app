@@ -28,10 +28,9 @@ other_oracle:
   password: opac
   
   
-other_development:
-  adapter: mysql
-  database: opac_dev
-  pool: 3306
-  user : root
-  password : Iflex7585
-  timeout: 5000
+memp_db:
+  adapter: oracle_enhanced
+  database: xe
+  username: memp
+  password: memp
+  

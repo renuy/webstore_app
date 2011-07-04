@@ -1,36 +1,30 @@
-    <h3><%= user.username %></h3/>
-    <h6><%= user.email %></h6>
     <% user.member.each do |member| %>
-    <% unless member.valid_card.blank? %> 
-     <%= "Justbooks ID: #{member.valid_card[0].card_id}" %>  <span class="prepend-1"><%=member.valid_card[0].plan.name %></span>
-      <% if member.valid_card[0].renewable? %>
-        <%= " (#{member.valid_card[0].plan.cnt_books} books, #{member.valid_card[0].plan.cnt_magazine} magazines)"%>
-        <span class="prepend-1">valid through: <%= member.valid_card[0].expiry_date.strftime('%d-%b-%Y') %></span>
-        <span class="prepend-1"><%= link_to 'renew', "#", :id=>"#{member.valid_card[0].card_id}" ,:class=>'suggest'%></span>
+      <% unless member.valid_card.blank? %> 
+      <div id ="card_sear" style="float: right; width: 75%;">
+        <span style="font-size: 16px;"><%= "#{member.valid_card[0].card_id}" %></span>
+        <% if member.valid_card[0].renewable? %>
+            <span class="prepend-1"><%= link_to 'renew', "#", :id=>"#{member.valid_card[0].card_id}" ,:class=>'suggest'%></span>
         
-        <div class = "dialog" id="<%="dialog_#{member.valid_card[0].card_id}" %>">
-
-          Renew for: <br/>
-            <% member.valid_card[0].plan.renewMonthsArr.each do |month| %>
-              
-                <%= radio_button_tag("months#{member.valid_card[0].card_id}", month.to_s, false) %> <%= pluralize(month,  'month') %>
-                till <%= member.valid_card[0].newExpiry(month).strftime('%d-%b-%Y') %> 
-                amount Rs. <%=member.valid_card[0].renewAmount(month) %>/-<br/>
-              
-            <% end %> 
-          <br/>
-          <%= link_to "Continue", '#',:name=>"#{member.id}" ,:id=>"link_#{member.valid_card[0].card_id}" ,:class=>'renew'   %>
-          <span class="prepend-1"><%= link_to 'Cancel', '#' , :id=>"can_#{member.valid_card[0].card_id}", :class =>'rcancel' %></span>
-        </div>
-      <% else %>
-        <% if member.valid_card[0].auto_changeable? %>
-          <%= " (#{member.valid_card[0].plan.new_plan.cnt_books} books, #{member.valid_card[0].plan.new_plan.cnt_magazine} magazines)"%>
-          <span class="prepend-1">valid through: <%= member.valid_card[0].expiry_date.strftime('%d-%b-%Y') %></span>
-          <span class="prepend-1"><%= link_to 'renew', "#", :id=>"#{member.valid_card[0].card_id}" ,:class=>'suggest'%></span>
+            <div class = "dialog" id="<%="dialog_#{member.valid_card[0].card_id}" %>">
+              Renew for: <br/>
+              <% member.valid_card[0].plan.renewMonthsArr.each do |month| %>
+                
+                  <%= radio_button_tag("months#{member.valid_card[0].card_id}", month.to_s, false) %> <%= pluralize(month,  'month') %>
+                  till <%= member.valid_card[0].newExpiry(month).strftime('%d-%b-%Y') %> 
+                  amount Rs. <%=member.valid_card[0].renewAmount(month) %>/-<br/>
+                
+              <% end %> 
+            <br/>
+            <%= link_to "Continue", '#',:name=>"#{member.id}" ,:id=>"link_#{member.valid_card[0].card_id}" ,:class=>'renew'   %>
+            <span class="prepend-1"><%= link_to 'Cancel', '#' , :id=>"can_#{member.valid_card[0].card_id}", :class =>'rcancel' %></span>
+          </div>
+        <% else %>
+          <% if member.valid_card[0].auto_changeable? %>
+            <span class="prepend-1"><%= link_to 'renew', "#", :id=>"#{member.valid_card[0].card_id}" ,:class=>'suggest'%></span>
         
-          <div class = "dialog" id="<%="dialog_#{member.valid_card[0].card_id}" %>">
+            <div class = "dialog" id="<%="dialog_#{member.valid_card[0].card_id}" %>">
 
-            Renew for: <br/>
+              Renew for: <br/>
               <% member.valid_card[0].plan.new_plan.renewMonthsArr.each do |month| %>
               
                 <%= radio_button_tag("months#{member.valid_card[0].card_id}", month.to_s, false) %> <%= pluralize(month,  'month') %>
@@ -38,14 +32,56 @@
                 amount Rs. <%=member.valid_card[0].renewAmount(month) %>/-<br/>
               
               <% end %> 
-            <br/>
-            <%= link_to "Continue", '#',:name=>"#{member.id}" ,:id=>"link_#{member.valid_card[0].card_id}" ,:class=>'renew'   %>
-            <span class="prepend-1"><%= link_to 'Cancel', '#' , :id=>"can_#{member.valid_card[0].card_id}", :class =>'rcancel' %></span>
-          </div>
+              <br/>
+              <%= link_to "Continue", '#',:name=>"#{member.id}" ,:id=>"link_#{member.valid_card[0].card_id}" ,:class=>'renew'   %>
+              <span class="prepend-1"><%= link_to 'Cancel', '#' , :id=>"can_#{member.valid_card[0].card_id}", :class =>'rcancel' %></span>
+            </div>
+          <% end %>
         <% end %>
-      <% end %>
+        <br/>
+        <div style="float: left; width: 48%;">
+          <% unless member.name.nil? %>
+            <%= member.name %><br/>
+          <% end -%>
+
+          <% unless member.email.nil? %>
+            <%= member.email %><br/>
+          <% end -%>
+
+          <% unless member.branch_id.nil? %>
+            <div ><%= member.branch.name %>&nbsp; <br/></div>
+          <% end -%>
+
+          <% unless member.valid_card[0].plan_id.nil? %>
+            <%= member.valid_card[0].plan.name %> <%= " (#{member.valid_card[0].plan.cnt_books} books, #{member.valid_card[0].plan.cnt_magazine} magazines)"%><br/>
+          <% end -%>
+        </div>
+        <div style="float: right; width: 48%;">
+          <% unless member.valid_card[0].start_date.nil? %>
+          <span class="span-2"><b>Start Date</b></span>
+          <span class="span-3"><%= member.valid_card[0].start_date.strftime('%d %B %Y') %></span>
+          <% end -%>
+          <br/>
+
+          <% unless member.valid_card[0].expiry_date.nil? %>
+            <span class="span-2"><b>Expiry Date</b></span>
+            <span class="span-3"><%= member.valid_card[0].expiry_date.strftime('%d %B %Y') %></span>
+          <% end -%>
+          <br/>
+        </div>
+        
+        <br/>
+      </div>
+      <div style="float: left; width: 97%; color: green; font-weight: bold;">
+        <% if isHoldingBooks(member.valid_card[0]) %>
+          <br/>You are holding <%= getHoldingBooks(member.valid_card[0]).count %> Book(s).<br/>
+        <% end -%>
+      </div>
       <br/>
-    <% end %>
+
+      <% end %>
+      
+      <hr/>
     <% end %>
     <br/>
     <%=link_to 'payment history', payments_path %>
