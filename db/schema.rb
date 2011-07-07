@@ -10,7 +10,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110607061249) do
+ActiveRecord::Schema.define(:version => 20110707061630) do
+
+  create_table "batches", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "book_lists", :force => true do |t|
     t.integer  "user_id",    :precision => 38, :scale => 0
@@ -19,7 +24,7 @@ ActiveRecord::Schema.define(:version => 20110607061249) do
     t.datetime "updated_at"
   end
 
-  add_index "book_lists", ["user_id", "category"], :name => "book_lists_idx"
+  add_index "book_lists", ["user_id", "category"], :name => "book_lists_idx1"
 
   create_table "collection_names", :force => true do |t|
     t.string   "name"
@@ -36,11 +41,54 @@ ActiveRecord::Schema.define(:version => 20110607061249) do
     t.datetime "updated_at"
   end
 
+  create_table "devise_users", :force => true do |t|
+    t.string   "email",                                                              :default => "", :null => false
+    t.string   "encrypted_password",   :limit => 128,                                :default => "", :null => false
+    t.string   "password_salt",                                                      :default => "", :null => false
+    t.string   "reset_password_token"
+    t.string   "remember_token"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",                       :precision => 38, :scale => 0, :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "username"
+  end
+
+  add_index "devise_users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "devise_users", ["reset_password_token"], :name => "i_users_reset_password_token", :unique => true
+
+  create_table "events", :force => true do |t|
+    t.string   "branch_name"
+    t.string   "guest_name"
+    t.string   "email"
+    t.string   "mphone"
+    t.string   "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "favourites", :force => true do |t|
     t.integer "user_id",   :precision => 38, :scale => 0
     t.string  "favourite"
     t.integer "item_id",   :precision => 38, :scale => 0
     t.integer "rank",      :precision => 38, :scale => 0
+  end
+
+  create_table "inquiries", :force => true do |t|
+    t.string   "email"
+    t.string   "name"
+    t.string   "corporate_name"
+    t.string   "phone"
+    t.string   "city"
+    t.string   "shop_choice"
+    t.string   "access_points"
+    t.string   "pay_options"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "items", :force => true do |t|
@@ -58,24 +106,41 @@ ActiveRecord::Schema.define(:version => 20110607061249) do
     t.integer  "shelf_id",     :precision => 38, :scale => 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "card_id"
+  end
+
+  create_table "orders", :force => true do |t|
+    t.integer  "member_id",   :precision => 38, :scale => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "branch_id",   :precision => 38, :scale => 0
+    t.string   "state"
+    t.string   "order_for"
+    t.string   "description"
+    t.integer  "user_id",     :precision => 38, :scale => 0
+    t.string   "channel"
+    t.string   "card_id"
+    t.string   "charge"
+    t.decimal  "amount"
+    t.integer  "payment_id",  :precision => 38, :scale => 0
   end
 
   create_table "payments", :force => true do |t|
-    t.integer   "order_id",                 :precision => 38, :scale => 0
-    t.string    "state"
-    t.integer   "orig_id",                  :precision => 38, :scale => 0
-    t.integer   "amount",                   :precision => 38, :scale => 0
-    t.string    "p_mode"
-    t.string    "details"
-    t.timestamp "created_at",  :limit => 6
-    t.timestamp "updated_at",  :limit => 6
-    t.integer   "fee",                      :precision => 38, :scale => 0
-    t.string    "channel"
-    t.integer   "branch_id",                :precision => 38, :scale => 0
-    t.integer   "user_id",                  :precision => 38, :scale => 0
-    t.integer   "member_id",                :precision => 38, :scale => 0
-    t.string    "payment_for"
-    t.integer   "txn_amount",               :precision => 38, :scale => 0
+    t.integer  "order_id",    :precision => 38, :scale => 0
+    t.string   "state"
+    t.integer  "orig_id",     :precision => 38, :scale => 0
+    t.decimal  "amount"
+    t.string   "p_mode"
+    t.string   "details"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.decimal  "fee"
+    t.string   "channel"
+    t.integer  "branch_id",   :precision => 38, :scale => 0
+    t.integer  "user_id",     :precision => 38, :scale => 0
+    t.integer  "member_id",   :precision => 38, :scale => 0
+    t.string   "payment_for"
+    t.decimal  "txn_amount"
   end
 
   create_table "pending_titles_for_collections", :force => true do |t|
@@ -101,21 +166,21 @@ ActiveRecord::Schema.define(:version => 20110607061249) do
   end
 
   create_table "renewals", :force => true do |t|
-    t.integer   "payment_id",                    :precision => 38, :scale => 0
-    t.integer   "months",                        :precision => 38, :scale => 0
-    t.datetime  "from_date"
-    t.datetime  "to_date"
-    t.string    "card_id"
-    t.timestamp "created_at",       :limit => 6
-    t.timestamp "updated_at",       :limit => 6
-    t.integer   "member_id",                     :precision => 38, :scale => 0
-    t.integer   "amount",                        :precision => 38, :scale => 0
-    t.string    "state"
-    t.integer   "plan_id",                       :precision => 38, :scale => 0
-    t.integer   "new_plan_id",                   :precision => 38, :scale => 0
-    t.integer   "pay_mode",                      :precision => 38, :scale => 0
-    t.decimal   "reading_fee"
-    t.decimal   "security_deposit"
+    t.integer  "payment_id",       :precision => 38, :scale => 0
+    t.integer  "months",           :precision => 38, :scale => 0
+    t.datetime "from_date"
+    t.datetime "to_date"
+    t.string   "card_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "member_id",        :precision => 38, :scale => 0
+    t.decimal  "amount"
+    t.string   "state"
+    t.integer  "plan_id",          :precision => 38, :scale => 0
+    t.integer  "new_plan_id",      :precision => 38, :scale => 0
+    t.integer  "pay_mode",         :precision => 38, :scale => 0
+    t.decimal  "reading_fee"
+    t.decimal  "security_deposit"
   end
 
   create_table "reviews", :force => true do |t|
@@ -152,13 +217,13 @@ ActiveRecord::Schema.define(:version => 20110607061249) do
     t.integer  "plan_id",            :precision => 38, :scale => 0,                  :null => false
     t.integer  "branch_id",          :precision => 38, :scale => 0
     t.integer  "signup_months",      :precision => 38, :scale => 0,                  :null => false
-    t.integer  "security_deposit",   :precision => 38, :scale => 0,                  :null => false
-    t.integer  "registration_fee",   :precision => 38, :scale => 0,                  :null => false
-    t.integer  "reading_fee",        :precision => 38, :scale => 0,                  :null => false
-    t.integer  "discount",           :precision => 38, :scale => 0,                  :null => false
-    t.integer  "advance_amt",        :precision => 38, :scale => 0,                  :null => false
-    t.integer  "paid_amt",           :precision => 38, :scale => 0,                  :null => false
-    t.integer  "overdue_amt",        :precision => 38, :scale => 0,                  :null => false
+    t.decimal  "security_deposit",                                                   :null => false
+    t.decimal  "registration_fee",                                                   :null => false
+    t.decimal  "reading_fee",                                                        :null => false
+    t.decimal  "discount",                                                           :null => false
+    t.decimal  "advance_amt",                                                        :null => false
+    t.decimal  "paid_amt",                                                           :null => false
+    t.decimal  "overdue_amt",                                                        :null => false
     t.integer  "payment_mode",       :precision => 38, :scale => 0,                  :null => false
     t.string   "payment_ref",                                                        :null => false
     t.string   "membership_no"
@@ -171,19 +236,18 @@ ActiveRecord::Schema.define(:version => 20110607061249) do
     t.datetime "expiry_date",                                                        :null => false
     t.string   "remarks"
     t.string   "state"
-    t.integer  "coupon_amt",         :precision => 38, :scale => 0
+    t.decimal  "coupon_amt"
     t.string   "coupon_no"
     t.integer  "coupon_id",          :precision => 38, :scale => 0
-    t.string   "flag_reversed"
-    t.integer  "company_id",         :precision => 38, :scale => 0
-    t.integer  "reversal_reason_id", :precision => 38, :scale => 0
-    t.integer  "payment_id",         :precision => 38, :scale => 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "info_source_id",     :precision => 38, :scale => 0
+    t.string   "flag_reversed"
+    t.integer  "company_id",         :precision => 38, :scale => 0
+    t.integer  "reversal_reason_id", :precision => 38, :scale => 0
+    t.decimal  "amt_paid"
+    t.integer  "payment_id",         :precision => 38, :scale => 0
   end
-
-  add_index "signups", ["membership_no", "flag_reversed", "id"], :name => "index1", :unique => true
 
   create_table "suggestions", :force => true do |t|
     t.integer  "title_id",   :precision => 38, :scale => 0
@@ -193,11 +257,11 @@ ActiveRecord::Schema.define(:version => 20110607061249) do
     t.datetime "updated_at"
   end
 
-  add_synonym "memp_signups_seq", "signups_seq@link_memp", :force => true
-  add_synonym "payments_seq", "order_id_seq@link_bangalore", :force => true
+  add_synonym "memp_events", "memp.events", :force => true
+  add_synonym "memp_events_seq", "memp.events_seq", :force => true
+  add_synonym "memp_signups", "memp.signups", :force => true
+  add_synonym "memp_signups_seq", "memp.signups_seq", :force => true
+  add_synonym "payments_seq", "jbprod.order_id_seq", :force => true
   add_synonym "users_seq", "profile_id_seq@link_bangalore", :force => true
-  add_synonym "memp_signups", "signups@link_memp", :force => true
-  add_synonym "memp_events", "events@link_memp", :force => true
-  add_synonym "memp_events_seq", "events_seq@link_memp", :force => true
 
 end

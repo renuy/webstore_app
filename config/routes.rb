@@ -1,5 +1,7 @@
 WebstoreApp::Application.routes.draw do
 
+  resources :events
+
   resources :signups
 
   resources :renewals
@@ -17,6 +19,7 @@ WebstoreApp::Application.routes.draw do
     root :to => "registrations#show"
   end 
   
+  match "powai" => "events#new"
   resources :branches
   match "gatewayentry" => "payments#gatewayentry" , :via => :post
   # The priority is based upon order of creation:
