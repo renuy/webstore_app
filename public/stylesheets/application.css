@@ -650,6 +650,21 @@ input.search_button{height:25px;width:35px; float:right;}
 {margin:0px 2px 0px 5px; padding:0px; height:20px; border:0px; font-size:14px; 
 font-weight:bold;  color:gray;line-height:15px; border:1px solid #CCCCCC;font-family: "Tw Cen MT Condensed";}
 
+input.field1{border:none; font-size:12px; 
+font-weight:bold; font-family: "Tw Cen MT Condensed";margin:0px 0px 0px 0px; padding:0px 2px 0px 5px;
+color:#79443B;}
+
+textarea.field2{border:none; font-size:12px; 
+font-weight:bold; font-family: "Tw Cen MT Condensed";margin:0px 0px 0px 0px; padding:0px 2px 0px 5px;
+color:#79443B;}
+
+.field1
+{margin:0px 0px 0px 35px; padding:1px 0px 4px 0px; height:13px; width:190px;
+font-weight:bold;  color:#79443B;line-height:12px; border:0px solid #79443B;font-family: "Tw Cen MT Condensed";}
+
+.field2
+{margin:0px 0px 0px 35px; padding:1px 0px 4px 0px; height:30px; width:190px;
+font-weight:bold;  color:#79443B;line-height:30px; border:0px solid brown;font-family: "Tw Cen MT Condensed";}
 
 /*navigation ends */
 

@@ -1,0 +1,78 @@
+<div class='span-24 prepend-5 prepend-top'>
+
+<div class="span-24" style="height:650px; background: url(../images/powaipage.jpg) no-repeat;", usemap="bkimag" >
+<div class="span-24" >
+
+<p id="notice"><%= notice %></p>
+
+<br/>
+<br/>
+<br/>
+<div class="span-20 prepend-5"><a href="http://justbooksclc.com">
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a> </div>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+</div>  
+
+<div class="span-24" >
+    <%= form_for(@event) do |f| %>
+  
+      <div class="span-6 prepend-3" id="errors">
+        
+        <% if @event.errors.any? %>
+          <div id="error_explanation" style="color:red">
+            <p><%= pluralize(@event.errors.count, "error") %> prohibited from being saved:</p>
+
+            <ul>
+            <% @event.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <br/>
+        
+      </div>
+      <div id="formf" class="span-6 prepend-1">
+        <div class="field1">
+          
+          <%= f.text_field :guest_name , :class=> 'field1', :placeholder => 'Name'%>
+        </div>
+        <div class="field1">  
+          <%= f.email_field :email, :class=> 'field1', :placeholder => 'Email' %>
+        </div>
+        <div class="field1">  
+          <%= f.phone_field :mphone, :class=> 'field1', :placeholder => 'Mobile' %>
+        </div>
+        <div class="field2">
+          <%= f.text_area :message,  :class=>'field2', :size => "25x2", :placeholder => 'Message' %>
+        </div>
+          
+      </div> 
+      <div class="span-6">
+        <div class="actions">
+            <br/><br/><br/>
+            <%= f.submit "Yes I am interested" %>
+          </div>
+      </div>
+    <% end %>
+
+  </div>
+</div>
+</div>
