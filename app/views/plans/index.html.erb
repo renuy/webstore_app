@@ -1,19 +1,11 @@
 <div class="span-25">
-<div class="span-5">
-  <h3> Select branch</h3>
-  <hr/>
-  <% @branches.each do |branch| %>
-  
-    <%= link_to branch.name, plans_path(:b => branch.id) %> <br/>
-  <% end %>
-  <div class="small"><hr/>* Your card would be sent to the selected the office</div>
-</div>
 
-<div class="span-19 grid" style='text-align:center; height:495px;overflow-x: hidden;  overflow-y:auto; '>
-  <div class="heading"> PLANS FOR <%=@branch.name %>
+<div class="span-24 grid prepend-1" style='background: url(../images/inq_box.png) repeat-y;text-align:center; height:495px;overflow-x: hidden;  overflow-y:auto; '>
+  <div class="heading"> PLANS FOR <%=@branch.branch_name %>
   <%= hidden_field_tag 'branch_id', "#{@branch.id}" %>
   </div>
-  <%= will_paginate @plans %>
+  
+  <%= will_paginate(@plans,:inner_window => 0,:outer_window => 0,  :prev_label => image_tag('prev.png'), :next_label => image_tag('next.png')) %>
   <% @plans.each do |plan| %>
     <div class="span-8 planbox-indiv round">
         <div style="font-size: 13px; font-weight: bold; text-align: center; color: #fff"><%=plan.name %></div>
