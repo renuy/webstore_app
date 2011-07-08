@@ -1,23 +1,26 @@
 
 <div class="span-22">
+<div class="input_box">  
+  <div class="breadcrumb"> Sign in </div>
 
-<h2>Sign in</h2>
+  <div class="inner_box">  
+    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+      <%= devise_error_messages! %>
 
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+      <p><%= f.label :email %><br />
+      <%= f.text_field :email %></p>
 
-  <p><%= f.label :email %><br />
-  <%= f.text_field :email %></p>
+      <p><%= f.label :password %><br />
+      <%= f.password_field :password %></p>
 
-  <p><%= f.label :password %><br />
-  <%= f.password_field :password %></p>
+      <% if devise_mapping.rememberable? -%>
+        <p><%= f.check_box :remember_me %> <%= f.label :remember_me %></p>
+      <% end -%>
 
-  <% if devise_mapping.rememberable? -%>
-    <p><%= f.check_box :remember_me %> <%= f.label :remember_me %></p>
-  <% end -%>
+      <p><%= f.submit "Sign in" %></p>
+    <% end %>
 
-  <p><%= f.submit "Sign in" %></p>
-<% end %>
-
-<%= render :partial => "devise/shared/links" %>
+    <%= render :partial => "devise/shared/links" %>
+  </div>
+</div>  
 </div>

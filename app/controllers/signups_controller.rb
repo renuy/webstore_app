@@ -28,7 +28,7 @@ class SignupsController < ApplicationController
 
   def new
     
-    @branches = Branch.find_all_by_category(['S','P'], :order=>('id'))
+    @branches = Branch.find_all_by_category(['S','P','W'], :order=>('id'))
 
     signUpMonths = 1
     @plan = Plan.find(params[:p])
@@ -76,6 +76,7 @@ class SignupsController < ApplicationController
       #SignupMailer.registration_confirmation(@signup).deliver
       redirect_to :action=>"new", :controller=>"payments", :id => @signup.id,:for=>'sig'
     else
+      @branches = Branch.find_all_by_category(['S','P','W'], :order=>('id'))
       render :action => "new"
     end
         
