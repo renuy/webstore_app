@@ -1,6 +1,6 @@
 
 <%= form_for(@signup) do |f| %>
-  <div class="span-15 border" >   
+  <div class="span-13 border" >   
       <%= f.hidden_field :signup_months, :value=> @signup.signup_months%>
 			<%= f.hidden_field :plan_id, :value=> @signup.plan_id%>
       <%= f.hidden_field :email, :value=> @signup.email%>
@@ -11,45 +11,54 @@
       <%= f.hidden_field :paid_amt, :value=> @signup.paid_amt%>
       <%= f.hidden_field :overdue_amt, :value=> @signup.overdue_amt%>
       <%= f.hidden_field :coupon_id %>
-		  <u>Contact Details for:</u> &nbsp;&nbsp;&nbsp;<%= f.text_field :name, :maxlength => 30, :style => 'width:100px', :placeholder => 'Name' %>
+      <div class="span-12">
         
-				&nbsp;&nbsp;&nbsp;&nbsp; Email:&nbsp;&nbsp;&nbsp;<%= f.text_field :email, :readonly=> true, :class => :readonly, :maxlength => 100, :style => 'width:280px;' %> <br/>
-				<%= f.text_area :address , :maxlength=>1000, :size => "10X5",:placeholder => 'Address' %></br>
-			
-				<%= f.telephone_field :mphone, :maxlength => 10, :style => 'width:20%', :placeholder => 'Phone(M)'%>
-				<%= f.telephone_field :lphone, :maxlength => 10, :style => 'width:20%',:placeholder => 'Phone(L)' %><br/>
-			<br/>	
-      <u>Payment Details</u><br/>
-      <%= f.label 'Registration charges ' %> Rs.
-      <%= f.text_field :registration_fee, :readonly => true, :class=>:readonly , :maxlength => 100, :style => 'width:70px;' %>
-      <%= f.label 'Security Deposit (Refundable) ' %> Rs.
-      <%= f.text_field :security_deposit, :readonly => true, :class=>:readonly , :maxlength => 100, :style => 'width:70px;' %>
-      <%= f.label 'Reading Fee ' %>Rs.
-      <%= f.text_field :reading_fee, :readonly => true, :class=>:readonly , :maxlength => 100, :style => 'width:70px;' %> <br/>
-      <%= f.label 'Total Amount ' %> Rs.
-      <%= f.text_field :paid_amt, :readonly => true, :class=>:readonly , :maxlength => 100, :style => 'width:100px;' %>
-      <br/>
-      <% if @plan.plan_type == 'C'%>
-        <div class="span-15">
-          <%= f.collection_select(:company_id, Company.find(:all, :conditions => ["expiry_date >= ? and start_date <= ?", Date.current, Date.current]), :id, :name, {:include_blank => 'Select Company'} ) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <%= f.label 'Employee Number *' %>
-          <%= f.text_field :employee_no, :maxlength => 10, :style => 'width:100px' %>
-        </div>
-        <div class="small">*You will be awarded confirmed membership on providing proof of your employment with the company selected </div>
-        
-      <% end %>
+        <%= field_set_tag 'Contact Details' do %>
+        <span class="span-5">
+        <%= f.text_field :name, :maxlength => 30, :style => 'width:100%', :placeholder => 'Name' %></span>
+          
+          <span class="span-5"><%= f.text_field :email, :readonly=> true, :class => :readonly, :maxlength => 100, :style => 'width:100%' %> </span>
+          <span class="span-10">
+          <%= f.text_area :address , :maxlength=>1000, :size => "10X5",:placeholder => 'Address' %>
+          </span><br/>
+          <span class="span-5">
+          <%= f.telephone_field :mphone, :maxlength => 10, :style => 'width:100%', :placeholder => 'Phone(M)'%></span>
+          <span class="span-5"><%= f.telephone_field :lphone, :maxlength => 10, :style => 'width:100%',:placeholder => 'Phone(L)' %></span>
+        <% end -%>
+      </div>
+      <div class="span-12">
+        <%= field_set_tag 'Payment Details' do %>
+        <span class="span-5"><%= f.label 'Registration charges ' %> </span><span class="span-5">Rs.
+        <%= f.text_field :registration_fee, :readonly => true, :class=>:readonly , :maxlength => 100, :style => 'width:70px;' %></span><br/>
+        <span class="span-5"><%= f.label 'Security Deposit (Refundable) ' %> </span><span class="span-5">Rs.
+        <%= f.text_field :security_deposit, :readonly => true, :class=>:readonly , :maxlength => 100, :style => 'width:70px;' %></span><br/>
+        <span class="span-5"><%= f.label 'Reading Fee ' %></span><span class="span-5">Rs.
+        <%= f.text_field :reading_fee, :readonly => true, :class=>:readonly , :maxlength => 100, :style => 'width:70px;' %> </span><br/>
+        <span class="span-5"><%= f.label 'Total Amount ' %> </span><span class="span-5" style="color:green;">Rs.
+        <b><%= f.text_field :paid_amt, :readonly => true, :class=>:readonlytot , :maxlength => 100, :style => 'width:100px;' %></b></span><br/>
+        <% if @plan.plan_type == 'C'%>
+          <div class="span-15">
+            <%= f.collection_select(:company_id, Company.find(:all, :conditions => ["expiry_date >= ? and start_date <= ?", Date.current, Date.current]), :id, :name, {:include_blank => 'Select Company'} ) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <%= f.label 'Employee Number *' %>
+            <%= f.text_field :employee_no, :maxlength => 10, :style => 'width:100px' %>
+          </div>
+          <div class="small">*You will be awarded confirmed membership on providing proof of your employment with the company selected </div>
+          
+        <% end %>
+      <% end -%>
+      </div>
   </div>
-  <div class="span-4"> 
+  <div class="span-7"> 
       <%= f.collection_select(:branch_id, @branches, :id, :branch_name, {:include_blank => 'Select Branch'} ) %> <br/>
      
       <%= f.collection_select(:info_source_id, InformationSource.find(:all), :id, :name, {:include_blank => 'How did you come to know about us?'} )%>
-
+      <br/><br/>
       <div class="actions">
         <%= f.submit  "CONTINUE", :class=>"btn_link" %>
         <%= link_to 'Back', :back %>  
       </div>
   </div>
-  <div class="span-4">
+  <div class="span-7">
     <% if @signup.errors.any? %>
     <div id="error_explanation">
       <h4><%= pluralize(@signup.errors.count, "error") %> prohibited this signup from being saved:</h4>
