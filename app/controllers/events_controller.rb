@@ -40,6 +40,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
+        EventMailer.registration_confirmation(@event).deliver
         format.html { redirect_to(@event, :notice => 'Thank you for your interest. We shall get back to you.') }
         format.xml  { render :xml => @event, :status => :created, :location => @event }
       else
