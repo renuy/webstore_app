@@ -19,7 +19,19 @@ WebstoreApp::Application.routes.draw do
     root :to => "registrations#show"
   end 
   
+
   match "powai" => "events#new"
+  match "stores" => "branches#index"
+  match "/contact", :to => 'pages#contact'
+  match "/tnc", :to => 'pages#tnc'
+  match "/privacypolicy", :to => 'pages#privacypolicy'
+  match "/about", :to => 'pages#about'
+  
+  get "pages/privacypolicy"
+  get "pages/contact"
+  get "pages/tnc"
+  get "pages/about"
+  
   resources :branches
   match "gatewayentry" => "payments#gatewayentry" , :via => :post
   # The priority is based upon order of creation:

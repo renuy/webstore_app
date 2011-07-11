@@ -28,10 +28,9 @@ class SignupsController < ApplicationController
 
   def new
     
-    @branches = Branch.find_all_by_category(['S','P','W'], :order=>('id'))
-
     signUpMonths = 1
     @plan = Plan.find(params[:p])
+    @branches = @plan.branches.find(:all, :conditions => ['upper(category) IN (?) ',['S','P','W']], :order => ('id'))
     signUpMonths = params[:m].to_i unless params[:m].empty?
     
     if signUpMonths < 1 && @plan.subscription
@@ -77,6 +76,7 @@ class SignupsController < ApplicationController
       redirect_to :action=>"new", :controller=>"payments", :id => @signup.id,:for=>'sig'
     else
       @branches = Branch.find_all_by_category(['S','P','W'], :order=>('id'))
+      @branches = @plan.branches.find(:all, :conditions => ['upper(category) IN (?) ',['S','P','W']], :order => ('id'))
       render :action => "new"
     end
         
