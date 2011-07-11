@@ -51,8 +51,13 @@
     <%= yield %>
 	</div>
 
-	<div class="span-25">
-		<p class="footer quiet"> <p  id="footer">Copyright © 2011 JustBooks, All rights reserved. <a>Site Map</a> <a>Privacy Policy</a> <a>Terms of Use </a> </p></p>
+	<div class="span-25 footer quiet">
+		<span class="span-8 prepend-1"><p id="footer">Copyright © 2011 JustBooks, All rights reserved. </p></span>
+    <span class="span-3"><%= link_to "Contact Us", contact_path %> </span>
+    <span class="span-5"><%= link_to "Stores", stores_path %> (<a href="http://justbooksclc.com/StoreLocations.action" target="_blank"> Locations </a>) </span>
+    <span class="span-3"><%= link_to "About Us", about_path %></span>
+    <span class="span-3"><%= link_to "Privacy Policy", privacypolicy_path %> </span>
+    <span class="span-3"><%= link_to "Terms of Use", tnc_path %></span>
 	</div>
 
 </div>

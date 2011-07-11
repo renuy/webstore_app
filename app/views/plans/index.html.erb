@@ -1,8 +1,11 @@
 <div class="span-25">
 
-<div class="span-24 grid prepend-1" style='background: url(../images/inq_box.png) repeat-y;text-align:center; height:495px;overflow-x: hidden;  overflow-y:auto; '>
-  <div class="heading"> PLANS FOR <%=@branch.branch_name %>
-  <%= hidden_field_tag 'branch_id', "#{@branch.id}" %>
+<div class="span-19 grid prepend-1" style='background: url(../images/inq_box.png) repeat-y;text-align:center; height:495px;overflow-x: hidden;  overflow-y:auto; '>
+  <div class="span-24">
+    <div class="span-5 heading"> PLANS FOR <%=@branch.branch_name %>
+    </div>
+    <%= hidden_field_tag 'branch_id', "#{@branch.id}" %>
+
   </div>
   
   <%= will_paginate(@plans,:inner_window => 0,:outer_window => 0,  :prev_label => image_tag('prev.png'), :next_label => image_tag('next.png')) %>
@@ -62,5 +65,13 @@
 
   <% end %>
 </div>
+  <div class="span-5 last info"> 
+  <span class="span-4"><h3><%=@branch.branch_name %></h3></span>
+    <span class="span-4"><%=@branch.address %>, <%=@branch.city %></span>
+    <span class="span-4"><b><%=@branch.phone %> </b></span>
+    <span class="span-4"><b><%=@branch.email %> </b></span>
+    <span class="span-4"><%=@branch.timings %> </span>
+  </div>
+
 <br />
 </div>

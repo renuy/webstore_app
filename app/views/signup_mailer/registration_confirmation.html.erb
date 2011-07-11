@@ -10,20 +10,28 @@ Dear <b><%= @signup.name %></b>
             <%= @signup.plan.cnt_books %></b>
              book(s) and <b><%= @signup.plan.cnt_magazine %></b> magazine(s) at a given time.
                <br/>
-             Your membership is effective <%= @signup.start_date.strftime("%m-%d-%Y") %> and is paid until
-             <%= @signup.expiry_date.strftime("%m-%d-%Y") %>. For the plan that you have chosen, beyond <%= @signup.expiry_date.strftime("%m-%d-%Y") %>, you will be
-             required to pay a reading fee of <b><%= @signup.plan.monthly_amount %>
-             </b> every <%= if @signup.plan.subscription 
-                                @signup.decode_frequency+"."
-                            else
-                              "Book."
-                            end %>
+            <% if @signup.plan.subscription %>
+               Your membership is effective <%= @signup.start_date.strftime("%m-%d-%Y") %> and is paid until
+               <%= @signup.expiry_date.strftime("%m-%d-%Y") %>. For the plan that you have chosen, beyond <%= @signup.expiry_date.strftime("%m-%d-%Y") %>, you will be
+               required to pay a reading fee of <b><%= @signup.plan.monthly_amount %>
+               </b> every <%= if @signup.plan.subscription 
+                                  @signup.decode_frequency+"."
+                              else
+                                "Book."
+                              end %>
+            <% else %>
+               Your membership is effective from <%= @signup.start_date.strftime("%m-%d-%Y") %> to <%= @signup.expiry_date.strftime("%m-%d-%Y") %>. 
+               For the plan that you have chosen, you will be
+               required to pay a reading fee of <b><%= @signup.plan.monthly_amount %>
+               </b> for every book per month.
+            
+            <% end %>
              <br/>As long as you hold a book, you will be charged the reading
              fee every <%= @signup.decode_frequency %>.
 
      <br/>
      <br/>
-     <% if signup.plan.isCorporate? %>
+     <% if @signup.plan.isCorporate? %>
      Corporate account holders please note that your Membership Card would be delivered to your selected office.
      Please collect the same from the Librarian at the JustBooksClc Center in your respective office.
      You may be required to show your Employee Id for verification.

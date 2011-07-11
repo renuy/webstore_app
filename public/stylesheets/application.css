@@ -13,20 +13,18 @@
 
 .footer {
   background: url(../images/footer-bar.png);
+  padding: 30px 0px 0px 0px;
   margin:0px;
   height:47px; 
   background-repeat:no-repeat;
   background-position:right;
   font:Arial;
   font-size:12px;
-  
+  border: 1
 }
 
 #footer {
-	position:relative;
-	bottom:10px;
-	left:40px;
-  color: #DBDBDB;
+	color: #DBDBDB;
   font:Arial;
   font-size:12px;
 }
