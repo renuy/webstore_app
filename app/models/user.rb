@@ -1,6 +1,10 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
+  set_table_name "users" 
+  set_primary_key "id" 
+  set_sequence_name "users_seq"   
+
   devise :database_authenticatable, :registerable, :recoverable,:confirmable
          #:rememberable, :trackable, 
          :validatable
@@ -9,6 +13,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :username, :parent_id
   attr_accessor :ksu
   before_save :encrypt_password #should this be before create
+  before_create :fetch_id
   validate :kids_profile #should this be before create
   has_many :member, :conditions => ["status in (?)", [1,2]]
   has_many :kids, :foreign_key => "parent_id", :class_name => "User"
@@ -46,4 +51,10 @@ class User < ActiveRecord::Base
   def strata_employee?
     email.gsub(/.*@/,'').split('.').include?('strata')
   end
+  
+  private
+  
+   def fetch_id
+    self[:id] = connection.select_value('SELECT users_seq.nextval FROM dual')
+  end  
 end
