@@ -7,7 +7,7 @@ class Plan < ActiveRecord::Base
   end
   
   def auto_changeable?
-    (self.renewable?  or self.new_plan_id.nil? or self.id == WAIVER_PLAN) ? false : true
+    (self.renewable? or self.frequency.upcase.eql?("N") or self.new_plan_id.nil? or self.id == WAIVER_PLAN) ? false : true
   end
   
   def expired?
