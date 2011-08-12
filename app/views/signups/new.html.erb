@@ -1,3 +1,22 @@
+# google analytics tracking code starts
+  <%= javascript_tag :defer => 'defer' do -%>
+    <script type="text/javascript">
+
+		  var _gaq = _gaq || [];
+		  _gaq.push(['_setAccount', 'UA-24987175-1']);
+		  _gaq.push(['_setDomainName', '.justbooksclc.com']);
+		  _gaq.push(['_trackPageview']);
+		
+		  (function() {
+		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  })();
+		
+		</script>
+  <% end %>
+# google analytics tracking code ends
+
 <div class="span=25">
 <div class="input_box">  
   <div class="breadcrumb"> Signup From : <%= Time.now.strftime('%d-%b-%Y') %> To : <%= (Time.now + @signup.signup_months.months).strftime('%d-%b-%Y') %></div>

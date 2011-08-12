@@ -1,3 +1,22 @@
+# google analytics tracking code starts
+  <%= javascript_tag :defer => 'defer' do -%>
+    <script type="text/javascript">
+
+		  var _gaq = _gaq || [];
+		  _gaq.push(['_setAccount', 'UA-24987175-1']);
+		  _gaq.push(['_setDomainName', '.justbooksclc.com']);
+		  _gaq.push(['_trackPageview']);
+		
+		  (function() {
+		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  })();
+		
+		</script>
+  <% end %>
+# google analytics tracking code ends
+
 <div class="span-24" style="background: url(../images/inq_box.png) repeat-y;">
   
     <div class="breadcrumb"> SELECT CITY >> STORE </div>
