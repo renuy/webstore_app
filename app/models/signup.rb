@@ -252,8 +252,8 @@ class Signup < ActiveRecord::Base
     memp_signup.company_id = self.company_id
     memp_signup.info_source_id = self.info_source_id
     memp_signup.reversal_reason_id = self.reversal_reason_id
-    memp_signup.created_in = 801
-    memp_signup.modified_in = 801
+    memp_signup.created_in = self.branch_id
+    memp_signup.modified_in = self.branch_id
     memp_signup.order_id = self.payment_id
     if !memp_signup.save!
       logger.debug'failed to save'
